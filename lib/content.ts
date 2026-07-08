@@ -5,7 +5,7 @@
    ============================================================ */
 
 export const site = {
-  name: "Kevio",
+  name: "Kevio Labs",
   tagline: "Agence créative moderne",
   description:
     "Nous concevons des marques, des interfaces et des produits numériques ambitieux qui laissent une impression durable.",
