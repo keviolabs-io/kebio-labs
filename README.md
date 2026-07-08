@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kevio — site d'agence
 
-## Getting Started
+Site multi-pages inspiré du thème Framer **Agenciy**, reconstruit proprement en
+Next.js pour être 100 % modifiable (avec Claude Code) et déployable sur Vercel.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (thème sombre, tokens dans `app/globals.css`)
+- **Framer Motion** — animations d'entrée, hover, cartes empilées
+- **GSAP ScrollTrigger** — révélation de texte au scroll (section « À propos »)
+- **Lenis** — smooth scroll (Chrome + Safari)
+
+## Démarrer
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # développement (http://localhost:3000)
+npm run build   # build de production
+npm start       # serveur de production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Où modifier quoi
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Je veux changer… | Fichier |
+|---|---|
+| **Tous les textes, listes, liens** | `lib/content.ts` ← commence ici |
+| Couleurs / typo | `app/globals.css` (variables `:root`) |
+| Une section de l'accueil | `components/home/*.tsx` |
+| L'ordre des sections | `app/page.tsx` |
+| La navigation / le footer | `components/Nav.tsx`, `components/Footer.tsx` |
+| Une page | `app/<page>/page.tsx` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Images
 
-## Learn More
+Dépose tes fichiers dans `public/projects`, `public/team`, `public/blog`.
+Les chemins attendus sont dans `lib/content.ts` (champ `image`).
+Tant qu'une image est absente, un dégradé placeholder s'affiche automatiquement
+(composant `components/Media.tsx`) — rien ne casse.
 
-To learn more about Next.js, take a look at the following resources:
+## Objet 3D du hero
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Placeholder CSS (`components/GlossyOrb.tsx`). Pour mettre ton propre rendu,
+remplace-le par une image/vidéo via `<Media/>` dans `components/home/Hero.tsx`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Formulaire de contact
 
-## Deploy on Vercel
+`components/ContactSection.tsx` ouvre le client mail (mailto). Pour recevoir les
+messages sur un vrai backend, branche un service type Formspree ou Resend.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Déployer sur Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Pousser ce dossier sur un repo GitHub.
+2. Sur vercel.com : **New Project → importer le repo**. Next.js est détecté
+   automatiquement, aucun réglage requis.
+3. Deploy. ✅
