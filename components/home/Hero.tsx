@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { hero } from "@/lib/content";
 import HeroObject from "@/components/HeroObject";
+import Particles from "@/components/Particles";
 import Media from "@/components/Media";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -40,6 +41,9 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col overflow-hidden px-6 pb-8 pt-28">
+      {/* Points luminescents qui gravitent en arrière-plan */}
+      <Particles />
+
       {/* Objet 3D en fond, centré/bas */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[-6%] flex justify-center">
         <HeroObject className="w-[min(72vw,620px)]" />
