@@ -38,7 +38,7 @@ export default function Nav() {
         {/* Center pill — desktop */}
         <nav className="hidden md:block">
           <ul className="flex items-center gap-1 rounded-full border border-border bg-white/[0.02] px-2 py-2 backdrop-blur-md">
-            {nav.slice(0, 4).map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}

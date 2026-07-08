@@ -26,6 +26,21 @@ export const hero = {
   // Le titre est en deux parties : la 2e est en serif italique.
   titleLine1: "Créer,",
   titleLine2: "de l'impact",
+  // Bloc bas-gauche : « ce que nous faisons »
+  weDoLabel: "Nous le faisons",
+  // Liste de services affichée dans le hero (paires « gauche / droite »)
+  weDoItems: [
+    { left: "Identité de marque", right: "Design UI / UX" },
+    { left: "Développement", right: "Marketing" },
+  ],
+  // Bloc bas-droite : projet en vedette
+  featuredLabel: "En vedette",
+  featuredIndex: "(02)",
+  featured: {
+    title: "Les actualités",
+    image: "/projects/project-1.jpg",
+    href: "/projets",
+  },
   // Villes du marquee sous le hero
   marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
 };
