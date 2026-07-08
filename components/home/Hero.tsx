@@ -6,8 +6,18 @@ import { hero } from "@/lib/content";
 import HeroObject from "@/components/HeroObject";
 import Particles from "@/components/Particles";
 import Media from "@/components/Media";
+import { FaFacebookF, FaInstagram, FaDribbble, FaBehance } from "react-icons/fa";
+import type { IconType } from "react-icons";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
+
+// Logos de marque pour les réseaux du hero
+const SOCIAL_ICONS: Record<string, IconType> = {
+  facebook: FaFacebookF,
+  instagram: FaInstagram,
+  dribbble: FaDribbble,
+  behance: FaBehance,
+};
 
 /** Ligne de titre avec révélation par masque (slide up). */
 function MaskLine({
@@ -60,26 +70,35 @@ export default function Hero() {
             </MaskLine>
           </h1>
 
-          {/* Contact + réseaux (desktop) */}
+          {/* Contact + réseaux (desktop) — repris du thème */}
           <motion.div
             variants={fadeUp}
             initial="initial"
             animate="animate"
             transition={{ duration: 0.7, ease: easeOut, delay: 0.5 }}
-            className="mt-8 hidden shrink-0 flex-col items-end gap-4 lg:flex"
+            className="mt-8 hidden w-full max-w-sm shrink-0 flex-col items-end gap-6 lg:flex"
           >
-            <p className="text-sm text-foreground/90">{hero.contactLabel}</p>
-            <div className="flex gap-2">
-              {hero.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-border text-xs text-muted transition-colors duration-300 hover:border-border-strong hover:text-foreground"
-                >
-                  {s.short}
-                </a>
-              ))}
+            <p className="text-right text-sm leading-relaxed text-muted">
+              {hero.contactParagraph}
+            </p>
+            <div className="w-full border-t border-border" />
+            <div className="flex w-full items-center justify-between gap-8">
+              <span className="text-sm text-foreground/90">{hero.contactLabel}</span>
+              <div className="flex gap-2.5">
+                {hero.socials.map((s) => {
+                  const Icon = SOCIAL_ICONS[s.key];
+                  return (
+                    <a
+                      key={s.key}
+                      href={s.href}
+                      aria-label={s.label}
+                      className="grid h-10 w-10 place-items-center rounded-full border border-border bg-white/[0.04] text-foreground transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-background"
+                    >
+                      {Icon ? <Icon className="h-[15px] w-[15px]" /> : null}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         </div>

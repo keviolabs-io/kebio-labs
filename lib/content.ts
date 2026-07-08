@@ -41,13 +41,15 @@ export const hero = {
     image: "/projects/project-1.jpg",
     href: "/projets",
   },
-  // Bloc contact + réseaux (haut-droite)
+  // Bloc contact + réseaux (haut-droite) — repris du thème
+  contactParagraph:
+    "© Nous créons des marques, des sites web et des expériences numériques — avec intensité, clarté et soin.",
   contactLabel: "Contactez-nous",
   socials: [
-    { label: "Instagram", short: "Ig", href: "#" },
-    { label: "LinkedIn", short: "in", href: "#" },
-    { label: "Behance", short: "Be", href: "#" },
-    { label: "Dribbble", short: "Dr", href: "#" },
+    { key: "facebook", label: "Facebook", href: "#" },
+    { key: "instagram", label: "Instagram", href: "#" },
+    { key: "dribbble", label: "Dribbble", href: "#" },
+    { key: "behance", label: "Behance", href: "#" },
   ],
   // Villes du marquee sous le hero
   marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
