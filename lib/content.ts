@@ -263,11 +263,29 @@ export const contact = {
 
 /* Footer ---------------------------------------------------- */
 export const footer = {
-  heading: "Construisons quelque chose de grand ensemble.",
+  // Colonne 1
+  locationLabel: "Emplacement",
+  address: ["12 rue de la Création, Suite 500", "75002 Paris", "France"],
+  contactLabel: "Contact",
+  email: "hello@kevio.studio",
+  phone: "+33 1 84 80 00 00",
+  // Colonne 2 (grands liens)
+  linksLabel: "Liens",
+  links: [
+    { label: "À propos", href: "/about" },
+    { label: "Projets", href: "/projets" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/contact" },
+  ],
+  // Colonne 3 (réseaux)
+  socialsLabel: "Réseaux sociaux",
   socials: [
     { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
+    { label: "X (Twitter)", href: "#" },
     { label: "Behance", href: "#" },
-    { label: "X", href: "#" },
+    { label: "Dribbble", href: "#" },
   ],
+  // Bas de page
+  copyright: "Tous droits réservés.",
+  backToTop: "Retour en haut de page",
 };
