@@ -108,6 +108,17 @@ export default function Hero() {
           <HeroObject className="w-[70vw] max-w-[320px]" />
         </div>
 
+        {/* Indicateur de scroll (mobile) */}
+        <div className="flex justify-center md:hidden">
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-border-strong text-muted"
+          >
+            ↓
+          </motion.div>
+        </div>
+
         {/* Composition basse : services (gauche) · scroll (centre) · vedette (droite) */}
         <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-3">
           {/* Gauche — Nous le faisons + villes */}
@@ -172,7 +183,7 @@ export default function Hero() {
                 <Media
                   src={hero.featured.image}
                   alt={hero.featured.title}
-                  className="aspect-[4/3] w-full"
+                  className="aspect-[16/9] w-full md:aspect-[4/3]"
                   imgClassName="transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -182,6 +193,29 @@ export default function Hero() {
               </div>
             </Link>
           </motion.div>
+        </div>
+
+        {/* Contact + réseaux (mobile, compact) */}
+        <div className="mt-8 flex flex-col gap-4 lg:hidden">
+          <div className="w-full border-t border-border" />
+          <div className="flex items-center justify-between gap-6">
+            <span className="text-sm text-foreground/90">{hero.contactLabel}</span>
+            <div className="flex gap-2.5">
+              {hero.socials.map((s) => {
+                const Icon = SOCIAL_ICONS[s.key];
+                return (
+                  <a
+                    key={s.key}
+                    href={s.href}
+                    aria-label={s.label}
+                    className="grid h-10 w-10 place-items-center rounded-full border border-border bg-white/[0.04] text-foreground transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-background"
+                  >
+                    {Icon ? <Icon className="h-[15px] w-[15px]" /> : null}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
