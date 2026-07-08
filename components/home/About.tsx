@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
-import { about, site } from "@/lib/content";
+import { about } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
-import { staggerContainer, staggerItem } from "@/components/anim/Reveal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -24,6 +21,7 @@ export default function About() {
     if (!el) return;
 
     const words = el.querySelectorAll<HTMLElement>("[data-word]");
+
     if (prefersReduced) {
       gsap.set(words, { opacity: 1 });
       return;
@@ -40,7 +38,7 @@ export default function About() {
           scrollTrigger: {
             trigger: el,
             start: "top 75%",
-            end: "bottom 65%",
+            end: "bottom 60%",
             scrub: true,
           },
         }
@@ -59,7 +57,7 @@ export default function About() {
           <SectionLabel icon="✦">{about.label}</SectionLabel>
         </div>
 
-        <div ref={containerRef} className="mx-auto mt-12 max-w-5xl text-center">
+        <div ref={containerRef} className="mx-auto mt-14 max-w-5xl text-center">
           <p className="text-3xl font-medium leading-[1.25] tracking-tight sm:text-5xl sm:leading-[1.2]">
             {words.map((word, i) => (
               <span key={i} data-word className="inline-block">
@@ -68,36 +66,6 @@ export default function About() {
               </span>
             ))}
           </p>
-        </div>
-
-        {/* Stats */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border lg:grid-cols-4"
-        >
-          {about.stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={staggerItem}
-              className="bg-background p-8 text-center"
-            >
-              <div className="text-4xl font-medium tracking-tight sm:text-5xl">{stat.value}</div>
-              <div className="mt-2 text-sm text-muted">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <div className="mt-14 flex justify-center">
-          <Link
-            href={site.cta.href}
-            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-4 text-sm font-medium text-background transition-transform duration-300 hover:scale-[0.97]"
-          >
-            {about.ctaText}
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </Link>
         </div>
       </div>
     </section>

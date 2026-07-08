@@ -81,11 +81,8 @@ function ProjectCard({
 export default function Projects() {
   return (
     <section id="projets" className="px-6 py-28">
-      <div className="mx-auto mb-10 max-w-[1400px]">
+      <div className="mx-auto mb-6 max-w-[1400px]">
         <SectionLabel icon="◆">{projects.label}</SectionLabel>
-        <h2 className="mt-8 text-4xl font-medium tracking-tight sm:text-6xl">
-          {projects.title}
-        </h2>
       </div>
 
       <div>

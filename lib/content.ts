@@ -1,417 +1,216 @@
 /* ============================================================
-   Contenu du site KEVIO LABS — édite tout ici.
-   Le design (composants) ne dépend jamais de ce fichier :
-   change un texte ici, le design reste identique.
+   Contenu du site — édite tout ici (textes, listes, liens).
+   Les sections lisent depuis ce fichier, donc pas besoin de
+   toucher au code des composants pour changer un texte.
    ============================================================ */
 
 export const site = {
-  name: "Kevio Labs",
-  tagline: "L'IA au service de votre croissance",
+  name: "Kevio",
+  tagline: "Agence créative moderne",
   description:
-    "Agence digitale & IA. Sites web, publicité digitale et automatisation IA pour accélérer votre croissance.",
-  email: "hello@keviolabs.com",
-  cta: { label: "Démarrer un projet", href: "/contact" },
+    "Nous concevons des marques, des interfaces et des produits numériques ambitieux qui laissent une impression durable.",
+  email: "hello@kevio.studio",
+  cta: { label: "Discutons !", href: "/contact" },
 };
 
 export const nav = [
   { label: "Services", href: "/services" },
-  { label: "Réalisations", href: "/projets" },
   { label: "À propos", href: "/about" },
+  { label: "Projets", href: "/projets" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
 /* Hero ------------------------------------------------------ */
 export const hero = {
-  titleLine1: "Croissance digitale",
-  titleLine2: "intelligente",
-  tags: ["Site Web", "Publicité", "SEO", "App", "Agent IA"],
-  primary: { label: "Voir nos réalisations", href: "/projets" },
-  secondary: { label: "Prendre contact", href: "/contact" },
-  marquee: ["Site Web", "Publicité", "SEO", "Application", "Agent IA", "Automatisation"],
+  // Le titre est en deux parties : la 2e est en serif italique.
+  titleLine1: "Créer,",
+  titleLine2: "de l'impact",
+  // Villes du marquee sous le hero
+  marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
 };
 
 /* Services -------------------------------------------------- */
-/* `short` sert à l'accueil ; les autres champs à la page /services. */
 export const services = {
   label: "Nos services",
-  subtitle: "Ce que nous créons pour vous.",
   items: [
     {
       n: "/01",
-      slug: "site-web",
-      icon: "◈",
-      title: "Site Web",
-      short:
-        "Sites vitrines et e-commerce, en CMS ou codés sur-mesure. Chaque pixel pensé pour convertir.",
-      headline:
-        "Votre site est votre premier commercial — celui qui ne dort jamais.",
-      text: "Accessible 24h/24 et 7j/7, votre site présente votre activité de façon professionnelle, renforce votre présence en ligne et attire de nouveaux clients.",
-      keywords: ["Performants", "Design unique", "Responsives", "Engageants"],
-      offers: [
-        {
-          n: "01",
-          title: "Site vitrine CMS",
-          text: "WordPress, Webflow, Framer. Mise en ligne rapide, gestion autonome, design personnalisé.",
-          badge: "",
-        },
-        {
-          n: "02",
-          title: "Site vitrine sur-mesure",
-          text: "HTML/CSS/JS pur, PageSpeed 95+, zéro dépendance.",
-          badge: "Recommandé",
-        },
-        {
-          n: "03",
-          title: "E-commerce CMS",
-          text: "Shopify, WooCommerce. Prêt à vendre dès le lancement.",
-          badge: "",
-        },
-        {
-          n: "04",
-          title: "E-commerce sur-mesure",
-          text: "Architecture custom, API, scalable.",
-          badge: "",
-        },
-      ],
-      included: [
-        "Rendez-vous de cadrage",
-        "SEO Google",
-        "100% responsive mobile",
-        "Hébergement et mise en ligne",
-        "Nom de domaine 100% propriétaire",
-        "Formation à la gestion de contenu",
-        "Suivi post-lancement et support",
-      ],
-      cta: "Un site qui travaille pour vous, jour et nuit.",
+      title: "Identité de marque",
+      text: "Créez des identités visuelles qui portent votre voix et laissent une impression durable.",
     },
     {
       n: "/02",
-      slug: "publicite",
-      icon: "❖",
-      title: "Publicité digitale",
-      short:
-        "Vos futurs clients sont déjà en ligne. La vraie question : vous voient-ils, ou voient-ils vos concurrents ?",
-      headline: "Vous ne payez plus pour être vu — vous investissez pour vendre.",
-      text: "La publicité digitale place votre marque exactement là où se trouve votre audience. Fini les budgets dépensés au hasard : chaque euro est traçable et orienté résultats.",
-      keywords: [
-        "Résultats immédiats",
-        "Ciblage chirurgical",
-        "Chaque euro traçable",
-        "Scale avec vous",
-      ],
-      offers: [
-        {
-          n: "01",
-          title: "Meta Ads — Facebook & Instagram",
-          text: "Audiences lookalike, créatifs, retargeting, reporting.",
-          badge: "",
-        },
-        {
-          n: "02",
-          title: "Google Ads — Search, Display, Shopping",
-          text: "Enchères optimisées, suivi des conversions.",
-          badge: "",
-        },
-        {
-          n: "03",
-          title: "TikTok Ads",
-          text: "Formats natifs, créas tendances, ciblage par intérêts.",
-          badge: "",
-        },
-        {
-          n: "04",
-          title: "Stratégie & optimisation",
-          text: "A/B testing, coût par lead, scaling, dashboard.",
-          badge: "",
-        },
-      ],
-      included: [],
-      cta: "Chaque jour sans campagne, ce sont des clients qui vont chez vos concurrents.",
+      title: "Design UI / UX",
+      text: "Des interfaces centrées utilisateur, à la fois esthétiques, innovantes et intuitives.",
     },
     {
       n: "/03",
-      slug: "seo",
-      icon: "⬡",
-      title: "Référencement SEO",
-      short:
-        "Chaque jour, vos clients tapent leur besoin sur Google. Est-ce votre nom qui apparaît, ou celui de votre concurrent ?",
-      headline: "Le SEO travaille pour vous 24h/24, mois après mois.",
-      text: "Nous construisons une autorité durable : technique irréprochable, contenu qui répond aux vraies questions, et stratégie pour vous installer en haut des résultats.",
-      keywords: [
-        "Visibilité permanente",
-        "Clients ultra-qualifiés",
-        "Crédibilité instantanée",
-        "Effet boule de neige",
-      ],
-      offers: [
-        {
-          n: "01",
-          title: "SEO technique",
-          text: "Core Web Vitals, Schema.org, indexation, vitesse.",
-          badge: "",
-        },
-        {
-          n: "02",
-          title: "Contenu & mots-clés",
-          text: "Recherche, rédaction, stratégie, blog.",
-          badge: "",
-        },
-        {
-          n: "03",
-          title: "SEO local",
-          text: "Google Business, avis, recherches géolocalisées, pack local.",
-          badge: "",
-        },
-        {
-          n: "04",
-          title: "Suivi & autorité",
-          text: "Netlinking, positions, Search Console, reporting.",
-          badge: "",
-        },
-      ],
-      included: [],
-      cta: "La meilleure date pour lancer votre SEO, c'était il y a un an. La deuxième, c'est aujourd'hui.",
+      title: "Développement web",
+      text: "Des sites et applications performants, conçus pour évoluer avec vous.",
     },
     {
       n: "/04",
-      slug: "applications",
-      icon: "◧",
-      title: "Applications mobile & web",
-      short:
-        "Un site vous fait exister. Une application vous rend indispensable.",
-      headline: "Du concept au lancement sur les stores.",
-      text: "Des applications rapides, élégantes et sur-mesure — sur iOS, Android et le web, à partir d'une seule base de code.",
-      keywords: [
-        "Présence permanente",
-        "Fidélisation supérieure",
-        "Expérience instantanée",
-        "Canal maîtrisé",
-      ],
-      offers: [
-        {
-          n: "01",
-          title: "Applications mobiles natives",
-          text: "iOS & Android, React Native, publication sur les stores.",
-          badge: "",
-        },
-        {
-          n: "02",
-          title: "Applications web (PWA)",
-          text: "Sans store, hors-ligne, instantané.",
-          badge: "",
-        },
-        {
-          n: "03",
-          title: "Espaces & portails clients",
-          text: "Authentification sécurisée, temps réel, notifications push.",
-          badge: "",
-        },
-        {
-          n: "04",
-          title: "Design & UX",
-          text: "UI/UX sur-mesure, design system, animations, prototypage.",
-          badge: "",
-        },
-      ],
-      included: [],
-      cta: "Vos clients passent des heures sur leur téléphone. Votre marque y a-t-elle sa place ?",
+      title: "Marketing digital",
+      text: "Des campagnes pilotées par la donnée qui attirent, engagent et convertissent — sur tous les canaux.",
+    },
+  ],
+};
+
+/* About (grand bloc de texte révélé au scroll) -------------- */
+export const about = {
+  label: "À propos de nous",
+  // Un seul paragraphe : chaque mot s'éclaire au scroll.
+  paragraph:
+    "Nous accompagnons les marques ambitieuses et les startups à concevoir des produits numériques qui savent se démarquer et grandir. Nous croyons en un travail intelligent, une exécution rapide et un design porté par le sens.",
+};
+
+/* Projets --------------------------------------------------- */
+export const projects = {
+  label: "Projets récents",
+  cta: { label: "Voir tous les projets", href: "/projets" },
+  items: [
+    {
+      slug: "les-actualites",
+      subtitle: "Design de page d'accueil pour une plateforme d'actualités",
+      title: "Les actualités",
+      tags: ["Identité de marque", "Développement web"],
+      image: "/projects/project-1.jpg",
     },
     {
-      n: "/05",
-      slug: "ia-automatisation",
-      icon: "✦",
-      title: "Agents IA & Automatisation",
-      short:
-        "Et si votre entreprise tournait même quand vous dormez ? Standard IA, agent SAV, prospection automatisée.",
-      headline: "L'IA fait le travail — instantanément, sans fatigue, 24h/24.",
-      text: "Standard téléphonique IA, agent SAV, pipelines de prospection automatisés : l'IA récupère votre temps et ne perd plus aucun client.",
-      keywords: [
-        "Du temps récupéré",
-        "Disponibilité totale",
-        "Zéro client perdu",
-        "Coût fixe, capacité illimitée",
-      ],
-      offers: [
-        {
-          n: "01",
-          title: "Agents de service client",
-          text: "Réponses 24/7, connecté à vos outils, tri intelligent, ton sur-mesure.",
-          badge: "",
-        },
-        {
-          n: "02",
-          title: "Standard téléphonique IA",
-          text: "Voix naturelle, réservation, intégration à l'agenda.",
-          badge: "",
-        },
-        {
-          n: "03",
-          title: "Automatisation des processus",
-          text: "Workflows sur-mesure, multi-outils, alertes.",
-          badge: "",
-        },
-        {
-          n: "04",
-          title: "Pipelines de prospection IA",
-          text: "Ciblage, outreach personnalisé, scaling auto, leads qualifiés.",
-          badge: "",
-        },
-      ],
-      included: [],
-      cta: "Les entreprises qui utilisent l'IA remplaceront celles qui l'ignorent.",
+      slug: "realite-virtuelle",
+      subtitle: "Scène futuriste avec un casque VR élégant",
+      title: "Réalité virtuelle",
+      tags: ["Identité de marque", "SEO"],
+      image: "/projects/project-2.jpg",
+    },
+    {
+      slug: "agence-theo",
+      subtitle: "Refonte complète de l'image de marque",
+      title: "Marque de l'agence Theo",
+      tags: ["UI / UX", "Développement web"],
+      image: "/projects/project-3.jpg",
     },
   ],
 };
 
 /* Process --------------------------------------------------- */
 export const process = {
-  label: "Notre process",
-  title: "Un process pensé pour votre réussite.",
-  subtitle:
-    "De la prise de contact à la livraison, chaque étape maximise vos résultats.",
+  label: "Notre processus",
+  title: "Une méthode claire, du concept au lancement.",
   steps: [
     {
       n: "01",
-      title: "Comprendre",
-      text: "On échange, on écoute, on challenge. Avant de parler solution, on s'immerge dans votre contexte, vos enjeux et vos objectifs.",
+      title: "Découverte",
+      text: "On apprend à connaître votre marque, vos objectifs et votre audience.",
     },
     {
       n: "02",
-      title: "Audit",
-      text: "On analyse votre situation digitale, vos objectifs et votre marché pour construire une stratégie sur-mesure.",
+      title: "Stratégie",
+      text: "On définit une direction claire et un plan d'action mesurable.",
     },
     {
       n: "03",
-      title: "Sur-mesure",
-      text: "On met en place le plan d'action dont vous avez vraiment besoin pour croître dans votre domaine.",
+      title: "Design",
+      text: "On conçoit des expériences soignées, testées et itérées.",
     },
     {
       n: "04",
-      title: "On crée",
-      text: "On déploie, on optimise, on sécurise. Mise en ligne maîtrisée avec tests complets pour un lancement sans accroc.",
-    },
-    {
-      n: "05",
-      title: "Faire croître",
-      text: "Le lancement n'est que le début : on analyse, on itère et on accompagne pour maximiser vos résultats.",
+      title: "Lancement",
+      text: "On livre, on mesure et on optimise en continu.",
     },
   ],
 };
 
-/* About + Stats --------------------------------------------- */
-export const about = {
-  label: "Qui sommes-nous",
-  title: "L'agence qui propulse votre business.",
-  // Grand bloc révélé au scroll (mot par mot)
-  paragraph:
-    "Kevio Labs conçoit des solutions digitales sur-mesure pour les entreprises qui veulent se démarquer et croître durablement. Design premium, performance publicitaire et intelligence artificielle : un écosystème complet pour une croissance qui dure.",
-  ctaText: "Discutons de votre projet",
-  // Chiffres — à ajuster avec tes vrais nombres
-  stats: [
-    { value: "50+", label: "Projets livrés" },
-    { value: "40+", label: "Clients satisfaits" },
-    { value: "×3", label: "ROI moyen" },
-    { value: "100%", label: "IA First" },
-  ],
-};
-
-/* Réalisations ---------------------------------------------- */
-export const projects = {
-  label: "Nos réalisations",
-  title: "Nos derniers projets.",
-  cta: { label: "Voir tous les projets", href: "/projets" },
+/* Awards ---------------------------------------------------- */
+export const awards = {
+  label: "Nos récompenses",
   items: [
     {
-      slug: "kevio-labs",
-      subtitle: "Conception et développement du site de l'agence",
-      title: "Kevio Labs",
-      tags: ["Identité", "React", "Animations"],
-      image: "/projects/project-1.jpg",
+      org: "Awwwards",
+      title: "SOTY 2025 — 1er lauréat",
+      project: "Page d'accueil IA Voiture",
     },
     {
-      slug: "a-la-lyonnaise",
-      subtitle:
-        "Site vitrine multi-pages pour une enseigne de restauration rapide en expansion nationale",
-      title: "À la Lyonnaise",
-      tags: ["Site Web", "Franchise", "Multi-pages"],
-      image: "/projects/project-2.jpg",
+      org: "CSS Design Awards",
+      title: "Top 5 des sites e-commerce 2024",
+      project: "Agence Theo, refonte de l'image",
     },
     {
-      slug: "agent-sav-ia",
-      subtitle: "Agent de service client automatisé, disponible 24h/24",
-      title: "Agent SAV IA",
-      tags: ["Automatisation", "IA"],
-      image: "/projects/project-3.jpg",
-    },
-    {
-      slug: "pipeline-growth",
-      subtitle: "Pipeline de prospection B2B automatisé",
-      title: "Pipeline Growth",
-      tags: ["B2B", "Prospection"],
-      image: "/projects/project-4.jpg",
+      org: "Behance",
+      title: "Lauréat — Concours de portfolios US 2024",
+      project: "Réalité virtuelle, Rencontre",
     },
   ],
 };
 
-/* FAQ ------------------------------------------------------- */
-export const faq = {
-  label: "FAQ — Questions fréquentes",
+/* Team ------------------------------------------------------ */
+export const team = {
+  label: "L'équipe",
+  members: [
+    { name: "Théo Martin", role: "Directeur créatif", image: "/team/member-1.jpg" },
+    { name: "Sofia Laurent", role: "Lead designer", image: "/team/member-2.jpg" },
+    { name: "Liam Dubois", role: "Développeur", image: "/team/member-3.jpg" },
+  ],
+};
+
+/* Pricing --------------------------------------------------- */
+export const pricing = {
+  label: "Nos tarifs",
+  plans: [
+    {
+      name: "Starter",
+      price: "1 900€",
+      period: "/ projet",
+      features: ["Landing page", "Design responsive", "1 révision", "Livraison 2 semaines"],
+      featured: false,
+    },
+    {
+      name: "Studio",
+      price: "4 900€",
+      period: "/ projet",
+      features: [
+        "Site multi-pages",
+        "Identité de marque",
+        "Animations sur-mesure",
+        "3 révisions",
+        "Support 30 jours",
+      ],
+      featured: true,
+    },
+    {
+      name: "Sur-mesure",
+      price: "Sur devis",
+      period: "",
+      features: ["Périmètre illimité", "Accompagnement dédié", "Développement complet", "Support étendu"],
+      featured: false,
+    },
+  ],
+};
+
+/* Testimonials ---------------------------------------------- */
+export const testimonials = {
+  label: "Témoignages",
   items: [
     {
-      q: "Combien de temps prend la création d'un site web ?",
-      a: "En moyenne, un site vitrine est livré en 1 à 4 semaines et un site e-commerce en 2 à 6 semaines, selon la complexité du projet.",
+      quote:
+        "Une équipe qui comprend vraiment les enjeux business. Le résultat a dépassé nos attentes.",
+      name: "Camille Roche",
+      company: "Fondatrice, Nova",
     },
     {
-      q: "Quels sont vos tarifs ?",
-      a: "Nos tarifs dépendent de la complexité du projet. Nous proposons un appel découverte gratuit pour comprendre vos besoins et vous fournir un devis sur-mesure et transparent.",
+      quote:
+        "Design impeccable, exécution rapide, communication limpide. On recommande sans hésiter.",
+      name: "Yanis Belkacem",
+      company: "CEO, Flux",
     },
     {
-      q: "Est-ce que vous gérez aussi la publicité digitale ?",
-      a: "Oui. Nous gérons vos campagnes Google Ads, Meta Ads et TikTok Ads — de la stratégie à l'optimisation — pour maximiser votre ROI publicitaire.",
-    },
-    {
-      q: "Qu'est-ce qu'un agent IA et comment ça peut m'aider ?",
-      a: "Un agent IA travaille pour vous 24h/24 : réponse aux clients, qualification de leads, automatisation de tâches. Il vous fait gagner du temps et augmente vos conversions.",
-    },
-    {
-      q: "Proposez-vous un suivi après la livraison ?",
-      a: "Absolument. Suivi continu avec rapports de performance, optimisations régulières et support réactif. Votre croissance est notre priorité sur le long terme.",
-    },
-    {
-      q: "Est-ce que je serai propriétaire de mon site / application ?",
-      a: "Oui, à 100%. Code source, nom de domaine, contenus et accès vous appartiennent entièrement. Aucun abonnement ni dépendance technique : si vous changez de prestataire un jour, vous repartez avec tout.",
-    },
-    {
-      q: "Quel genre d'applications développez-vous ?",
-      a: "Applications mobiles iOS et Android, applications web (PWA), plateformes sur-mesure, portails clients, espaces de gestion, outils métier et dashboards. Nous concevons une solution taillée pour votre activité.",
+      quote:
+        "Ils ont transformé notre image de marque et nos conversions ont bondi. Merci !",
+      name: "Marie Lefèvre",
+      company: "CMO, Atlas",
     },
   ],
-};
-
-/* Contact --------------------------------------------------- */
-export const contact = {
-  label: "Contact",
-  title: "Construisons",
-  titleAccent: "votre succès digital",
-  intro: "Discutons de vos ambitions — premier échange offert.",
-  buttons: [
-    { label: "Nous contacter", href: "#formulaire" },
-    { label: "Prendre un RDV", href: "#formulaire" },
-  ],
-  details: [
-    { label: "Email", value: "hello@keviolabs.com", href: "mailto:hello@keviolabs.com" },
-    { label: "Réponse", value: "Sous 24h", href: "" },
-    { label: "Localisation", value: "France", href: "" },
-  ],
-  projectTypes: [
-    "Site Web",
-    "Publicité digitale",
-    "Automatisation IA",
-    "SEO & Référencement",
-    "Tout à la fois",
-  ],
-  budgets: ["2 000 – 5 000€", "5 000 – 10 000€", "> 10 000€"],
-  success: "Message envoyé avec succès ! Nous vous répondons sous 24h.",
 };
 
 /* Blog ------------------------------------------------------ */
@@ -419,75 +218,56 @@ export const blog = {
   label: "Le journal",
   posts: [
     {
-      slug: "site-web-premier-commercial",
-      category: "Site Web",
-      date: "2026",
-      title: "Votre site, ce commercial qui ne dort jamais",
+      slug: "design-systeme-2025",
+      category: "Design",
+      date: "12 juin 2025",
+      title: "Construire un design system qui tient dans le temps",
       excerpt:
-        "Pourquoi un site pensé pour convertir change la donne pour votre acquisition.",
+        "Comment poser des fondations visuelles cohérentes, réutilisables et faciles à faire évoluer.",
       image: "/blog/post-1.jpg",
     },
     {
-      slug: "agent-ia-24-7",
-      category: "IA",
-      date: "2026",
-      title: "Un agent IA qui travaille pour vous 24h/24",
+      slug: "animations-web-performantes",
+      category: "Développement",
+      date: "28 mai 2025",
+      title: "Des animations web fluides sans sacrifier la performance",
       excerpt:
-        "Réponse client, qualification de leads, automatisation : ce que l'IA change concrètement.",
+        "Nos techniques pour des transitions soignées qui restent rapides sur Chrome comme sur Safari.",
       image: "/blog/post-2.jpg",
     },
     {
-      slug: "seo-autorite-durable",
-      category: "SEO",
-      date: "2026",
-      title: "Le SEO, ou comment construire une autorité durable",
+      slug: "identite-de-marque-startup",
+      category: "Branding",
+      date: "9 mai 2025",
+      title: "L'identité de marque, un levier de croissance pour les startups",
       excerpt:
-        "Technique, contenu et stratégie pour s'installer durablement en haut de Google.",
+        "Pourquoi investir tôt dans une image forte change la trajectoire d'une jeune entreprise.",
       image: "/blog/post-3.jpg",
     },
   ],
 };
 
+/* Contact --------------------------------------------------- */
+export const contact = {
+  label: "Contact",
+  title: "Parlons de",
+  titleAccent: "votre projet",
+  intro:
+    "Un projet en tête ? Écris-nous quelques lignes, on revient vers toi sous 24h.",
+  details: [
+    { label: "Email", value: "hello@kevio.studio", href: "mailto:hello@kevio.studio" },
+    { label: "Téléphone", value: "+33 6 00 00 00 00", href: "tel:+33600000000" },
+    { label: "Localisation", value: "Paris, France", href: "" },
+  ],
+};
+
 /* Footer ---------------------------------------------------- */
 export const footer = {
-  heading: "Construisons votre succès digital.",
-  columns: [
-    {
-      title: "Suivez-nous",
-      links: [
-        { label: "LinkedIn", href: "#" },
-        { label: "Instagram", href: "#" },
-        { label: "TikTok", href: "#" },
-      ],
-    },
-    {
-      title: "Expertises",
-      links: [
-        { label: "Création de sites", href: "/services" },
-        { label: "Automatisation & IA", href: "/services" },
-        { label: "SEO & Référencement", href: "/services" },
-        { label: "Publicité digitale", href: "/services" },
-        { label: "Applications", href: "/services" },
-      ],
-    },
-    {
-      title: "L'agence",
-      links: [
-        { label: "À propos de nous", href: "/about" },
-        { label: "Nos réalisations", href: "/projets" },
-        { label: "Notre process", href: "/services" },
-        { label: "Contact", href: "/contact" },
-      ],
-    },
-    {
-      title: "Pages",
-      links: [
-        { label: "Accueil", href: "/" },
-        { label: "Services", href: "/services" },
-        { label: "Réalisations", href: "/projets" },
-        { label: "Blog", href: "/blog" },
-        { label: "Mentions légales", href: "#" },
-      ],
-    },
+  heading: "Construisons quelque chose de grand ensemble.",
+  socials: [
+    { label: "Instagram", href: "#" },
+    { label: "LinkedIn", href: "#" },
+    { label: "Behance", href: "#" },
+    { label: "X", href: "#" },
   ],
 };
