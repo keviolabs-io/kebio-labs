@@ -44,13 +44,13 @@ export default function Hero() {
       {/* Points luminescents qui gravitent en arrière-plan */}
       <Particles />
 
-      {/* Objet 3D en fond, centré/bas */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-6%] flex justify-center">
+      {/* Objet 3D en fond (desktop) — centré/bas */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[-6%] hidden justify-center md:flex">
         <HeroObject className="w-[min(72vw,620px)]" />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-8 md:justify-between md:gap-0">
         {/* Titre */}
         <h1 className="mt-6 text-[15vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] lg:text-[10rem]">
           <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
@@ -58,6 +58,11 @@ export default function Hero() {
             {hero.titleLine2}
           </MaskLine>
         </h1>
+
+        {/* Objet 3D dans le flux (mobile uniquement) */}
+        <div className="-my-2 flex justify-center md:hidden">
+          <HeroObject className="w-[70vw] max-w-[320px]" />
+        </div>
 
         {/* Composition basse : services (gauche) · scroll (centre) · vedette (droite) */}
         <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-3">
