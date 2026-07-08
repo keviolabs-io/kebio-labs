@@ -44,20 +44,45 @@ export default function Hero() {
       {/* Points luminescents qui gravitent en arrière-plan */}
       <Particles />
 
-      {/* Objet 3D en fond (desktop) — centré/bas */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-6%] hidden justify-center md:flex">
-        <HeroObject className="w-[min(72vw,620px)]" />
+      {/* Objet 3D en fond (desktop) — grand, centré/bas */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
+        <HeroObject className="w-[min(84vw,780px)]" />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-8 md:justify-between md:gap-0">
-        {/* Titre */}
-        <h1 className="mt-6 text-[15vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] lg:text-[10rem]">
-          <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
-          <MaskLine delay={0.3} className="font-serif-italic text-muted">
-            {hero.titleLine2}
-          </MaskLine>
-        </h1>
+        {/* Rangée haute : titre (gauche) · contact + réseaux (droite) */}
+        <div className="flex items-start justify-between gap-6">
+          <h1 className="mt-6 text-[15vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] lg:text-[10rem]">
+            <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
+            <MaskLine delay={0.3} className="font-serif-italic text-muted">
+              {hero.titleLine2}
+            </MaskLine>
+          </h1>
+
+          {/* Contact + réseaux (desktop) */}
+          <motion.div
+            variants={fadeUp}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.7, ease: easeOut, delay: 0.5 }}
+            className="mt-8 hidden shrink-0 flex-col items-end gap-4 lg:flex"
+          >
+            <p className="text-sm text-foreground/90">{hero.contactLabel}</p>
+            <div className="flex gap-2">
+              {hero.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="grid h-10 w-10 place-items-center rounded-full border border-border text-xs text-muted transition-colors duration-300 hover:border-border-strong hover:text-foreground"
+                >
+                  {s.short}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         {/* Objet 3D dans le flux (mobile uniquement) */}
         <div className="-my-2 flex justify-center md:hidden">
@@ -66,7 +91,7 @@ export default function Hero() {
 
         {/* Composition basse : services (gauche) · scroll (centre) · vedette (droite) */}
         <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-3">
-          {/* Gauche — Nous le faisons */}
+          {/* Gauche — Nous le faisons + villes */}
           <motion.div
             variants={fadeUp}
             initial="initial"
@@ -82,6 +107,14 @@ export default function Hero() {
                   <span>{pair.left}</span>
                   <span className="text-muted-dark">/ {pair.right}</span>
                 </div>
+              ))}
+            </div>
+            {/* Villes */}
+            <div className="mt-8 flex items-baseline gap-6 text-2xl text-muted-dark">
+              {hero.marquee.slice(0, 3).map((city, i) => (
+                <span key={city} className={i === 2 ? "font-serif-italic" : "font-medium"}>
+                  {city}
+                </span>
               ))}
             </div>
           </motion.div>
@@ -115,7 +148,7 @@ export default function Hero() {
               <span className="text-foreground/90">{hero.featuredLabel}</span>
               <span className="text-muted-dark">{hero.featuredIndex}</span>
             </div>
-            <Link href={hero.featured.href} className="group block w-full md:w-64">
+            <Link href={hero.featured.href} className="group block w-full md:w-72">
               <div className="relative overflow-hidden rounded-2xl border border-border">
                 <Media
                   src={hero.featured.image}

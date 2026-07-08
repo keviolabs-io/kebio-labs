@@ -41,6 +41,14 @@ export const hero = {
     image: "/projects/project-1.jpg",
     href: "/projets",
   },
+  // Bloc contact + réseaux (haut-droite)
+  contactLabel: "Contactez-nous",
+  socials: [
+    { label: "Instagram", short: "Ig", href: "#" },
+    { label: "LinkedIn", short: "in", href: "#" },
+    { label: "Behance", short: "Be", href: "#" },
+    { label: "Dribbble", short: "Dr", href: "#" },
+  ],
   // Villes du marquee sous le hero
   marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
 };
