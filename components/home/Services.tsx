@@ -34,7 +34,7 @@ export default function Services() {
               <motion.article
                 key={s.n}
                 variants={staggerItem}
-                className="group relative flex min-h-[440px] flex-col overflow-hidden p-8 lg:p-10"
+                className="group relative flex flex-col overflow-hidden p-8 lg:p-10"
               >
                 {/* Grille de points révélée au survol (dense en haut) */}
                 <div
@@ -49,8 +49,8 @@ export default function Services() {
                 {/* Liseré lumineux en haut au survol */}
                 <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                {/* Contenu : icône en haut, texte en bas */}
-                <div className="relative flex h-full flex-1 flex-col">
+                {/* Contenu : icône en haut, texte en dessous */}
+                <div className="relative">
                   <div className="flex justify-center pt-2">
                     <motion.div
                       whileHover={{ y: -4 }}
@@ -60,7 +60,7 @@ export default function Services() {
                     </motion.div>
                   </div>
 
-                  <div className="mt-auto pt-16">
+                  <div className="mt-10">
                     <span className="text-sm font-medium text-muted">{s.n}</span>
                     <h3 className="mt-3 text-2xl font-medium leading-[1.25] tracking-tight text-foreground">
                       {s.title}
