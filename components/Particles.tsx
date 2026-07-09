@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
  * - Uniquement transform/opacity → fluide sur Chrome & Safari.
  */
 
-const COUNT = 55;
+const COUNT = 75;
 const GOLDEN = 2.399963229; // angle d'or (rad) → belle répartition
 
 const particles = Array.from({ length: COUNT }, (_, i) => {
