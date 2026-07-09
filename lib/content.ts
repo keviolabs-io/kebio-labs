@@ -46,7 +46,7 @@ export const hero = {
   },
   // Bloc contact + réseaux (haut-droite) — repris du thème
   contactParagraph:
-    "© Nous créons des marques, des sites web et des expériences numériques — avec intensité, clarté et soin.",
+    "© Nous créons des automatisations, des apps, des sites web et des expériences numériques — avec intensité, clarté et soin.",
   contactLabel: "Contactez-nous",
   socials: [
     { key: "facebook", label: "Facebook", href: "#" },
