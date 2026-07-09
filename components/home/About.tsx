@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useInView, animate } from "framer-motion";
-import { about } from "@/lib/content";
+import { useInView, animate, motion, useScroll, useTransform } from "framer-motion";
+import { about, site } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
 
 if (typeof window !== "undefined") {
@@ -15,7 +15,7 @@ const DIM = "#808080";
 const BRIGHT = "#ededed";
 
 /** Compteur qui monte (0 → value) à l'apparition. */
-function Counter({ value, suffix }: { value: number; suffix: string }) {
+function Counter({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [display, setDisplay] = useState(0);
@@ -30,16 +30,19 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     return () => controls.stop();
   }, [inView, value]);
 
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{display}</span>;
 }
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+
+  // Zoom du nom en arrière-plan, piloté par le scroll
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const wmScale = useTransform(scrollYProgress, [0, 1], [0.7, 1.45]);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -75,11 +78,10 @@ export default function About() {
     return () => ctx.revert();
   }, []);
 
-  // Découpe en mots (inline-block) puis en caractères (span colorable).
   const words = about.paragraph.split(" ");
 
   return (
-    <section id="about" className="px-6 py-28">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden px-6 py-28">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex justify-center">
           <SectionLabel icon="★" center>
@@ -87,23 +89,36 @@ export default function About() {
           </SectionLabel>
         </div>
 
-        {/* Révélation caractère par caractère */}
-        <p
-          ref={textRef}
-          className="mx-auto mt-16 max-w-[34rem] text-center text-[1.7rem] font-medium leading-[1.35] tracking-tight"
-          style={{ color: DIM }}
-        >
-          {words.map((word, wi) => (
-            <span key={wi} className="inline-block">
-              {word.split("").map((ch, ci) => (
-                <span key={ci} data-char>
-                  {ch}
+        {/* Bloc texte avec le nom flouté qui zoome en arrière-plan */}
+        <div className="relative mt-16 py-4">
+          <motion.span
+            aria-hidden
+            style={{ scale: wmScale }}
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.05] blur-[7px] md:text-[18vw]"
+          >
+            {site.name.toLowerCase()}
+          </motion.span>
+
+          {/* Révélation caractère par caractère */}
+          <p
+            ref={textRef}
+            className="relative z-10 mx-auto max-w-[34rem] text-center text-[1.7rem] font-medium leading-[1.35] tracking-tight"
+            style={{ color: DIM }}
+          >
+            {words.map((word, wi) => (
+              <Fragment key={wi}>
+                <span className="inline-block">
+                  {word.split("").map((ch, ci) => (
+                    <span key={ci} data-char>
+                      {ch}
+                    </span>
+                  ))}
                 </span>
-              ))}
-              {wi < words.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </p>
+                {wi < words.length - 1 ? " " : ""}
+              </Fragment>
+            ))}
+          </p>
+        </div>
 
         {/* Stats : conteneur pointillé + label + trait + grand chiffre animé */}
         <div className="relative mt-20 overflow-hidden rounded-3xl border border-border">
@@ -113,8 +128,11 @@ export default function About() {
               <div key={s.label}>
                 <p className="text-sm text-muted">{s.label}</p>
                 <div className="mt-4 border-t border-border" />
-                <div className="mt-8 bg-gradient-to-b from-white via-white/90 to-white/30 bg-clip-text text-[5rem] font-medium leading-none tracking-tight text-transparent sm:text-[7rem] lg:text-[8rem]">
-                  <Counter value={s.value} suffix={s.suffix} />
+                <div className="mt-8 flex items-baseline gap-3 text-[5rem] font-medium leading-none tracking-tight sm:gap-4 sm:text-[7rem] lg:text-[8rem]">
+                  <span className="bg-gradient-to-b from-white via-white/90 to-white/25 bg-clip-text text-transparent">
+                    <Counter value={s.value} />
+                  </span>
+                  <span className="text-foreground/90">{s.suffix}</span>
                 </div>
               </div>
             ))}
