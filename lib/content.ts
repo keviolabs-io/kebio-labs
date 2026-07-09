@@ -106,12 +106,18 @@ export const services = {
   ],
 };
 
-/* About (grand bloc de texte révélé au scroll) -------------- */
+/* About (grand bloc de texte révélé au scroll + stats) ------ */
 export const about = {
   label: "À propos de nous",
-  // Un seul paragraphe : chaque mot s'éclaire au scroll.
+  // Un seul paragraphe : chaque caractère s'éclaire au scroll (gris → blanc).
   paragraph:
     "Nous accompagnons les marques ambitieuses et les startups à concevoir des produits numériques qui savent se démarquer et grandir. Nous croyons en un travail intelligent, une exécution rapide et un design porté par le sens.",
+  // Chiffres (compteur animé) — ajuste avec tes vrais nombres.
+  stats: [
+    { value: 50, suffix: "+", label: "Projets livrés" },
+    { value: 10, suffix: "+", label: "Années d'expérience" },
+    { value: 25, suffix: "+", label: "Clients satisfaits" },
+  ],
 };
 
 /* Projets --------------------------------------------------- */
