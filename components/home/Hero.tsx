@@ -78,9 +78,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
         <HeroObject className="w-[min(84vw,780px)]" />
       </div>
-      {/* Objet 3D — fond mobile (centré dans l'écran) */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden">
-        <HeroObject className="w-[54vw] max-w-[250px]" />
+      {/* Objet 3D — mobile (grand, partie haute) */}
+      <div className="pointer-events-none absolute inset-x-0 top-[9%] flex justify-center md:hidden">
+        <HeroObject className="w-[70vw] max-w-[320px]" />
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
