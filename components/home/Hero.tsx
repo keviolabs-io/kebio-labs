@@ -148,13 +148,6 @@ export default function Hero() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex items-baseline gap-6 text-2xl text-muted-dark">
-              {hero.marquee.slice(0, 3).map((city, i) => (
-                <span key={city} className={i === 2 ? "font-serif-italic" : "font-medium"}>
-                  {city}
-                </span>
-              ))}
-            </div>
           </motion.div>
 
           {/* Centre — indicateur de scroll */}
@@ -222,13 +215,6 @@ export default function Hero() {
                   <span>{pair.left}</span>
                   <span className="text-muted-dark">/ {pair.right}</span>
                 </div>
-              ))}
-            </div>
-            <div className="mt-3 flex items-baseline gap-5 text-lg text-muted-dark">
-              {hero.marquee.slice(0, 3).map((city, i) => (
-                <span key={city} className={i === 2 ? "font-serif-italic" : "font-medium"}>
-                  {city}
-                </span>
               ))}
             </div>
           </div>

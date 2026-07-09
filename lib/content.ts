@@ -54,8 +54,6 @@ export const hero = {
     { key: "dribbble", label: "Dribbble", href: "#" },
     { key: "behance", label: "Behance", href: "#" },
   ],
-  // Villes du marquee sous le hero
-  marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
 };
 
 /* Bande défilante sous le hero — technos & outils ----------- */
