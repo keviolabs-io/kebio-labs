@@ -81,23 +81,33 @@ export const services = {
   items: [
     {
       n: "/01",
-      title: "Identité de marque",
-      text: "Créez des identités visuelles qui portent votre voix et laissent une impression durable.",
+      icon: "web",
+      title: "Création de sites",
+      text: "Sites vitrines et e-commerce, en CMS ou codés sur-mesure — chaque pixel pensé pour convertir.",
     },
     {
       n: "/02",
-      title: "Design UI / UX",
-      text: "Des interfaces centrées utilisateur, à la fois esthétiques, innovantes et intuitives.",
+      icon: "app",
+      title: "Applications",
+      text: "Applications web et mobiles (iOS, Android, PWA), rapides et élégantes, sur une seule base de code.",
     },
     {
       n: "/03",
-      title: "Développement web",
-      text: "Des sites et applications performants, conçus pour évoluer avec vous.",
+      icon: "automation",
+      title: "Automatisation",
+      text: "Agents IA et workflows n8n qui travaillent pour vous 24h/24 et automatisent vos tâches.",
     },
     {
       n: "/04",
-      title: "Marketing digital",
-      text: "Des campagnes pilotées par la donnée qui attirent, engagent et convertissent — sur tous les canaux.",
+      icon: "ads",
+      title: "Publicité",
+      text: "Campagnes Google, Meta et TikTok Ads pilotées par la donnée pour maximiser votre ROI.",
+    },
+    {
+      n: "/05",
+      icon: "seo",
+      title: "SEO",
+      text: "Référencement technique, contenu et autorité pour vous installer durablement en haut de Google.",
     },
   ],
 };
