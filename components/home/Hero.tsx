@@ -48,22 +48,46 @@ const fadeUp = {
   animate: { opacity: 1, y: 0 },
 };
 
+/** Rond réseau social (réutilisé desktop + mobile). */
+function SocialIcon({
+  s,
+  size = "h-10 w-10",
+}: {
+  s: (typeof hero.socials)[number];
+  size?: string;
+}) {
+  const Icon = SOCIAL_ICONS[s.key];
+  return (
+    <a
+      href={s.href}
+      aria-label={s.label}
+      className={`grid ${size} place-items-center rounded-full border border-border bg-white/[0.04] text-foreground transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-background`}
+    >
+      {Icon ? <Icon className="h-[15px] w-[15px]" /> : null}
+    </a>
+  );
+}
+
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden px-6 pb-8 pt-28">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden px-6 pb-6 pt-24 md:min-h-screen md:pb-8 md:pt-28">
       {/* Points luminescents qui gravitent en arrière-plan */}
       <Particles />
 
-      {/* Objet 3D en fond (desktop) — grand, centré/bas */}
+      {/* Objet 3D — fond desktop (grand, centré/bas) */}
       <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
         <HeroObject className="w-[min(84vw,780px)]" />
       </div>
+      {/* Objet 3D — fond mobile (centré dans l'écran) */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden">
+        <HeroObject className="w-[54vw] max-w-[250px]" />
+      </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-8 md:justify-between md:gap-0">
-        {/* Rangée haute : titre (gauche) · contact + réseaux (droite) */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between">
+        {/* Rangée haute : titre (gauche) · contact + réseaux (droite, desktop) */}
         <div className="flex items-start justify-between gap-6">
-          <h1 className="mt-6 text-[15vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] lg:text-[10rem]">
+          <h1 className="mt-2 text-[13vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] md:mt-6 lg:text-[10rem]">
             <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
             <MaskLine delay={0.3} className="font-serif-italic text-muted">
               {hero.titleLine2}
@@ -85,42 +109,27 @@ export default function Hero() {
             <div className="flex w-full items-center justify-between gap-8">
               <span className="text-sm text-foreground/90">{hero.contactLabel}</span>
               <div className="flex gap-2.5">
-                {hero.socials.map((s) => {
-                  const Icon = SOCIAL_ICONS[s.key];
-                  return (
-                    <a
-                      key={s.key}
-                      href={s.href}
-                      aria-label={s.label}
-                      className="grid h-10 w-10 place-items-center rounded-full border border-border bg-white/[0.04] text-foreground transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-background"
-                    >
-                      {Icon ? <Icon className="h-[15px] w-[15px]" /> : null}
-                    </a>
-                  );
-                })}
+                {hero.socials.map((s) => (
+                  <SocialIcon key={s.key} s={s} />
+                ))}
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Objet 3D dans le flux (mobile uniquement) */}
-        <div className="-my-2 flex justify-center md:hidden">
-          <HeroObject className="w-[70vw] max-w-[320px]" />
-        </div>
-
-        {/* Indicateur de scroll (mobile) */}
+        {/* Indicateur de scroll — centré (mobile) */}
         <div className="flex justify-center md:hidden">
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-border-strong text-muted"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong text-muted"
           >
             ↓
           </motion.div>
         </div>
 
-        {/* Composition basse : services (gauche) · scroll (centre) · vedette (droite) */}
-        <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-3">
+        {/* ===== Composition basse — DESKTOP ===== */}
+        <div className="hidden grid-cols-3 items-end gap-10 md:grid">
           {/* Gauche — Nous le faisons + villes */}
           <motion.div
             variants={fadeUp}
@@ -139,7 +148,6 @@ export default function Hero() {
                 </div>
               ))}
             </div>
-            {/* Villes */}
             <div className="mt-8 flex items-baseline gap-6 text-2xl text-muted-dark">
               {hero.marquee.slice(0, 3).map((city, i) => (
                 <span key={city} className={i === 2 ? "font-serif-italic" : "font-medium"}>
@@ -150,7 +158,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Centre — indicateur de scroll */}
-          <div className="hidden justify-center md:flex">
+          <div className="flex justify-center">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -172,18 +180,18 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             transition={{ duration: 0.7, ease: easeOut, delay: 0.7 }}
-            className="md:justify-self-end md:text-right"
+            className="justify-self-end text-right"
           >
             <div className="mb-4 flex items-center justify-between gap-8 border-b border-border pb-3 text-sm">
               <span className="text-foreground/90">{hero.featuredLabel}</span>
               <span className="text-muted-dark">{hero.featuredIndex}</span>
             </div>
-            <Link href={hero.featured.href} className="group block w-full md:w-72">
+            <Link href={hero.featured.href} className="group block w-72">
               <div className="relative overflow-hidden rounded-2xl border border-border">
                 <Media
                   src={hero.featured.image}
                   alt={hero.featured.title}
-                  className="aspect-[16/9] w-full md:aspect-[4/3]"
+                  className="aspect-[4/3] w-full"
                   imgClassName="transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -195,28 +203,74 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Contact + réseaux (mobile, compact) */}
-        <div className="mt-8 flex flex-col gap-4 lg:hidden">
-          <div className="w-full border-t border-border" />
-          <div className="flex items-center justify-between gap-6">
-            <span className="text-sm text-foreground/90">{hero.contactLabel}</span>
-            <div className="flex gap-2.5">
-              {hero.socials.map((s) => {
-                const Icon = SOCIAL_ICONS[s.key];
-                return (
-                  <a
-                    key={s.key}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="grid h-10 w-10 place-items-center rounded-full border border-border bg-white/[0.04] text-foreground transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-background"
-                  >
-                    {Icon ? <Icon className="h-[15px] w-[15px]" /> : null}
-                  </a>
-                );
-              })}
+        {/* ===== Composition basse — MOBILE (compacte, tient dans l'écran) ===== */}
+        <motion.div
+          variants={fadeUp}
+          initial="initial"
+          animate="animate"
+          transition={{ duration: 0.7, ease: easeOut, delay: 0.6 }}
+          className="flex flex-col gap-4 md:hidden"
+        >
+          {/* Nous le faisons */}
+          <div>
+            <p className="mb-2 border-b border-border pb-2 text-sm text-foreground/90">
+              {hero.weDoLabel}
+            </p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-muted">
+              {hero.weDoItems.map((pair, i) => (
+                <div key={i} className="contents">
+                  <span>{pair.left}</span>
+                  <span className="text-muted-dark">/ {pair.right}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-3 flex items-baseline gap-5 text-lg text-muted-dark">
+              {hero.marquee.slice(0, 3).map((city, i) => (
+                <span key={city} className={i === 2 ? "font-serif-italic" : "font-medium"}>
+                  {city}
+                </span>
+              ))}
             </div>
           </div>
-        </div>
+
+          {/* En vedette — carte compacte horizontale */}
+          <Link
+            href={hero.featured.href}
+            className="group flex items-center gap-3 rounded-2xl border border-border p-2.5"
+          >
+            <div className="h-14 w-20 shrink-0 overflow-hidden rounded-xl">
+              <Media
+                src={hero.featured.image}
+                alt={hero.featured.title}
+                className="h-full w-full"
+                imgClassName="transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between text-xs text-muted-dark">
+                <span>{hero.featuredLabel}</span>
+                <span>{hero.featuredIndex}</span>
+              </div>
+              <p className="mt-0.5 truncate text-sm font-medium">{hero.featured.title}</p>
+            </div>
+            <span className="pr-1 text-muted transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+
+          {/* Contactez-nous + réseaux */}
+          <div className="flex flex-col gap-3">
+            <div className="w-full border-t border-border" />
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-sm text-foreground/90">{hero.contactLabel}</span>
+              <div className="flex gap-2">
+                {hero.socials.map((s) => (
+                  <SocialIcon key={s.key} s={s} size="h-9 w-9" />
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
