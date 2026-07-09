@@ -20,11 +20,21 @@ export default function Process() {
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel icon="≈">{process.label}</SectionLabel>
 
-        <Reveal delay={0.1} className="mt-8 max-w-3xl">
-          <h2 className="text-4xl font-medium leading-tight tracking-tight sm:text-6xl">
-            {process.title}
-          </h2>
-        </Reveal>
+        <div className="mt-8 grid items-end gap-8 md:grid-cols-2">
+          <Reveal>
+            <h2 className="text-4xl font-medium leading-[1.05] tracking-tight sm:text-6xl">
+              <span className="font-serif-italic font-normal text-foreground">
+                {process.titleItalic}
+              </span>{" "}
+              <span className="text-foreground">{process.titleSans}</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="max-w-md text-base leading-relaxed text-muted md:ml-auto md:text-right">
+              {process.subtitle}
+            </p>
+          </Reveal>
+        </div>
 
         <motion.div
           variants={staggerContainer}

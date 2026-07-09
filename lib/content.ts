@@ -152,7 +152,11 @@ export const projects = {
 /* Process --------------------------------------------------- */
 export const process = {
   label: "Notre processus",
-  title: "Une méthode claire, du concept au lancement.",
+  // Titre à mélange de polices : partie serif italique + partie sans.
+  titleItalic: "Le chemin vers un",
+  titleSans: "projet qui performe",
+  subtitle:
+    "Une méthode claire et collaborative — pour que vos idées passent du concept au lancement sans accroc.",
   steps: [
     {
       n: "/01",
