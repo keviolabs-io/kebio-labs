@@ -94,7 +94,7 @@ export default function About() {
           <motion.span
             aria-hidden
             style={{ scale: wmScale }}
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.1] blur-[6px] md:text-[18vw]"
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.16] blur-[6px] md:text-[18vw]"
           >
             {site.name.toLowerCase()}
           </motion.span>
