@@ -51,15 +51,15 @@ export default function About() {
     const el = textRef.current;
     if (!el) return;
 
-    const chars = el.querySelectorAll<HTMLElement>("[data-char]");
+    const wordsEls = el.querySelectorAll<HTMLElement>("[data-word]");
     if (prefersReduced) {
-      gsap.set(chars, { color: BRIGHT });
+      gsap.set(wordsEls, { color: BRIGHT });
       return;
     }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        chars,
+        wordsEls,
         { color: DIM },
         {
           color: BRIGHT,
@@ -99,20 +99,15 @@ export default function About() {
             {site.name.toLowerCase()}
           </motion.span>
 
-          {/* Révélation caractère par caractère */}
+          {/* Révélation mot par mot (gris → blanc) */}
           <p
             ref={textRef}
-            className="relative z-10 mx-auto max-w-[36rem] text-center text-[2rem] font-medium leading-[1.35] tracking-tight"
-            style={{ color: DIM }}
+            className="relative z-10 mx-auto max-w-[52rem] text-center text-[2rem] font-medium leading-[1.4] tracking-tight"
           >
             {words.map((word, wi) => (
               <Fragment key={wi}>
-                <span className="inline-block">
-                  {word.split("").map((ch, ci) => (
-                    <span key={ci} data-char>
-                      {ch}
-                    </span>
-                  ))}
+                <span data-word className="inline-block" style={{ color: DIM }}>
+                  {word}
                 </span>
                 {wi < words.length - 1 ? " " : ""}
               </Fragment>
