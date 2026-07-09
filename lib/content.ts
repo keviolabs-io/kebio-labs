@@ -70,6 +70,11 @@ export const marqueeItems = [
   "TypeScript",
   "Shopify",
   "WordPress",
+  "Claude",
+  "Framer",
+  "Motion",
+  "GitHub",
+  "OpenAI",
 ];
 
 /* Services -------------------------------------------------- */
