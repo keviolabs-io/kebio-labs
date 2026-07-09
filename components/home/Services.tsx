@@ -4,12 +4,11 @@ import { motion } from "framer-motion";
 import { services } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
 import { staggerContainer, staggerItem } from "@/components/anim/Reveal";
-import { FaGlobe, FaMobileAlt, FaRobot, FaBullhorn, FaSearch } from "react-icons/fa";
+import { FaLaptopCode, FaRobot, FaBullhorn, FaSearch } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 const ICONS: Record<string, IconType> = {
-  web: FaGlobe,
-  app: FaMobileAlt,
+  web: FaLaptopCode,
   automation: FaRobot,
   ads: FaBullhorn,
   seo: FaSearch,
@@ -26,10 +25,10 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="mt-14 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-3xl border border-border sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x"
+          className="mt-14 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-3xl border border-border sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x"
         >
           {services.items.map((s) => {
-            const Icon = ICONS[s.icon] ?? FaGlobe;
+            const Icon = ICONS[s.icon] ?? FaLaptopCode;
             return (
               <motion.article
                 key={s.n}

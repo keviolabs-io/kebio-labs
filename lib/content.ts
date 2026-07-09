@@ -82,29 +82,23 @@ export const services = {
     {
       n: "/01",
       icon: "web",
-      title: "Création de sites",
-      text: "Sites vitrines et e-commerce, en CMS ou codés sur-mesure — chaque pixel pensé pour convertir.",
+      title: "Développement web",
+      text: "Sites vitrines, e-commerce et applications web & mobiles (iOS, Android, PWA) — en CMS ou codés sur-mesure, pensés pour convertir.",
     },
     {
       n: "/02",
-      icon: "app",
-      title: "Applications",
-      text: "Applications web et mobiles (iOS, Android, PWA), rapides et élégantes, sur une seule base de code.",
-    },
-    {
-      n: "/03",
       icon: "automation",
       title: "Automatisation",
       text: "Agents IA et workflows n8n qui travaillent pour vous 24h/24 et automatisent vos tâches.",
     },
     {
-      n: "/04",
+      n: "/03",
       icon: "ads",
       title: "Publicité",
       text: "Campagnes Google, Meta et TikTok Ads pilotées par la donnée pour maximiser votre ROI.",
     },
     {
-      n: "/05",
+      n: "/04",
       icon: "seo",
       title: "SEO",
       text: "Référencement technique, contenu et autorité pour vous installer durablement en haut de Google.",
