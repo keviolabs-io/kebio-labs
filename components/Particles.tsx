@@ -8,20 +8,20 @@ import { motion } from "framer-motion";
  * - Uniquement transform/opacity → fluide sur Chrome & Safari.
  */
 
-const COUNT = 30;
+const COUNT = 55;
 const GOLDEN = 2.399963229; // angle d'or (rad) → belle répartition
 
 const particles = Array.from({ length: COUNT }, (_, i) => {
   const angle = i * GOLDEN;
-  const radius = 16 + (i % 8) * 10; // % depuis le centre (16 → 86)
+  const radius = 12 + (i % 9) * 9.5; // % depuis le centre (12 → 88)
   return {
     x: 50 + Math.cos(angle) * radius,
     y: 50 + Math.sin(angle) * radius,
-    size: 2 + (i % 4), // 2 → 5 px
-    duration: 4 + (i % 6), // scintillement 4 → 9 s
-    delay: (i % 7) * 0.35,
+    size: 2.5 + (i % 4), // 2.5 → 5.5 px
+    duration: 2.4 + (i % 5) * 0.9, // scintillement 2.4 → 6 s (plus rapide)
+    delay: (i % 7) * 0.25,
     violet: i % 3 === 0,
-    peak: 0.35 + (i % 5) * 0.12, // opacité max 0.35 → 0.83
+    peak: 0.55 + (i % 5) * 0.09, // opacité max 0.55 → 0.91 (plus voyant)
   };
 });
 
@@ -60,7 +60,7 @@ export default function Particles({ className = "" }: { className?: string }) {
       <motion.div
         className="absolute inset-0"
         animate={{ rotate: 360 }}
-        transition={{ duration: 140, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 85, repeat: Infinity, ease: "linear" }}
       >
         {particles.map((p, i) => (
           <motion.span
@@ -72,10 +72,10 @@ export default function Particles({ className = "" }: { className?: string }) {
               width: p.size,
               height: p.size,
               transform: "translate(-50%, -50%)",
-              background: p.violet ? "rgb(180,165,255)" : "rgb(255,255,255)",
+              background: p.violet ? "rgb(190,175,255)" : "rgb(255,255,255)",
               boxShadow: p.violet
-                ? "0 0 8px 1px rgba(170,150,255,0.7)"
-                : "0 0 8px 1px rgba(255,255,255,0.6)",
+                ? "0 0 14px 2px rgba(180,160,255,0.95)"
+                : "0 0 14px 2px rgba(255,255,255,0.85)",
             }}
             animate={{ opacity: [0.1, p.peak, 0.1], scale: [0.8, 1.15, 0.8] }}
             transition={{
