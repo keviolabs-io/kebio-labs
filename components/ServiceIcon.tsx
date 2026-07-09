@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { IconType } from "react-icons";
 
 const EXTS = ["webp", "png", "jpg", "svg"];
 
 /**
  * Icône d'un service.
- * - Essaie d'afficher /services/<key>.<ext> (rendu 3D, transparent).
- * - Si aucun fichier n'existe, retombe sur l'icône vectorielle (dans une boîte).
+ * - Précharge /services/<key>.<ext> (rendu 3D, transparent) ; si une image existe,
+ *   elle est affichée en standalone.
+ * - Sinon, repli propre sur l'icône vectorielle (dans une boîte).
  * Pour ajouter une icône 3D : dépose public/services/<key>.webp (ou .png).
  */
 export default function ServiceIcon({
@@ -18,27 +19,42 @@ export default function ServiceIcon({
   iconKey: string;
   Fallback: IconType;
 }) {
-  const [extIdx, setExtIdx] = useState(0);
-  const [failed, setFailed] = useState(false);
+  // undefined = en cours de test, null = pas d'image, string = url trouvée
+  const [src, setSrc] = useState<string | null | undefined>(undefined);
 
-  if (failed) {
-    return (
-      <div className="grid h-24 w-24 place-items-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-transparent text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-        <Fallback className="h-9 w-9" />
-      </div>
-    );
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      for (const ext of EXTS) {
+        const url = `/services/${iconKey}.${ext}`;
+        const ok = await new Promise<boolean>((resolve) => {
+          const img = new window.Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url;
+        });
+        if (cancelled) return;
+        if (ok) {
+          setSrc(url);
+          return;
+        }
+      }
+      if (!cancelled) setSrc(null);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [iconKey]);
+
+  if (src) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} alt="" aria-hidden className="h-24 w-24 select-none object-contain" />;
   }
 
+  // Repli (ou pendant le test) : icône vectorielle dans une boîte
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={`/services/${iconKey}.${EXTS[extIdx]}`}
-      alt=""
-      aria-hidden
-      onError={() =>
-        extIdx < EXTS.length - 1 ? setExtIdx(extIdx + 1) : setFailed(true)
-      }
-      className="h-24 w-24 select-none object-contain"
-    />
+    <div className="grid h-24 w-24 place-items-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-transparent text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+      <Fallback className="h-9 w-9" />
+    </div>
   );
 }
