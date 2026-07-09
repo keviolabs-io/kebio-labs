@@ -5,6 +5,15 @@ import type { IconType } from "react-icons";
 
 const EXTS = ["webp", "png", "jpg", "svg"];
 
+// Ajustements par icône pour égaliser taille + alignement vertical
+// (chaque rendu 3D a un cadrage interne différent). Référence : web.
+const ADJUST: Record<string, { s: number; y: number }> = {
+  web: { s: 1.0, y: -3 },
+  automation: { s: 1.19, y: -14 },
+  ads: { s: 1.15, y: -2 },
+  seo: { s: 1.15, y: -3 },
+};
+
 /**
  * Icône d'un service.
  * - Précharge /services/<key>.<ext> (rendu 3D, transparent) ; si une image existe,
@@ -47,8 +56,19 @@ export default function ServiceIcon({
   }, [iconKey]);
 
   if (src) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt="" aria-hidden className="h-44 w-44 select-none object-contain" />;
+    const adj = ADJUST[iconKey] ?? { s: 1, y: 0 };
+    return (
+      <div className="flex h-44 w-44 items-center justify-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt=""
+          aria-hidden
+          className="h-full w-full select-none object-contain"
+          style={{ transform: `translateY(${adj.y}px) scale(${adj.s})` }}
+        />
+      </div>
+    );
   }
 
   // Repli (ou pendant le test) : icône vectorielle dans une boîte
