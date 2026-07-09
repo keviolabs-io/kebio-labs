@@ -8,12 +8,13 @@ import { motion } from "framer-motion";
  * - Uniquement transform/opacity → fluide sur Chrome & Safari.
  */
 
-const COUNT = 100;
+const COUNT = 160; // total desktop
+const MOBILE_COUNT = 100; // les autres sont masqués sur mobile
 const GOLDEN = 2.399963229; // angle d'or (rad) → belle répartition
 
 const particles = Array.from({ length: COUNT }, (_, i) => {
   const angle = i * GOLDEN;
-  const radius = 12 + (i % 9) * 9.5; // % depuis le centre (12 → 88)
+  const radius = 12 + (i % 11) * 8; // % depuis le centre (12 → 92)
   return {
     x: 50 + Math.cos(angle) * radius,
     y: 50 + Math.sin(angle) * radius,
@@ -22,6 +23,7 @@ const particles = Array.from({ length: COUNT }, (_, i) => {
     delay: (i % 7) * 0.25,
     violet: i % 3 === 0,
     peak: 0.55 + (i % 5) * 0.09, // opacité max 0.55 → 0.91 (plus voyant)
+    desktopOnly: i >= MOBILE_COUNT, // densité supplémentaire réservée au desktop
   };
 });
 
@@ -65,7 +67,7 @@ export default function Particles({ className = "" }: { className?: string }) {
         {particles.map((p, i) => (
           <motion.span
             key={i}
-            className="absolute rounded-full"
+            className={`absolute rounded-full ${p.desktopOnly ? "hidden md:block" : ""}`}
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,
