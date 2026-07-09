@@ -25,7 +25,7 @@ export default function Services() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="mt-14 grid grid-cols-1 divide-y divide-white/10 overflow-hidden rounded-3xl border border-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x"
+          className="mt-14 grid grid-cols-1 divide-y divide-white/20 overflow-hidden rounded-3xl border border-white/20 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x"
         >
           {services.items.map((s) => {
             const Icon = ICONS[s.icon] ?? FaLaptopCode;
