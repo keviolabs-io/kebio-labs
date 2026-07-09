@@ -28,10 +28,13 @@ export const hero = {
   titleLine2: "de l'impact",
   // Bloc bas-gauche : « ce que nous faisons »
   weDoLabel: "Nous le faisons",
-  // Liste de services affichée dans le hero (paires « gauche / droite »)
+  // Liste de services affichée dans le hero (paires « nom / détails »)
   weDoItems: [
-    { left: "Identité de marque", right: "Design UI / UX" },
-    { left: "Développement", right: "Marketing" },
+    { left: "Création de sites", right: "UI/UX, sur-mesure" },
+    { left: "Applications", right: "Web, mobile, sur-mesure" },
+    { left: "Automatisation", right: "Agents IA, n8n" },
+    { left: "Publicité", right: "Google, Meta & TikTok Ads" },
+    { left: "SEO", right: "Référencement, optimisation organique" },
   ],
   // Bloc bas-droite : projet en vedette
   featuredLabel: "En vedette",
