@@ -48,7 +48,7 @@ export default function ServiceIcon({
 
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt="" aria-hidden className="h-24 w-24 select-none object-contain" />;
+    return <img src={src} alt="" aria-hidden className="h-36 w-36 select-none object-contain" />;
   }
 
   // Repli (ou pendant le test) : icône vectorielle dans une boîte
