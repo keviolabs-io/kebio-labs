@@ -6,6 +6,7 @@ import SectionLabel from "@/components/SectionLabel";
 import { staggerContainer, staggerItem } from "@/components/anim/Reveal";
 import { FaLaptopCode, FaRobot, FaBullhorn, FaSearch } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import ServiceIcon from "@/components/ServiceIcon";
 
 const ICONS: Record<string, IconType> = {
   web: FaLaptopCode,
@@ -54,9 +55,8 @@ export default function Services() {
                     <motion.div
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="grid h-24 w-24 place-items-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-transparent text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
                     >
-                      <Icon className="h-9 w-9" />
+                      <ServiceIcon iconKey={s.icon} Fallback={Icon} />
                     </motion.div>
                   </div>
 
