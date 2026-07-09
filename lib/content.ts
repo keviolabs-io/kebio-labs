@@ -155,22 +155,26 @@ export const process = {
   title: "Une méthode claire, du concept au lancement.",
   steps: [
     {
-      n: "01",
+      n: "/01",
+      icon: "discover",
       title: "Découverte",
       text: "On apprend à connaître votre marque, vos objectifs et votre audience.",
     },
     {
-      n: "02",
+      n: "/02",
+      icon: "strategy",
       title: "Stratégie",
       text: "On définit une direction claire et un plan d'action mesurable.",
     },
     {
-      n: "03",
+      n: "/03",
+      icon: "design",
       title: "Design",
       text: "On conçoit des expériences soignées, testées et itérées.",
     },
     {
-      n: "04",
+      n: "/04",
+      icon: "launch",
       title: "Lancement",
       text: "On livre, on mesure et on optimise en continu.",
     },
