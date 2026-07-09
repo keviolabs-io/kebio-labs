@@ -58,6 +58,20 @@ export const hero = {
   marquee: ["venice.", "cairo", "italic", "tokyo", "berlin.", "oslo"],
 };
 
+/* Bande défilante sous le hero — technos & outils ----------- */
+export const marqueeItems = [
+  "Next.js",
+  "React",
+  "n8n",
+  "Google Ads",
+  "Meta Ads",
+  "TikTok Ads",
+  "Figma",
+  "TypeScript",
+  "Shopify",
+  "WordPress",
+];
+
 /* Services -------------------------------------------------- */
 export const services = {
   label: "Nos services",

@@ -1,10 +1,10 @@
 "use client";
 
-import { hero } from "@/lib/content";
+import { marqueeItems } from "@/lib/content";
 
-/** Bandeau défilant infini (villes). CSS pur → fluide sur Chrome + Safari. */
+/** Bandeau défilant infini (technos & outils). CSS pur → fluide sur Chrome + Safari. */
 export default function Marquee() {
-  const items = [...hero.marquee, ...hero.marquee];
+  const items = [...marqueeItems, ...marqueeItems];
   return (
     <section className="marquee-paused overflow-hidden border-y border-border py-8">
       <div
