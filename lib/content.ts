@@ -111,7 +111,7 @@ export const about = {
   label: "À propos de nous",
   // Un seul paragraphe : chaque caractère s'éclaire au scroll (gris → blanc).
   paragraph:
-    "Nous accompagnons les marques ambitieuses et les startups à concevoir des produits numériques qui savent se démarquer et grandir. Nous croyons en un travail intelligent, une exécution rapide et un design porté par le sens.",
+    "Nous accompagnons les entreprises qui refusent de se fondre dans la masse. Sites web, applications, publicité, SEO, agents IA — nous concevons des solutions digitales sur-mesure qui convertissent, automatisent et propulsent votre croissance. Pas de templates, pas de compromis : chaque projet est pensé pour performer.",
   // Chiffres (compteur animé) — ajuste avec tes vrais nombres.
   stats: [
     { value: 50, suffix: "+", label: "Projets livrés" },
