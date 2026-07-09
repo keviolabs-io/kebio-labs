@@ -67,8 +67,8 @@ export default function About() {
           stagger: 1,
           scrollTrigger: {
             trigger: el,
-            start: "top 72%",
-            end: "bottom 62%",
+            start: "top 80%",
+            end: "center 50%",
             scrub: true,
           },
         }
@@ -94,7 +94,7 @@ export default function About() {
           <motion.span
             aria-hidden
             style={{ scale: wmScale }}
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.05] blur-[7px] md:text-[18vw]"
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.1] blur-[6px] md:text-[18vw]"
           >
             {site.name.toLowerCase()}
           </motion.span>
@@ -102,7 +102,7 @@ export default function About() {
           {/* Révélation caractère par caractère */}
           <p
             ref={textRef}
-            className="relative z-10 mx-auto max-w-[34rem] text-center text-[1.7rem] font-medium leading-[1.35] tracking-tight"
+            className="relative z-10 mx-auto max-w-[36rem] text-center text-[2rem] font-medium leading-[1.35] tracking-tight"
             style={{ color: DIM }}
           >
             {words.map((word, wi) => (
