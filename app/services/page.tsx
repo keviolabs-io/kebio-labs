@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Services from "@/components/home/Services";
 import Process from "@/components/home/Process";
-import Pricing from "@/components/home/Pricing";
 import Testimonials from "@/components/home/Testimonials";
 
 export const metadata: Metadata = { title: "Services" };
@@ -18,7 +17,6 @@ export default function ServicesPage() {
       />
       <Services />
       <Process />
-      <Pricing />
       <Testimonials />
     </>
   );
