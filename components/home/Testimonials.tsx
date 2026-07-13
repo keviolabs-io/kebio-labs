@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { testimonials } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
+import SpiralDots from "@/components/home/SpiralDots";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -165,7 +166,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="relative overflow-hidden px-6 py-24">
-      <div className="pointer-events-none absolute inset-0 bg-dots opacity-30" />
+      <SpiralDots className="pointer-events-none absolute inset-0" />
 
       {/* ---------- Desktop : titre au centre + cartes dispersées ---------- */}
       <div className="relative mx-auto hidden max-w-[1470px] lg:block" style={{ height: 1059 }}>
