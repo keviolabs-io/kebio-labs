@@ -68,15 +68,14 @@ function Card({
 
 // Positions des cartes dans le champ (canevas 1470 × 1059), inspirées du thème
 // et complétées de 2 cartes pour remplir les zones vides (sans masquer le titre).
-// Le titre occupe la bande centrale (~y 527→677). Les cartes sont réparties
-// au-dessus et en-dessous de cette bande pour ne jamais passer sur le titre.
+// Cartes réparties « en cercle » autour du titre (comme l'original Framer).
 const LAYOUT = [
-  { left: "4%", top: 40 }, // Camille — haut-gauche
-  { left: "62%", top: 60 }, // Yanis — haut-droite
-  { left: "33%", top: 150 }, // Marie — haut-centre
-  { left: "4%", top: 700 }, // Thomas — bas-gauche
-  { left: "62%", top: 700 }, // Sarah — bas-droite
-  { left: "33%", top: 760 }, // Karim — bas-centre
+  { left: "9%", top: 40 }, // Camille — haut-gauche
+  { left: "60%", top: 90 }, // Yanis — haut-droite
+  { left: "36%", top: 250 }, // Marie — centre-haut
+  { left: "4.9%", top: 520 }, // Thomas — milieu-gauche
+  { left: "62%", top: 640 }, // Sarah — milieu-droite
+  { left: "28%", top: 780 }, // Karim — bas-centre-gauche
 ];
 
 /**
