@@ -17,7 +17,7 @@ const BRIGHT = "#ededed";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** Avatar rond avec les initiales (dégradé) — substitut aux photos du thème. */
-function Avatar({ name }: { name: string }) {
+function Avatar({ name, compact = false }: { name: string; compact?: boolean }) {
   const initials = name
     .split(" ")
     .map((w) => w[0])
@@ -25,7 +25,11 @@ function Avatar({ name }: { name: string }) {
     .join("")
     .toUpperCase();
   return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white/25 to-white/5 text-sm font-medium text-[#ededed] ring-1 ring-white/15">
+    <div
+      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white/25 to-white/5 font-medium text-[#ededed] ring-1 ring-white/15 ${
+        compact ? "h-8 w-8 text-[11px]" : "h-12 w-12 text-sm"
+      }`}
+    >
       {initials}
     </div>
   );
@@ -36,30 +40,48 @@ function Card({
   quote,
   name,
   company,
+  compact = false,
 }: {
   quote: string;
   name: string;
   company: string;
+  compact?: boolean;
 }) {
   return (
-    <div className="w-[416px] max-w-full">
+    <div className={compact ? "w-[175px]" : "w-[416px] max-w-full"}>
       <div
-        className="rounded-2xl border border-white/10 px-8 py-10"
+        className={`rounded-2xl border border-white/10 ${
+          compact ? "px-4 py-5" : "px-8 py-10"
+        }`}
         style={{
           background: "rgba(18,18,20,0.85)",
           backdropFilter: "blur(22px)",
           WebkitBackdropFilter: "blur(22px)",
         }}
       >
-        <p className="text-base leading-6 text-[#bbbbbb]">«&nbsp;{quote}&nbsp;»</p>
+        <p
+          className={
+            compact
+              ? "text-[12px] leading-[1.45] text-[#bbbbbb]"
+              : "text-base leading-6 text-[#bbbbbb]"
+          }
+        >
+          «&nbsp;{quote}&nbsp;»
+        </p>
       </div>
-      <div className="mt-5 flex items-center gap-4">
-        <Avatar name={name} />
+      <div className={`flex items-center ${compact ? "mt-3 gap-2.5" : "mt-5 gap-4"}`}>
+        <Avatar name={name} compact={compact} />
         <div>
-          <p className="text-base font-semibold leading-tight text-[#ededed]">
+          <p
+            className={`font-semibold leading-tight text-[#ededed] ${
+              compact ? "text-[13px]" : "text-base"
+            }`}
+          >
             {name}
           </p>
-          <p className="text-sm text-[#999999]">{company}</p>
+          <p className={compact ? "text-[11px] text-[#999999]" : "text-sm text-[#999999]"}>
+            {company}
+          </p>
         </div>
       </div>
     </div>
@@ -76,6 +98,14 @@ const LAYOUT = [
   { left: "4.9%", top: 520 }, // Thomas — milieu-gauche
   { left: "62%", top: 640 }, // Sarah — milieu-droite
   { left: "28%", top: 780 }, // Karim — bas-centre-gauche
+];
+
+// Mobile : 4 cartes compactes dispersées autour du titre (même esprit desktop).
+const MOBILE_LAYOUT = [
+  { left: "0%", top: 10 }, // haut-gauche
+  { left: "50%", top: 60 }, // haut-droite
+  { left: "0%", top: 400 }, // bas-gauche
+  { left: "50%", top: 450 }, // bas-droite
 ];
 
 /**
@@ -213,44 +243,41 @@ export default function Testimonials() {
         ))}
       </div>
 
-      {/* ---------- Mobile : pill + titre + pile de cartes ---------- */}
-      <div className="lg:hidden">
-        <div className="flex justify-center">
+      {/* ---------- Mobile : titre au centre + 4 cartes compactes dispersées ---------- */}
+      <div
+        className="relative mx-auto lg:hidden"
+        style={{ height: 640, maxWidth: 400 }}
+      >
+        {/* Pill + titre centrés */}
+        <div className="absolute inset-x-0 top-[205px] z-0 flex flex-col items-center px-2 text-center">
           <SectionLabel icon="❝" center>
             {testimonials.label}
           </SectionLabel>
+          <h2
+            ref={mobileHeadingRef}
+            className="mt-4 text-[1.6rem] font-medium leading-[1.15] tracking-tight"
+          >
+            <span className="font-serif-italic font-normal text-foreground">
+              {testimonials.titleItalic}
+            </span>
+            <br />
+            {sansWords.map((w, i) => (
+              <Fragment key={i}>
+                <span data-word className="inline-block" style={{ color: DIM }}>
+                  {w}
+                </span>
+                {i < sansWords.length - 1 ? " " : ""}
+              </Fragment>
+            ))}
+          </h2>
         </div>
-        <h2
-          ref={mobileHeadingRef}
-          className="mt-8 text-center text-[2rem] font-medium leading-[1.15] tracking-tight sm:text-5xl"
-        >
-          <span className="font-serif-italic font-normal text-foreground">
-            {testimonials.titleItalic}
-          </span>
-          <br />
-          {sansWords.map((w, i) => (
-            <Fragment key={i}>
-              <span data-word className="inline-block" style={{ color: DIM }}>
-                {w}
-              </span>
-              {i < sansWords.length - 1 ? " " : ""}
-            </Fragment>
-          ))}
-        </h2>
-        <div className="mt-12 flex flex-col items-center gap-8">
-          {items.map((t, i) => (
-            <motion.div
-              key={i}
-              className="w-full max-w-[420px]"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-60px" }}
-              transition={{ duration: 0.6, ease: EASE }}
-            >
-              <Card quote={t.quote} name={t.name} company={t.company} />
-            </motion.div>
-          ))}
-        </div>
+
+        {/* 4 cartes compactes pilotées par le scroll */}
+        {items.slice(0, 4).map((t, i) => (
+          <ScrollCard key={i} pos={MOBILE_LAYOUT[i]}>
+            <Card compact quote={t.quote} name={t.name} company={t.company} />
+          </ScrollCard>
+        ))}
       </div>
     </section>
   );
