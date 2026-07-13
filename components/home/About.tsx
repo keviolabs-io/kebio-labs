@@ -67,8 +67,8 @@ export default function About() {
           stagger: 1,
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
-            end: "center 50%",
+            start: "top 92%",
+            end: "center 38%",
             scrub: true,
           },
         }
