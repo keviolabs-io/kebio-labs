@@ -167,7 +167,6 @@ function ScrollCard({
 
 export default function Testimonials() {
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const mobileHeadingRef = useRef<HTMLHeadingElement>(null);
   const items = testimonials.items.slice(0, 6);
 
   // Révélation gris → blanc de la ligne sans-serif, pilotée par le scroll,
@@ -196,10 +195,9 @@ export default function Testimonials() {
         );
       }, el);
     };
-    const ctxs = [
-      setup(headingRef.current),
-      setup(mobileHeadingRef.current),
-    ].filter(Boolean) as Array<ReturnType<typeof gsap.context>>;
+    const ctxs = [setup(headingRef.current)].filter(Boolean) as Array<
+      ReturnType<typeof gsap.context>
+    >;
     return () => ctxs.forEach((c) => c.revert());
   }, []);
 
@@ -256,22 +254,12 @@ export default function Testimonials() {
           <SectionLabel icon="❝" center>
             {testimonials.label}
           </SectionLabel>
-          <h2
-            ref={mobileHeadingRef}
-            className="mt-4 text-[1.6rem] font-medium leading-[1.15] tracking-tight"
-          >
-            <span className="font-serif-italic font-normal text-foreground">
+          <h2 className="mt-4 text-[2rem] font-medium leading-[1.15] tracking-tight text-foreground">
+            <span className="font-serif-italic font-normal">
               {testimonials.titleItalic}
             </span>
             <br />
-            {sansWords.map((w, i) => (
-              <Fragment key={i}>
-                <span data-word className="inline-block" style={{ color: DIM }}>
-                  {w}
-                </span>
-                {i < sansWords.length - 1 ? " " : ""}
-              </Fragment>
-            ))}
+            {testimonials.titleSans}
           </h2>
         </div>
 
