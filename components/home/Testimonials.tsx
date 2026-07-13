@@ -44,9 +44,9 @@ function Card({
   return (
     <div className="w-[416px] max-w-full">
       <div
-        className="rounded-2xl px-8 py-10"
+        className="rounded-2xl border border-white/10 px-8 py-10"
         style={{
-          background: "rgba(255,255,255,0.07)",
+          background: "rgba(18,18,20,0.85)",
           backdropFilter: "blur(22px)",
           WebkitBackdropFilter: "blur(22px)",
         }}
