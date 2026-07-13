@@ -32,8 +32,8 @@ export default function SpiralDots({ className = "" }: { className?: string }) {
 
       // Centre du vortex : bas-centre de la zone.
       const cx = w * 0.5;
-      const cy = h * 0.88;
-      const R = Math.hypot(w, h) * 0.82; // rayon maxi
+      const cy = h * 0.52; // vortex centré verticalement → fond en haut et en bas
+      const R = Math.hypot(w, h) * 0.72; // rayon maxi
       const stretchX = 1.42; // étirement horizontal (fan large)
       const swirlMax = 5.2; // torsion maxi (radians) au centre → bras spiralés
       const ringGap = 14; // espacement des anneaux (arcs distincts)
@@ -50,10 +50,9 @@ export default function SpiralDots({ className = "" }: { className?: string }) {
           const x = cx + Math.cos(a) * r * stretchX;
           const y = cy + Math.sin(a) * r;
           if (x < -20 || x > w + 20 || y < -20 || y > h + 20) continue;
-          // opacité : s'estompe vers le bord et vers le haut
-          const vfade = Math.min(1, Math.max(0, y / (h * 0.5))); // faible en haut
-          const rfade = 1 - t * 0.6;
-          const alpha = 0.45 * rfade * vfade;
+          // opacité : s'estompe radialement (le fondu vertical est géré par le masque CSS)
+          const rfade = 1 - t * 0.55;
+          const alpha = 0.42 * rfade;
           if (alpha <= 0.01) continue;
           ctx.globalAlpha = alpha;
           ctx.beginPath();
@@ -76,5 +75,17 @@ export default function SpiralDots({ className = "" }: { className?: string }) {
     };
   }, []);
 
-  return <canvas ref={ref} className={className} aria-hidden />;
+  // Dégradé de masque : le motif se fond dans le noir en haut et surtout en
+  // bas → aucune délimitation nette entre les sections.
+  const fade =
+    "linear-gradient(to bottom, transparent 0%, black 14%, black 62%, transparent 100%)";
+
+  return (
+    <canvas
+      ref={ref}
+      className={className}
+      style={{ maskImage: fade, WebkitMaskImage: fade }}
+      aria-hidden
+    />
+  );
 }
