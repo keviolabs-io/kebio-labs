@@ -208,6 +208,9 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="relative overflow-hidden px-6 py-24">
       <SpiralDots className="pointer-events-none absolute inset-0" />
+      {/* Dégradé de fin de section : le fond se fond dans le noir → transition
+          douce vers la section suivante (au-dessus de la spirale, sous les cartes). */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-48 bg-gradient-to-b from-transparent to-background" />
 
       {/* ---------- Desktop : titre au centre + cartes dispersées ---------- */}
       <div className="relative mx-auto hidden max-w-[1470px] lg:block" style={{ height: 1059 }}>
