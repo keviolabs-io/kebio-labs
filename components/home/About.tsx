@@ -81,7 +81,7 @@ export default function About() {
   const words = about.paragraph.split(" ");
 
   return (
-    <section ref={sectionRef} id="about" className="relative overflow-hidden px-6 py-28">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden px-6 py-20 md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex justify-center">
           <SectionLabel icon="★" center>
@@ -90,11 +90,11 @@ export default function About() {
         </div>
 
         {/* Bloc texte avec le nom flouté qui zoome en arrière-plan */}
-        <div className="relative mt-16 py-4">
+        <div className="relative mt-12 py-4 md:mt-16">
           <motion.span
             aria-hidden
             style={{ scale: wmScale }}
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[26vw] leading-none text-white/[0.16] blur-[6px] md:text-[18vw]"
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[28vw] leading-none text-white/[0.32] blur-[4px] md:text-[18vw] md:text-white/[0.16] md:blur-[6px]"
           >
             {site.name.toLowerCase()}
           </motion.span>
@@ -102,7 +102,7 @@ export default function About() {
           {/* Révélation mot par mot (gris → blanc) */}
           <p
             ref={textRef}
-            className="relative z-10 mx-auto max-w-[52rem] text-center text-[2rem] font-medium leading-[1.4] tracking-tight"
+            className="relative z-10 mx-auto max-w-[52rem] text-center text-xl font-medium leading-[1.5] tracking-tight sm:text-[2rem] sm:leading-[1.4]"
           >
             {words.map((word, wi) => (
               <Fragment key={wi}>
@@ -115,15 +115,17 @@ export default function About() {
           </p>
         </div>
 
-        {/* Stats : conteneur pointillé + label + trait + grand chiffre animé */}
-        <div className="relative mt-20 overflow-hidden rounded-3xl border border-border">
+        {/* Stats : conteneur pointillé, séparateurs, chiffre animé */}
+        <div className="relative mt-14 overflow-hidden rounded-3xl border border-border md:mt-20">
           <div className="pointer-events-none absolute inset-0 bg-dots opacity-60" />
-          <div className="relative grid grid-cols-1 gap-y-12 p-8 sm:p-12 md:grid-cols-3 md:gap-x-10">
+          <div className="relative grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
             {about.stats.map((s) => (
-              <div key={s.label}>
+              <div
+                key={s.label}
+                className="flex flex-col items-center px-6 py-9 text-center md:items-start md:px-10 md:py-12 md:text-left"
+              >
                 <p className="text-sm text-muted">{s.label}</p>
-                <div className="mt-4 border-t border-border" />
-                <div className="mt-8 flex items-baseline gap-3 text-[5rem] font-medium leading-none tracking-tight sm:gap-4 sm:text-[7rem] lg:text-[8rem]">
+                <div className="mt-5 flex items-baseline gap-1.5 text-6xl font-medium leading-none tracking-tight md:mt-8 md:gap-3 md:text-[6.5rem] lg:text-[7.5rem]">
                   <span className="bg-gradient-to-b from-white via-white/90 to-white/25 bg-clip-text text-transparent">
                     <Counter value={s.value} />
                   </span>
