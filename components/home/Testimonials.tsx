@@ -137,33 +137,40 @@ function ScrollCard({
 
 export default function Testimonials() {
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const mobileHeadingRef = useRef<HTMLHeadingElement>(null);
   const items = testimonials.items.slice(0, 6);
 
-  // Révélation gris → blanc de la ligne sans-serif, pilotée par le scroll.
+  // Révélation gris → blanc de la ligne sans-serif, pilotée par le scroll,
+  // appliquée à la variante visible du titre (desktop OU mobile).
   useEffect(() => {
-    const el = headingRef.current;
-    if (!el) return;
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const words = el.querySelectorAll<HTMLElement>("[data-word]");
-    if (prefersReduced) {
-      gsap.set(words, { color: BRIGHT });
-      return;
-    }
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        words,
-        { color: DIM },
-        {
-          color: BRIGHT,
-          ease: "none",
-          stagger: 1,
-          scrollTrigger: { trigger: el, start: "top 82%", end: "center 42%", scrub: true },
-        }
-      );
-    }, el);
-    return () => ctx.revert();
+    const setup = (el: HTMLElement | null) => {
+      if (!el || el.offsetParent === null) return null; // ignore la variante masquée
+      const words = el.querySelectorAll<HTMLElement>("[data-word]");
+      if (prefersReduced) {
+        gsap.set(words, { color: BRIGHT });
+        return null;
+      }
+      return gsap.context(() => {
+        gsap.fromTo(
+          words,
+          { color: DIM },
+          {
+            color: BRIGHT,
+            ease: "none",
+            stagger: 1,
+            scrollTrigger: { trigger: el, start: "top 82%", end: "center 42%", scrub: true },
+          }
+        );
+      }, el);
+    };
+    const ctxs = [
+      setup(headingRef.current),
+      setup(mobileHeadingRef.current),
+    ].filter(Boolean) as Array<ReturnType<typeof gsap.context>>;
+    return () => ctxs.forEach((c) => c.revert());
   }, []);
 
   const sansWords = testimonials.titleSans.split(" ");
@@ -213,16 +220,28 @@ export default function Testimonials() {
             {testimonials.label}
           </SectionLabel>
         </div>
-        <h2 className="mt-8 text-center text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl">
+        <h2
+          ref={mobileHeadingRef}
+          className="mt-8 text-center text-[2rem] font-medium leading-[1.15] tracking-tight sm:text-5xl"
+        >
           <span className="font-serif-italic font-normal text-foreground">
             {testimonials.titleItalic}
-          </span>{" "}
-          <span className="text-foreground">{testimonials.titleSans}</span>
+          </span>
+          <br />
+          {sansWords.map((w, i) => (
+            <Fragment key={i}>
+              <span data-word className="inline-block" style={{ color: DIM }}>
+                {w}
+              </span>
+              {i < sansWords.length - 1 ? " " : ""}
+            </Fragment>
+          ))}
         </h2>
-        <div className="mt-14 flex flex-col items-center gap-12">
+        <div className="mt-12 flex flex-col items-center gap-8">
           {items.map((t, i) => (
             <motion.div
               key={i}
+              className="w-full max-w-[420px]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-60px" }}
