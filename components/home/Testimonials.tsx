@@ -65,14 +65,70 @@ function Card({
   );
 }
 
-// Positions/échelles mesurées sur le thème (canevas 1470 × 1059).
-// left = % de la largeur ; top = px dans le canevas de 1059 ; scale = échelle fixe.
+// Positions mesurées sur le thème (canevas 1470 × 1059).
 const LAYOUT = [
-  { left: "10.0%", top: 33, scale: 0.98 }, // haut-gauche
-  { left: "62.0%", top: 200, scale: 1 }, // haut-droite
-  { left: "4.9%", top: 529, scale: 1 }, // milieu-gauche
-  { left: "58.4%", top: 754, scale: 0.5 }, // bas-droite (petite)
+  { left: "10.0%", top: 33 }, // haut-gauche
+  { left: "62.0%", top: 200 }, // haut-droite
+  { left: "4.9%", top: 529 }, // milieu-gauche
+  { left: "58.4%", top: 754 }, // bas-droite
 ];
+
+/**
+ * Carte pilotée par le scroll (GSAP ScrollTrigger, synchronisé avec Lenis) :
+ * à mesure que la carte traverse l'écran de bas en haut, elle apparaît en
+ * fondu + monte, reste nette au centre, puis s'estompe en sortant en haut.
+ * L'effet rejoue dans les deux sens (scroll / retour), en continu.
+ */
+function ScrollCard({
+  pos,
+  children,
+}: {
+  pos: { left: string; top: number };
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduced) {
+      gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+      return;
+    }
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      });
+      tl.fromTo(
+        el,
+        { opacity: 0, yPercent: 14, scale: 0.9 },
+        { opacity: 1, yPercent: 0, scale: 1, duration: 0.28 }
+      )
+        .to(el, { opacity: 1, duration: 0.44 })
+        .to(el, { opacity: 0, yPercent: -14, scale: 0.95, duration: 0.28 });
+    }, el);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="absolute z-10"
+      style={{ left: pos.left, top: pos.top, willChange: "transform, opacity" }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function Testimonials() {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -137,23 +193,12 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Cartes flottantes */}
-        {items.map((t, i) => {
-          const pos = LAYOUT[i];
-          return (
-            <motion.div
-              key={i}
-              className="absolute z-10"
-              style={{ left: pos.left, top: pos.top, transformOrigin: "top left" }}
-              initial={{ opacity: 0, y: 36, scale: pos.scale * 0.92 }}
-              whileInView={{ opacity: 1, y: 0, scale: pos.scale }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.75, ease: EASE, delay: i * 0.1 }}
-            >
-              <Card quote={t.quote} name={t.name} company={t.company} />
-            </motion.div>
-          );
-        })}
+        {/* Cartes flottantes pilotées par le scroll */}
+        {items.map((t, i) => (
+          <ScrollCard key={i} pos={LAYOUT[i]}>
+            <Card quote={t.quote} name={t.name} company={t.company} />
+          </ScrollCard>
+        ))}
       </div>
 
       {/* ---------- Mobile : pill + titre + pile de cartes ---------- */}
@@ -175,7 +220,7 @@ export default function Testimonials() {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-60px" }}
               transition={{ duration: 0.6, ease: EASE }}
             >
               <Card quote={t.quote} name={t.name} company={t.company} />
