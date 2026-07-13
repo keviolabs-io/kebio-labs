@@ -66,12 +66,15 @@ function Card({
   );
 }
 
-// Positions mesurées sur le thème (canevas 1470 × 1059).
+// Positions des cartes dans le champ (canevas 1470 × 1059), inspirées du thème
+// et complétées de 2 cartes pour remplir les zones vides (sans masquer le titre).
 const LAYOUT = [
-  { left: "10.0%", top: 33 }, // haut-gauche
-  { left: "62.0%", top: 200 }, // haut-droite
-  { left: "4.9%", top: 529 }, // milieu-gauche
-  { left: "58.4%", top: 754 }, // bas-droite
+  { left: "9%", top: 40 }, // Camille — haut-gauche
+  { left: "60%", top: 90 }, // Yanis — haut-droite
+  { left: "36%", top: 250 }, // Marie — centre-haut
+  { left: "4.9%", top: 520 }, // Thomas — milieu-gauche
+  { left: "62%", top: 640 }, // Sarah — milieu-droite
+  { left: "28%", top: 780 }, // Karim — bas-centre-gauche
 ];
 
 /**
@@ -133,7 +136,7 @@ function ScrollCard({
 
 export default function Testimonials() {
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const items = testimonials.items.slice(0, 4);
+  const items = testimonials.items.slice(0, 6);
 
   // Révélation gris → blanc de la ligne sans-serif, pilotée par le scroll.
   useEffect(() => {
