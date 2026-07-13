@@ -254,24 +254,77 @@ export const pricing = {
 /* Testimonials ---------------------------------------------- */
 export const testimonials = {
   label: "Témoignages",
+  titleItalic: "Ce qu'en disent",
+  titleSans: "nos clients",
   items: [
     {
       quote:
-        "Une équipe qui comprend vraiment les enjeux business. Le résultat a dépassé nos attentes.",
+        "Kevio Labs a transformé notre présence en ligne. Notre nouveau site convertit trois fois plus qu'avant.",
       name: "Camille Roche",
       company: "Fondatrice, Nova",
     },
     {
       quote:
-        "Design impeccable, exécution rapide, communication limpide. On recommande sans hésiter.",
+        "Réactifs, précis et vraiment à l'écoute. Le projet a été livré dans les temps et au-delà de nos attentes.",
       name: "Yanis Belkacem",
       company: "CEO, Flux",
     },
     {
       quote:
-        "Ils ont transformé notre image de marque et nos conversions ont bondi. Merci !",
+        "Leur agent IA gère désormais 70 % de notre support client. Un gain de temps énorme au quotidien.",
       name: "Marie Lefèvre",
       company: "CMO, Atlas",
+    },
+    {
+      quote:
+        "Des campagnes enfin rentables. On sait exactement où va chaque euro et ce qu'il nous rapporte.",
+      name: "Thomas Girard",
+      company: "Fondateur, Loop",
+    },
+    {
+      quote:
+        "Un design qui nous démarque vraiment de la concurrence. Nos clients le remarquent tout de suite.",
+      name: "Sarah Nguyen",
+      company: "Directrice, Bloom",
+    },
+    {
+      quote:
+        "Du sur-mesure de bout en bout. On a enfin un partenaire qui comprend nos enjeux business.",
+      name: "Karim Haddad",
+      company: "CEO, Vireo",
+    },
+  ],
+};
+
+/* FAQ ------------------------------------------------------- */
+export const faq = {
+  label: "FAQ",
+  titleItalic: "Questions",
+  titleSans: "fréquentes",
+  items: [
+    {
+      q: "Combien de temps prend la création d'un site ?",
+      a: "En moyenne 1 à 4 semaines pour un site vitrine, 2 à 6 semaines pour un e-commerce, selon la complexité du projet.",
+    },
+    {
+      q: "Quels sont vos tarifs ?",
+      a: "Ils dépendent de votre projet. On propose un premier échange gratuit pour cerner vos besoins et vous envoyer un devis clair et transparent.",
+    },
+    {
+      q: "Gérez-vous aussi la publicité digitale ?",
+      a: "Oui — Google, Meta et TikTok Ads, de la stratégie à l'optimisation, pour maximiser votre retour sur investissement.",
+    },
+    {
+      q: "Qu'est-ce qu'un agent IA peut m'apporter ?",
+      a: "Il travaille pour vous 24h/24 : réponses clients, qualification de leads, automatisation de tâches. Vous gagnez du temps et des conversions.",
+    },
+    {
+      q: "Serai-je propriétaire de mon site ?",
+      a: "Oui, à 100 %. Code source, nom de domaine, contenus et accès vous appartiennent — sans abonnement ni dépendance technique.",
+    },
+    {
+      q: "Proposez-vous un suivi après la livraison ?",
+      a: "Bien sûr : rapports de performance, optimisations régulières et support réactif pour faire durer les résultats.",
     },
   ],
 };
