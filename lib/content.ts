@@ -254,8 +254,8 @@ export const pricing = {
 /* Testimonials ---------------------------------------------- */
 export const testimonials = {
   label: "Témoignages",
-  titleItalic: "Ce qu'en disent",
-  titleSans: "nos clients",
+  titleItalic: "Ils nous font confiance",
+  titleSans: "et grandissent avec Kevio Labs",
   items: [
     {
       quote:
