@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { projects } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
@@ -19,6 +19,8 @@ function ProjectCard({
   total: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  // Ratio exact de l'image (mesuré au chargement) → la carte l'épouse
+  const [ratio, setRatio] = useState<number | null>(null);
 
   // Progression du scroll de la carte à travers le viewport
   const { scrollYProgress } = useScroll({
@@ -36,16 +38,17 @@ function ProjectCard({
       style={{ zIndex: index }}
     >
       <motion.article
-        style={{ scale, top: `${index * 12}px` }}
-        className="relative aspect-[16/10] max-h-[86vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border"
+        style={{ scale, top: `${index * 12}px`, aspectRatio: ratio ?? 16 / 10 }}
+        className="relative max-h-[88vh] w-full max-w-[1100px] overflow-hidden rounded-[2rem] border border-border"
       >
-        {/* Image affichée en entier */}
+        {/* Image affichée en entier ; la carte prend le ratio de l'image */}
         <div className="absolute inset-0">
           <Media
             src={project.image}
             alt={project.title}
             fit="contain"
             className="h-full w-full"
+            onNaturalSize={(w, h) => h > 0 && setRatio(w / h)}
           />
         </div>
         {/* Voile (léger, pour la lisibilité du titre) */}

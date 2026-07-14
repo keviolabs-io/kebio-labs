@@ -15,16 +15,23 @@ export default function Media({
   className = "",
   imgClassName = "",
   fit = "cover",
+  onNaturalSize,
 }: {
   src?: string;
   alt: string;
   className?: string;
   imgClassName?: string;
   fit?: "cover" | "contain";
+  onNaturalSize?: (width: number, height: number) => void;
 }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+
+  const reveal = (img: HTMLImageElement) => {
+    setLoaded(true);
+    onNaturalSize?.(img.naturalWidth, img.naturalHeight);
+  };
 
   // Cas où l'image (souvent en cache) finit de charger AVANT que React
   // n'attache onLoad : on vérifie l'état réel au montage / changement de src.
@@ -32,9 +39,10 @@ export default function Media({
     setFailed(false);
     const img = imgRef.current;
     if (img?.complete) {
-      if (img.naturalWidth > 0) setLoaded(true);
+      if (img.naturalWidth > 0) reveal(img);
       else setFailed(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
   return (
@@ -58,7 +66,7 @@ export default function Media({
           ref={imgRef}
           src={src}
           alt={alt}
-          onLoad={() => setLoaded(true)}
+          onLoad={(e) => reveal(e.currentTarget)}
           onError={() => setFailed(true)}
           className={`relative h-full w-full transition-opacity duration-700 ${
             fit === "contain" ? "object-contain" : "object-cover"
