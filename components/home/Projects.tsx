@@ -30,6 +30,14 @@ function ProjectCard({
 
   // La carte se réduit légèrement quand la suivante passe par-dessus
   const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.9]);
+  // Zoom de profondeur : image PLEINE (échelle 1, non coupée) tant que la carte
+  // est à l'écran ; léger zoom seulement à l'entrée/sortie (quand elle est
+  // hors champ) → effet de profondeur sans jamais couper l'image.
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [1.1, 1, 1, 1.1]
+  );
 
   return (
     <div
@@ -41,8 +49,11 @@ function ProjectCard({
         style={{ scale, top: `${index * 12}px`, aspectRatio: ratio ?? 16 / 10 }}
         className="relative max-h-[88vh] w-full max-w-[1100px] overflow-hidden rounded-[2rem] border border-border"
       >
-        {/* Image affichée en entier ; la carte prend le ratio de l'image */}
-        <div className="absolute inset-0">
+        {/* Image en entier ; la carte prend son ratio. Léger zoom de profondeur. */}
+        <motion.div
+          style={{ scale: imageScale }}
+          className="absolute inset-0 will-change-transform"
+        >
           <Media
             src={project.image}
             alt={project.title}
@@ -50,7 +61,7 @@ function ProjectCard({
             className="h-full w-full"
             onNaturalSize={(w, h) => h > 0 && setRatio(w / h)}
           />
-        </div>
+        </motion.div>
         {/* Voile (léger, pour la lisibilité du titre) */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
