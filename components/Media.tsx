@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Image avec placeholder dégradé.
@@ -22,6 +22,18 @@ export default function Media({
 }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Cas où l'image (souvent en cache) finit de charger AVANT que React
+  // n'attache onLoad : on vérifie l'état réel au montage / changement de src.
+  useEffect(() => {
+    setFailed(false);
+    const img = imgRef.current;
+    if (img?.complete) {
+      if (img.naturalWidth > 0) setLoaded(true);
+      else setFailed(true);
+    }
+  }, [src]);
 
   return (
     <div className={`relative overflow-hidden bg-card ${className}`}>
@@ -41,6 +53,7 @@ export default function Media({
       {src && !failed && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={imgRef}
           src={src}
           alt={alt}
           onLoad={() => setLoaded(true)}
