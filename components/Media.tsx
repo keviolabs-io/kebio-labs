@@ -35,7 +35,9 @@ export default function Media({
           background:
             "radial-gradient(120% 120% at 30% 20%, #1c1c1c 0%, #0d0d0d 55%, #060606 100%)",
         }}
-      />
+      >
+        <div className="absolute inset-0 bg-dots opacity-40" />
+      </div>
       {src && !failed && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
