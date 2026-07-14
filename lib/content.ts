@@ -134,9 +134,9 @@ export const projects = {
     },
     {
       slug: "realite-virtuelle",
-      subtitle: "Scène futuriste avec un casque VR élégant",
-      title: "Réalité virtuelle",
-      tags: ["Identité de marque", "SEO"],
+      subtitle: "Création Agent IA SAV",
+      title: "OFFGRID",
+      tags: ["Automatisation IA"],
       image: "/projects/project-2.webp",
     },
     {
