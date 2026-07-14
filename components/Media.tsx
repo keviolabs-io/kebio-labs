@@ -14,14 +14,14 @@ export default function Media({
   alt,
   className = "",
   imgClassName = "",
-  fit = "cover",
+  fitClass = "object-cover",
   onNaturalSize,
 }: {
   src?: string;
   alt: string;
   className?: string;
   imgClassName?: string;
-  fit?: "cover" | "contain";
+  fitClass?: string;
   onNaturalSize?: (width: number, height: number) => void;
 }) {
   const [loaded, setLoaded] = useState(false);
@@ -68,9 +68,8 @@ export default function Media({
           alt={alt}
           onLoad={(e) => reveal(e.currentTarget)}
           onError={() => setFailed(true)}
-          className={`relative h-full w-full transition-opacity duration-700 ${
-            fit === "contain" ? "object-contain" : "object-cover"
-          } ${loaded ? "opacity-100" : "opacity-0"
+          className={`relative h-full w-full transition-opacity duration-700 ${fitClass} ${
+            loaded ? "opacity-100" : "opacity-0"
           } ${imgClassName}`}
         />
       )}

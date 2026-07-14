@@ -47,7 +47,7 @@ function ProjectCard({
     >
       <motion.article
         style={{ scale, top: `${index * 12}px`, aspectRatio: ratio ?? 16 / 10 }}
-        className="relative max-h-[88vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border"
+        className="relative max-h-[88vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border max-md:!aspect-square"
       >
         {/* Image en entier ; la carte prend son ratio. Léger zoom de profondeur. */}
         <motion.div
@@ -57,7 +57,7 @@ function ProjectCard({
           <Media
             src={project.image}
             alt={project.title}
-            fit="contain"
+            fitClass="object-cover md:object-contain"
             className="h-full w-full"
             onNaturalSize={(w, h) => h > 0 && setRatio(w / h)}
           />
@@ -66,16 +66,18 @@ function ProjectCard({
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
         {/* Contenu */}
-        <div className="relative flex h-full flex-col justify-between p-8 sm:p-12">
-          <div className="flex items-start justify-between">
-            <span className="max-w-md text-sm text-white/70">{project.subtitle}</span>
-            <span className="text-sm text-white/50">
+        <div className="relative flex h-full flex-col justify-between p-6 sm:p-12">
+          <div className="flex items-start justify-between gap-4">
+            <span className="max-w-md text-xs text-white/70 sm:text-sm">
+              {project.subtitle}
+            </span>
+            <span className="shrink-0 whitespace-nowrap text-xs text-white/50 sm:text-sm">
               {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </span>
           </div>
 
           <div>
-            <div className="mb-5 flex flex-wrap gap-2">
+            <div className="mb-3 flex flex-wrap gap-2 sm:mb-5">
               {project.tags.map((t) => (
                 <span
                   key={t}
@@ -85,7 +87,7 @@ function ProjectCard({
                 </span>
               ))}
             </div>
-            <h3 className="text-5xl font-medium tracking-tight text-white sm:text-7xl">
+            <h3 className="text-3xl font-medium leading-[1.05] tracking-tight text-white sm:text-7xl">
               {project.title}
             </h3>
           </div>
