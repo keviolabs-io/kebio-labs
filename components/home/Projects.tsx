@@ -47,7 +47,7 @@ function ProjectCard({
     >
       <motion.article
         style={{ scale, top: `${index * 12}px`, aspectRatio: ratio ?? 16 / 10 }}
-        className="relative max-h-[88vh] w-full max-w-[1100px] overflow-hidden rounded-[2rem] border border-border"
+        className="relative max-h-[88vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border"
       >
         {/* Image en entier ; la carte prend son ratio. Léger zoom de profondeur. */}
         <motion.div
