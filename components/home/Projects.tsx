@@ -35,8 +35,8 @@ function ProjectCard({
   // hors champ) → effet de profondeur sans jamais couper l'image.
   const imageScale = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [1.1, 1, 1, 1.1]
+    [0, 0.28, 0.72, 1],
+    [1.22, 1, 1, 1.22]
   );
 
   return (
