@@ -127,9 +127,9 @@ export const projects = {
   items: [
     {
       slug: "les-actualites",
-      subtitle: "Design de page d'accueil pour une plateforme d'actualités",
-      title: "Les actualités",
-      tags: ["Identité de marque", "Développement web"],
+      subtitle: "Création complète du Site Web d'une Franchise de Fast-Food",
+      title: "À La Lyonnaise®",
+      tags: ["Optimisation SEO", "Développement web"],
       image: "/projects/project-1.webp",
     },
     {
