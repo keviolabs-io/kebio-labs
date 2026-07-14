@@ -126,7 +126,7 @@ export const projects = {
   cta: { label: "Voir tous les projets", href: "/projets" },
   items: [
     {
-      slug: "les-actualites",
+      slug: "a-la-lyonnaise",
       subtitle: "Création complète du Site Web d'une Franchise de Fast-Food",
       title: "À La Lyonnaise®",
       tags: ["Optimisation SEO", "Développement web"],
