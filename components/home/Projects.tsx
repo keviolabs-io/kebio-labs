@@ -28,8 +28,6 @@ function ProjectCard({
 
   // La carte se réduit légèrement quand la suivante passe par-dessus
   const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.9]);
-  // Parallax sur l'image de fond
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (
     <div
@@ -39,14 +37,19 @@ function ProjectCard({
     >
       <motion.article
         style={{ scale, top: `${index * 12}px` }}
-        className="relative h-[78vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border"
+        className="relative aspect-[16/10] max-h-[86vh] w-full max-w-[1400px] overflow-hidden rounded-[2rem] border border-border"
       >
-        {/* Image parallax */}
-        <motion.div style={{ y: imageY }} className="absolute inset-0 scale-110">
-          <Media src={project.image} alt={project.title} className="h-full w-full" />
-        </motion.div>
-        {/* Voile */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
+        {/* Image affichée en entier */}
+        <div className="absolute inset-0">
+          <Media
+            src={project.image}
+            alt={project.title}
+            fit="contain"
+            className="h-full w-full"
+          />
+        </div>
+        {/* Voile (léger, pour la lisibilité du titre) */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
         {/* Contenu */}
         <div className="relative flex h-full flex-col justify-between p-8 sm:p-12">

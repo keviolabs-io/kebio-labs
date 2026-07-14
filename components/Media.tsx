@@ -14,11 +14,13 @@ export default function Media({
   alt,
   className = "",
   imgClassName = "",
+  fit = "cover",
 }: {
   src?: string;
   alt: string;
   className?: string;
   imgClassName?: string;
+  fit?: "cover" | "contain";
 }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -58,8 +60,9 @@ export default function Media({
           alt={alt}
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          className={`relative h-full w-full object-cover transition-opacity duration-700 ${
-            loaded ? "opacity-100" : "opacity-0"
+          className={`relative h-full w-full transition-opacity duration-700 ${
+            fit === "contain" ? "object-contain" : "object-cover"
+          } ${loaded ? "opacity-100" : "opacity-0"
           } ${imgClassName}`}
         />
       )}
