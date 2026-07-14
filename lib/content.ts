@@ -141,8 +141,9 @@ export const projects = {
     },
     {
       slug: "agence-theo",
-      subtitle: "Refonte complète de l'image de marque",
-      title: "Marque de l'agence Theo",
+      subtitle:
+        "Création application web de gestion client avec une interface admin et client",
+      title: "ARCTIC FLOW",
       tags: ["UI / UX", "Développement web"],
       image: "/projects/project-3.webp",
     },
