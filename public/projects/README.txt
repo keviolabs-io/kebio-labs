@@ -3,9 +3,9 @@ IMAGES DE LA SECTION « PROJETS RÉCENTS »
 
 Dépose simplement tes 3 images ici, avec ces noms EXACTS :
 
-  project-1.jpg   → 1re carte   (actuellement « Les actualités »)
-  project-2.jpg   → 2e carte    (actuellement « Réalité virtuelle »)
-  project-3.jpg   → 3e carte    (actuellement « Marque de l'agence Theo »)
+  project-1.webp   → 1re carte   (actuellement « Les actualités »)
+  project-2.webp   → 2e carte    (actuellement « Réalité virtuelle »)
+  project-3.webp   → 3e carte    (actuellement « Marque de l'agence Theo »)
 
 Dès qu'un fichier est présent, il remplace automatiquement le placeholder
 (dégradé sombre). Aucun code à toucher.
@@ -15,9 +15,8 @@ FORMAT & DIMENSIONS RECOMMANDÉS
 - Orientation : PAYSAGE (horizontal).
 - Dimensions  : au moins 1600 px de large. Idéal : 2000 × 1250 px (ratio 16:10)
                 ou 1920 × 1080 px (16:9).
-- Poids       : compresse à ~200–400 Ko par image (le site reste rapide).
-- Format      : .jpg de préférence (le .png et .webp marchent aussi si tu
-                gardes le nom project-1.jpg, project-2.jpg, project-3.jpg).
+- Poids       : compresse à ~150–300 Ko par image (le .webp est déjà léger).
+- Format      : .webp (noms project-1.webp, project-2.webp, project-3.webp).
 
 CONSEILS
 --------
