@@ -30,8 +30,7 @@ export const hero = {
   weDoLabel: "Nous le faisons",
   // Liste de services affichée dans le hero (paires « nom / détails »)
   weDoItems: [
-    { left: "Création de sites", right: "UI/UX, sur-mesure" },
-    { left: "Applications", right: "Web, mobile, sur-mesure" },
+    { left: "Développement web", right: "Sites & applications sur-mesure" },
     { left: "Automatisation", right: "Agents IA, n8n" },
     { left: "Publicité", right: "Google, Meta & TikTok Ads" },
     { left: "SEO", right: "Référencement, optimisation organique" },
