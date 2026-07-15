@@ -140,11 +140,13 @@ export default function Hero() {
             <p className="mb-4 border-b border-border pb-3 text-sm text-foreground/90">
               {hero.weDoLabel}
             </p>
-            <div className="grid max-w-sm grid-cols-2 gap-x-4 gap-y-2 text-sm text-muted">
+            <div className="grid max-w-md grid-cols-[auto_1fr] gap-x-5 gap-y-2 text-sm text-muted">
               {hero.weDoItems.map((pair, i) => (
                 <div key={i} className="contents">
-                  <span>{pair.left}</span>
-                  <span className="text-muted-dark">/ {pair.right}</span>
+                  <span className="whitespace-nowrap">{pair.left}</span>
+                  <span className="whitespace-nowrap text-muted-dark">
+                    / {pair.right}
+                  </span>
                 </div>
               ))}
             </div>
