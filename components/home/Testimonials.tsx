@@ -53,11 +53,7 @@ function Card({
         className={`rounded-2xl border border-white/10 ${
           compact ? "px-4 py-5" : "px-8 py-10"
         }`}
-        style={{
-          background: "rgba(18,18,20,0.85)",
-          backdropFilter: "blur(22px)",
-          WebkitBackdropFilter: "blur(22px)",
-        }}
+        style={{ background: "rgba(18,18,20,0.92)" }}
       >
         <p
           className={
