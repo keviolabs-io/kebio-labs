@@ -173,14 +173,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
         heading: "Conception & développement",
         paragraphs: [
           "Nous avons démarré par des maquettes centrées sur le mobile — l'essentiel du trafic d'une enseigne food vient du téléphone. Chaque écran a été pensé pour aller droit au but : découvrir le menu, trouver le restaurant le plus proche et commander en quelques secondes.",
-          "Côté technique, le site est développé sur-mesure en Next.js (React) avec un rendu côté serveur pour un référencement optimal, un score de performance Lighthouse supérieur à 95/100 et un chargement quasi instantané. L'architecture est pensée pour évoluer : ajouter un nouveau restaurant se fait en quelques clics, sans refonte.",
+          "Côté technique, le site est 100 % sur-mesure et codé de A à Z — aucun template : un rendu côté serveur pour un référencement optimal, un score de performance Lighthouse supérieur à 95/100 et un chargement quasi instantané. L'architecture est pensée pour évoluer : ajouter un nouveau restaurant se fait en quelques clics, sans refonte.",
         ],
         checklist: [
           "Site responsive, pensé mobile-first",
           "Parcours de commande simple et rapide",
           "Section « Devenir franchisé » avec formulaire de candidature",
           "Page dédiée par restaurant (adresse, horaires, contact)",
-          "Développé en Next.js / React, rendu serveur (SSR) pour le SEO",
+          "Site 100 % sur-mesure et codé de A à Z, rendu serveur (SSR) pour le SEO",
           "Score Lighthouse 95+/100 et chargement quasi instantané",
           "Architecture évolutive : ajout de restaurants en quelques clics",
           "Optimisation SEO locale et fiches d'établissement",
