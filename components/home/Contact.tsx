@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { contact } from "@/lib/content";
@@ -11,6 +12,7 @@ if (typeof window !== "undefined") {
 
 const DIM = "#808080";
 const BRIGHT = "#ededed";
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** Champ souligné (label + input transparent à bordure basse). */
 function Field({
@@ -105,8 +107,14 @@ export default function Contact() {
     <section id="contact" className="px-6 py-28">
       <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-2">
         {/* Carte titre */}
-        <div className="relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:min-h-[560px] sm:p-14">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-2/3 bg-dots opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:min-h-[560px] sm:p-14"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-dots opacity-90 [mask-image:linear-gradient(to_bottom,black_0%,black_28%,transparent_72%)]" />
           <h2
             ref={headingRef}
             className="relative text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl"
@@ -124,10 +132,16 @@ export default function Contact() {
               ))}
             </span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Carte formulaire */}
-        <div className="rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:p-14">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
+          className="rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:p-14"
+        >
           <h3 className="text-2xl font-medium leading-snug text-muted sm:text-[32px]">
             {contact.formHeading}
           </h3>
@@ -159,7 +173,7 @@ export default function Contact() {
               {contact.submit}
             </button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

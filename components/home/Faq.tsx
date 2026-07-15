@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { faq } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
+import Reveal from "@/components/anim/Reveal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -104,28 +105,31 @@ export default function Faq() {
           </SectionLabel>
         </div>
 
-        <h2
-          ref={headingRef}
-          className="mt-8 text-center text-6xl font-medium tracking-tight sm:text-[64px]"
-        >
-          {heading.split("").map((ch, i) => (
-            <Fragment key={i}>
-              <span data-l className="inline-block" style={{ color: DIM }}>
-                {ch}
-              </span>
-            </Fragment>
-          ))}
-        </h2>
+        <Reveal delay={0.05}>
+          <h2
+            ref={headingRef}
+            className="mt-8 text-center text-6xl font-medium tracking-tight sm:text-[64px]"
+          >
+            {heading.split("").map((ch, i) => (
+              <Fragment key={i}>
+                <span data-l className="inline-block" style={{ color: DIM }}>
+                  {ch}
+                </span>
+              </Fragment>
+            ))}
+          </h2>
+        </Reveal>
 
         <div className="mt-16">
           {faq.items.map((item, i) => (
-            <Row
-              key={i}
-              q={item.q}
-              a={item.a}
-              open={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-            />
+            <Reveal key={i} delay={Math.min(i * 0.06, 0.4)}>
+              <Row
+                q={item.q}
+                a={item.a}
+                open={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              />
+            </Reveal>
           ))}
         </div>
       </div>
