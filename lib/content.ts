@@ -132,14 +132,14 @@ export const projects = {
       image: "/projects/project-1.webp",
     },
     {
-      slug: "realite-virtuelle",
+      slug: "offgrid",
       subtitle: "Création Agent IA SAV",
       title: "OFFGRID",
       tags: ["Automatisation IA"],
       image: "/projects/project-2.webp",
     },
     {
-      slug: "agence-theo",
+      slug: "arctic-flow",
       subtitle:
         "Création application web de gestion client avec une interface admin et client",
       title: "ARCTIC FLOW",
@@ -190,6 +190,79 @@ export const projectDetails: Record<string, ProjectDetail> = {
         heading: "Résultat",
         paragraphs: [
           "Une image de marque nette et différenciante, un site rapide qui convertit, et une visibilité renforcée sur les recherches locales — de quoi accompagner sereinement l'ouverture de nouveaux points de vente.",
+        ],
+      },
+    ],
+  },
+
+  offgrid: {
+    image: "/projects/offgrid-2.webp",
+    sections: [
+      {
+        heading: "Aperçu du projet",
+        paragraphs: [
+          "OFFGRID est un agent IA de service après-vente conçu pour répondre automatiquement aux demandes et aux messages des clients — 24h/24, 7j/7, sans temps d'attente. Il comprend la demande, apporte la bonne réponse et oriente chaque client avec précision, comme le ferait votre meilleur conseiller.",
+          "L'objectif : décharger les équipes des questions répétitives, offrir une réponse instantanée et cohérente, et garantir à chaque client d'être pris en charge immédiatement, quelle que soit l'heure.",
+          "Là où OFFGRID fait la différence : il sait reconnaître les demandes importantes ou sensibles — litige, urgence, cas complexe — et prévient aussitôt le client qu'un conseiller humain prend le relais, tout en transmettant à l'équipe l'intégralité du contexte de l'échange. Le client n'est jamais laissé sans réponse, et rien d'important ne passe entre les mailles.",
+        ],
+      },
+      {
+        heading: "Conception & développement",
+        paragraphs: [
+          "OFFGRID est entraîné sur vos produits, vos procédures et votre ton de marque, puis connecté à vos canaux (site, e-mail, messagerie). Résultat : des réponses justes, homogènes et parfaitement à votre image, comme si l'équipe répondait elle-même.",
+          "Côté technique, l'agent est 100 % sur-mesure : il s'appuie sur votre base de connaissances, répond en temps réel et s'améliore en continu. Un moteur de règles décide précisément de ce qui doit être escaladé à un humain, pour ne jamais laisser passer une demande critique.",
+        ],
+        checklist: [
+          "Réponses automatiques 24/7 aux messages et e-mails clients",
+          "Compréhension du contexte et orientation précise de chaque demande",
+          "Ton et réponses parfaitement alignés sur votre marque",
+          "Détection des demandes importantes → transfert à un conseiller humain",
+          "Le client est prévenu : « un conseiller prend le relais », avec le contexte transmis à l'équipe",
+          "Connecté à vos canaux (site, e-mail, messagerie) et à votre base de connaissances",
+          "100 % sur-mesure, entraîné sur vos produits et vos procédures",
+        ],
+      },
+      {
+        heading: "Résultat",
+        paragraphs: [
+          "Un service après-vente disponible en permanence, des clients rassurés et mieux orientés, des équipes déchargées des tâches répétitives — et zéro demande importante oubliée. OFFGRID transforme le SAV en véritable atout de satisfaction.",
+        ],
+      },
+    ],
+  },
+
+  "arctic-flow": {
+    image: "/projects/arctic-flow-2.webp",
+    sections: [
+      {
+        heading: "Aperçu du projet",
+        paragraphs: [
+          "ARCTIC FLOW est une application web de gestion complète, développée pour une entreprise de climatisation. Elle centralise absolument tout : facturation, suivi des interventions, communication client, suivi des chiffres, maintenance… Un seul outil pour piloter toute l'activité, de bout en bout.",
+          "Deux espaces distincts et sécurisés cohabitent : une interface admin pour gérer les clients, les interventions et l'entreprise ; une interface client pour consulter les services souscrits, les factures et l'historique — chacun avec ses propres identifiants.",
+          "Fini les fichiers éparpillés et les outils qui ne se parlent pas : tout est réuni, à jour et accessible en un clic, pour l'équipe comme pour le client.",
+        ],
+      },
+      {
+        heading: "Conception & développement",
+        paragraphs: [
+          "Nous avons conçu ARCTIC FLOW autour du quotidien réel de l'entreprise : chaque écran répond à un besoin concret, du devis à la maintenance, en passant par le suivi des chiffres. L'interface admin donne une vue d'ensemble et le contrôle total ; l'interface client apporte transparence et autonomie.",
+          "Côté technique, l'application est 100 % sur-mesure et codée de A à Z : comptes sécurisés avec rôles et permissions, données en temps réel, architecture évolutive prête à accompagner la croissance de l'entreprise.",
+        ],
+        checklist: [
+          "Interface admin : gestion des clients, interventions et équipes",
+          "Interface client : services souscrits, factures et historique",
+          "Comptes sécurisés, identifiants propres à chaque utilisateur",
+          "Facturation et devis intégrés",
+          "Suivi des interventions et planning de maintenance",
+          "Communication client centralisée (notifications, messages)",
+          "Tableau de bord et suivi des chiffres en temps réel",
+          "100 % sur-mesure et codé de A à Z, architecture évolutive",
+        ],
+      },
+      {
+        heading: "Résultat",
+        paragraphs: [
+          "Une entreprise pilotée depuis un seul endroit, des clients autonomes et informés, et un gain de temps considérable sur toute la gestion quotidienne — de la facture à la maintenance. ARCTIC FLOW remplace une pile d'outils par une plateforme unique, claire et évolutive.",
         ],
       },
     ],
