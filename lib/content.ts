@@ -134,7 +134,7 @@ export const projects = {
     {
       slug: "offgrid",
       subtitle: "Création Agent IA SAV",
-      title: "OFFGRID",
+      title: "OFFGRID®",
       tags: ["Automatisation IA"],
       image: "/projects/project-2.webp",
     },
@@ -142,7 +142,7 @@ export const projects = {
       slug: "arctic-flow",
       subtitle:
         "Création application web de gestion client avec une interface admin et client",
-      title: "ARCTIC FLOW",
+      title: "ARCTIC FLOW®",
       tags: ["UI / UX", "Développement web"],
       image: "/projects/project-3.webp",
     },
