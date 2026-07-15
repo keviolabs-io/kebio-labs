@@ -422,6 +422,19 @@ export const contact = {
     { label: "Téléphone", value: "+33 6 00 00 00 00", href: "tel:+33600000000" },
     { label: "Localisation", value: "Paris, France", href: "" },
   ],
+  // Section Contact (design fidèle au thème) : carte titre + carte formulaire
+  headingSans: "Parlons de",
+  headingItalic: "votre prochaine idée",
+  formHeading: "Remplissez le formulaire ci-dessous",
+  fields: {
+    name: { label: "Votre nom", placeholder: "Veuillez saisir votre nom complet" },
+    email: { label: "Votre email", placeholder: "Saisissez votre adresse e-mail" },
+    message: {
+      label: "Votre projet",
+      placeholder: "Parlez-nous de votre projet",
+    },
+  },
+  submit: "Envoyer le message",
 };
 
 /* Footer ---------------------------------------------------- */

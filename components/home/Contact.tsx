@@ -1,111 +1,165 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { contact } from "@/lib/content";
-import SectionLabel from "@/components/SectionLabel";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const DIM = "#808080";
+const BRIGHT = "#ededed";
+
+/** Champ souligné (label + input transparent à bordure basse). */
+function Field({
+  label,
+  placeholder,
+  type = "text",
+  value,
+  onChange,
+  textarea = false,
+}: {
+  label: string;
+  placeholder: string;
+  type?: string;
+  value: string;
+  onChange: (v: string) => void;
+  textarea?: boolean;
+}) {
+  const base =
+    "mt-3 w-full border-0 border-b border-white/15 bg-transparent pb-3 text-foreground outline-none transition-colors placeholder:text-muted-dark focus:border-white/50";
+  return (
+    <div>
+      <label className="text-sm font-medium text-foreground">{label}</label>
+      {textarea ? (
+        <textarea
+          required
+          rows={3}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={`${base} resize-none`}
+        />
+      ) : (
+        <input
+          required
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={base}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function Contact() {
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const mail = contact.details.find((d) => d.label === "Email")?.value ?? "";
+  const mail =
+    contact.details.find((d) => d.label === "Email")?.value ?? "";
+
+  // Révélation gris → blanc de la ligne serif italic, au scroll.
+  useEffect(() => {
+    const el = headingRef.current;
+    if (!el) return;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const words = el.querySelectorAll<HTMLElement>("[data-word]");
+    if (prefersReduced) {
+      gsap.set(words, { color: BRIGHT });
+      return;
+    }
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        words,
+        { color: DIM },
+        {
+          color: BRIGHT,
+          ease: "none",
+          stagger: 1,
+          scrollTrigger: { trigger: el, start: "top 85%", end: "center 55%", scrub: true },
+        }
+      );
+    }, el);
+    return () => ctx.revert();
+  }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const subject = encodeURIComponent(`Projet — ${name || "Nouveau contact"}`);
-    const body = encodeURIComponent(
-      `Nom : ${name}\nEmail : ${email}\n\n${message}`
-    );
+    const body = encodeURIComponent(`Nom : ${name}\nEmail : ${email}\n\n${message}`);
     window.location.href = `mailto:${mail}?subject=${subject}&body=${body}`;
   }
 
-  const inputBase =
-    "w-full rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-foreground placeholder:text-muted-dark outline-none transition-colors focus:border-white/30";
+  const italicWords = contact.headingItalic.split(" ");
 
   return (
-    <section id="contact" className="relative overflow-hidden px-6 py-28">
-      <div className="pointer-events-none absolute inset-0 bg-dots opacity-40" />
-
-      <div className="relative mx-auto grid max-w-[1400px] gap-16 lg:grid-cols-2 lg:items-center">
-        {/* Colonne gauche : titre + coordonnées */}
-        <div>
-          <SectionLabel icon="✦">{contact.label}</SectionLabel>
-
-          <h2 className="mt-8 text-4xl font-medium leading-[1.05] tracking-tight sm:text-6xl">
-            <span className="text-foreground">{contact.title}</span>{" "}
-            <span className="font-serif-italic font-normal text-foreground">
-              {contact.titleAccent}
+    <section id="contact" className="px-6 py-28">
+      <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-2">
+        {/* Carte titre */}
+        <div className="relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:min-h-[560px] sm:p-14">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-2/3 bg-dots opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+          <h2
+            ref={headingRef}
+            className="relative text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl"
+          >
+            <span className="text-foreground">{contact.headingSans}</span>
+            <br />
+            <span className="font-serif-italic font-normal">
+              {italicWords.map((w, i) => (
+                <Fragment key={i}>
+                  <span data-word className="inline-block" style={{ color: DIM }}>
+                    {w}
+                  </span>
+                  {i < italicWords.length - 1 ? " " : ""}
+                </Fragment>
+              ))}
             </span>
           </h2>
-
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-            {contact.intro}
-          </p>
-
-          <div className="mt-12 space-y-6">
-            {contact.details.map((d) => (
-              <div key={d.label}>
-                <p className="text-sm text-muted-dark">{d.label}</p>
-                {d.href ? (
-                  <a
-                    href={d.href}
-                    className="text-lg text-foreground transition-colors hover:text-muted"
-                  >
-                    {d.value}
-                  </a>
-                ) : (
-                  <p className="text-lg text-foreground">{d.value}</p>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Colonne droite : formulaire */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm sm:p-10"
-        >
-          <div className="space-y-5">
-            <input
-              type="text"
-              required
-              placeholder="Votre nom"
+        {/* Carte formulaire */}
+        <div className="rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:p-14">
+          <h3 className="text-2xl font-medium leading-snug text-muted sm:text-[32px]">
+            {contact.formHeading}
+          </h3>
+          <form onSubmit={handleSubmit} className="mt-10 space-y-8">
+            <Field
+              label={contact.fields.name.label}
+              placeholder={contact.fields.name.placeholder}
               value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={inputBase}
+              onChange={setName}
             />
-            <input
+            <Field
+              label={contact.fields.email.label}
+              placeholder={contact.fields.email.placeholder}
               type="email"
-              required
-              placeholder="Votre email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={inputBase}
+              onChange={setEmail}
             />
-            <textarea
-              required
-              rows={5}
-              placeholder="Parlez-nous de votre projet"
+            <Field
+              label={contact.fields.message.label}
+              placeholder={contact.fields.message.placeholder}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className={`${inputBase} resize-none`}
+              onChange={setMessage}
+              textarea
             />
-          </div>
-
-          <button
-            type="submit"
-            className="mt-6 w-full rounded-full bg-white py-4 font-medium text-black transition-opacity hover:opacity-90"
-          >
-            Envoyer le message
-          </button>
-        </motion.form>
+            <button
+              type="submit"
+              className="w-full rounded-full bg-white py-4 font-medium text-black transition-opacity hover:opacity-90"
+            >
+              {contact.submit}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
