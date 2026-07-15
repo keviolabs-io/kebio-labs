@@ -202,6 +202,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
         heading: "Aperçu du projet",
         paragraphs: [
           "OFFGRID est un agent IA de service après-vente conçu pour répondre automatiquement aux demandes et aux messages des clients — 24h/24, 7j/7, sans temps d'attente. Il comprend la demande, apporte la bonne réponse et oriente chaque client avec précision, comme le ferait votre meilleur conseiller.",
+          "Surtout, chaque réponse est entièrement personnalisée : l'agent s'adresse au client par son nom, tient compte de son historique et de sa situation, et rédige des messages naturels et sur-mesure — au point qu'il est impossible de deviner qu'un véritable conseiller humain n'est pas derrière l'écran.",
           "L'objectif : décharger les équipes des questions répétitives, offrir une réponse instantanée et cohérente, et garantir à chaque client d'être pris en charge immédiatement, quelle que soit l'heure.",
           "Là où OFFGRID fait la différence : il sait reconnaître les demandes importantes ou sensibles — litige, urgence, cas complexe — et prévient aussitôt le client qu'un conseiller humain prend le relais, tout en transmettant à l'équipe l'intégralité du contexte de l'échange. Le client n'est jamais laissé sans réponse, et rien d'important ne passe entre les mailles.",
         ],
@@ -237,7 +238,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       {
         heading: "Aperçu du projet",
         paragraphs: [
-          "ARCTIC FLOW est une application web de gestion complète, développée pour une entreprise de climatisation. Elle centralise absolument tout : facturation, suivi des interventions, communication client, suivi des chiffres, maintenance… Un seul outil pour piloter toute l'activité, de bout en bout.",
+          "ARCTIC FLOW est l'application web de gestion sur-mesure de l'entreprise de climatisation du même nom. Codée de A à Z spécifiquement pour elle, elle centralise absolument tout : facturation, suivi des interventions, communication client, suivi des chiffres, maintenance… Un seul outil pour piloter toute l'activité, de bout en bout.",
           "Deux espaces distincts et sécurisés cohabitent : une interface admin pour gérer les clients, les interventions et l'entreprise ; une interface client pour consulter les services souscrits, les factures et l'historique — chacun avec ses propres identifiants.",
           "Fini les fichiers éparpillés et les outils qui ne se parlent pas : tout est réuni, à jour et accessible en un clic, pour l'équipe comme pour le client.",
         ],
@@ -246,7 +247,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
         heading: "Conception & développement",
         paragraphs: [
           "Nous avons conçu ARCTIC FLOW autour du quotidien réel de l'entreprise : chaque écran répond à un besoin concret, du devis à la maintenance, en passant par le suivi des chiffres. L'interface admin donne une vue d'ensemble et le contrôle total ; l'interface client apporte transparence et autonomie.",
-          "Côté technique, l'application est 100 % sur-mesure et codée de A à Z : comptes sécurisés avec rôles et permissions, données en temps réel, architecture évolutive prête à accompagner la croissance de l'entreprise.",
+          "Côté technique, l'application est 100 % sur-mesure et codée de A à Z : authentification sécurisée avec rôles et permissions, données synchronisées en temps réel, rendu côté serveur pour des performances élevées, et une architecture évolutive prête à accompagner la croissance de l'entreprise.",
         ],
         checklist: [
           "Interface admin : gestion des clients, interventions et équipes",
