@@ -1,22 +1,69 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  type MotionValue,
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { projects } from "@/lib/content";
 import SectionLabel from "@/components/SectionLabel";
 import Media from "@/components/Media";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
+/** Curseur personnalisé (cercle blanc + flèche) au survol des cartes projet. */
+function ProjectCursor({
+  active,
+  x,
+  y,
+}: {
+  active: boolean;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+}) {
+  return (
+    <motion.div
+      style={{ x, y }}
+      className="pointer-events-none fixed left-0 top-0 z-[60] -ml-8 -mt-8 hidden md:block"
+      animate={{ scale: active ? 1 : 0, opacity: active ? 1 : 0 }}
+      transition={{ duration: 0.22, ease: easeOut }}
+    >
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-black">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M7 17 17 7" />
+          <path d="M8 7h9v9" />
+        </svg>
+      </div>
+    </motion.div>
+  );
+}
+
 function ProjectCard({
   project,
   index,
   total,
+  onEnter,
+  onLeave,
 }: {
   project: (typeof projects.items)[number];
   index: number;
   total: number;
+  onEnter: () => void;
+  onLeave: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   // Ratio exact de l'image (mesuré au chargement) → la carte l'épouse
@@ -93,11 +140,13 @@ function ProjectCard({
           </div>
         </div>
 
-        {/* Toute la carte est cliquable → fiche projet */}
+        {/* Toute la carte est cliquable → fiche projet (curseur custom) */}
         <Link
           href={`/projets/${project.slug}`}
           aria-label={project.title}
-          className="absolute inset-0 z-20"
+          onMouseEnter={onEnter}
+          onMouseLeave={onLeave}
+          className="absolute inset-0 z-20 md:cursor-none"
         />
       </motion.article>
     </div>
@@ -105,6 +154,21 @@ function ProjectCard({
 }
 
 export default function Projects() {
+  const [active, setActive] = useState(false);
+  const mx = useMotionValue(-100);
+  const my = useMotionValue(-100);
+  const x = useSpring(mx, { stiffness: 600, damping: 40, mass: 0.35 });
+  const y = useSpring(my, { stiffness: 600, damping: 40, mass: 0.35 });
+
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      mx.set(e.clientX);
+      my.set(e.clientY);
+    };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, [mx, my]);
+
   return (
     <section id="projets" className="px-6 py-28">
       <div className="mx-auto mb-6 max-w-[1400px]">
@@ -113,9 +177,18 @@ export default function Projects() {
 
       <div>
         {projects.items.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} total={projects.items.length} />
+          <ProjectCard
+            key={p.slug}
+            project={p}
+            index={i}
+            total={projects.items.length}
+            onEnter={() => setActive(true)}
+            onLeave={() => setActive(false)}
+          />
         ))}
       </div>
+
+      <ProjectCursor active={active} x={x} y={y} />
 
       <div className="mt-16 flex justify-center">
         <motion.div
