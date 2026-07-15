@@ -152,6 +152,7 @@ export const projects = {
 /* Fiches projet (case-study) -------------------------------- */
 export type ProjectDetail = {
   liveUrl?: string;
+  heroImage?: string; // remplace l'image du hero (sinon = image de la carte)
   image?: string; // grande image intercalée dans le corps
   sections: { heading: string; paragraphs: string[]; checklist?: string[] }[];
 };
@@ -233,7 +234,8 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
 
   "arctic-flow": {
-    image: "/projects/arctic-flow-2.webp",
+    heroImage: "/projects/arctic-flow-2.webp",
+    image: "/projects/project-3.webp",
     sections: [
       {
         heading: "Aperçu du projet",

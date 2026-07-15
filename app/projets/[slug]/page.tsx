@@ -33,7 +33,7 @@ export default async function ProjectPage({
 
   return (
     <>
-      <ProjectHero title={project.title} image={project.image} />
+      <ProjectHero title={project.title} image={detail?.heroImage ?? project.image} />
       {detail && <ProjectBody detail={detail} liveUrl={detail.liveUrl} />}
       <Faq />
       <Contact />
