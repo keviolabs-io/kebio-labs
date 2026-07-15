@@ -18,8 +18,8 @@ export default function ProjectHero({
           </h1>
         </div>
 
-        {/* Grande image */}
-        <div className="reveal-fade-up mt-10 overflow-hidden rounded-3xl border border-border md:mt-14">
+        {/* Grande image : coins arrondis, fine lueur claire + halo flou */}
+        <div className="reveal-fade-up mt-10 overflow-hidden rounded-[48px] shadow-[0_0_70px_-10px_rgba(255,255,255,0.10)] ring-1 ring-white/[0.07] md:mt-14">
           <Media src={image} alt={title} className="aspect-[16/9] w-full" />
         </div>
       </div>
