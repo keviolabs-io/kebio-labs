@@ -149,6 +149,49 @@ export const projects = {
   ],
 };
 
+/* Fiches projet (case-study) -------------------------------- */
+export type ProjectDetail = {
+  liveUrl?: string;
+  image?: string; // grande image intercalée dans le corps
+  sections: { heading: string; paragraphs: string[]; checklist?: string[] }[];
+};
+
+export const projectDetails: Record<string, ProjectDetail> = {
+  "a-la-lyonnaise": {
+    liveUrl: "https://a-lalyonnaise.com",
+    image: "/projects/a-la-lyonnaise-2.webp",
+    sections: [
+      {
+        heading: "Aperçu du projet",
+        paragraphs: [
+          "À La Lyonnaise est une franchise de restauration rapide en pleine expansion. La marque avait besoin d'un site à la hauteur de son image : moderne, rapide et capable de transformer les visiteurs en clients. Nous avons repensé toute leur présence web, de la page d'accueil jusqu'au parcours de commande.",
+          "L'objectif était double : affirmer une identité visuelle forte et cohérente sur tous les écrans, et générer des commandes ainsi que des visites en restaurant grâce à un référencement local soigné.",
+        ],
+      },
+      {
+        heading: "Conception & développement",
+        paragraphs: [
+          "Nous avons démarré par des maquettes centrées sur le mobile — l'essentiel du trafic d'une enseigne food vient du téléphone. Chaque écran a été pensé pour aller droit au but : découvrir le menu, trouver le restaurant le plus proche et commander en quelques secondes.",
+          "Le site a ensuite été développé sur-mesure, léger et rapide, puis optimisé pour le SEO local afin de remonter sur les recherches autour de chaque point de vente.",
+        ],
+        checklist: [
+          "Site vitrine responsive, pensé mobile-first",
+          "Parcours de commande simple et rapide",
+          "Page dédiée par restaurant (adresse, horaires, contact)",
+          "Optimisation SEO locale et fiches d'établissement",
+          "Performances et temps de chargement optimisés",
+        ],
+      },
+      {
+        heading: "Résultat",
+        paragraphs: [
+          "Une image de marque nette et différenciante, un site rapide qui convertit, et une visibilité renforcée sur les recherches locales — de quoi accompagner sereinement l'ouverture de nouveaux points de vente.",
+        ],
+      },
+    ],
+  },
+};
+
 /* Process --------------------------------------------------- */
 export const process = {
   label: "Notre processus",

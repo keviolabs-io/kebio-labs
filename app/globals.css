@@ -113,9 +113,39 @@ html.lenis body {
   background-size: 22px 22px;
 }
 
+/* Reveal d'entrée (fiche projet) — animations CSS jouées au montage */
+@keyframes reveal-mask-up {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal-mask-up {
+  animation: reveal-mask-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-fade-up {
+  animation: reveal-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
 /* Reduced motion: disable transforms/marquee */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
+    animation: none;
+  }
+  .reveal-mask-up,
+  .reveal-fade-up {
     animation: none;
   }
   * {

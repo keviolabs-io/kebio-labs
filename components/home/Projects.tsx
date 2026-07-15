@@ -92,6 +92,13 @@ function ProjectCard({
             </h3>
           </div>
         </div>
+
+        {/* Toute la carte est cliquable → fiche projet */}
+        <Link
+          href={`/projets/${project.slug}`}
+          aria-label={project.title}
+          className="absolute inset-0 z-20"
+        />
       </motion.article>
     </div>
   );
