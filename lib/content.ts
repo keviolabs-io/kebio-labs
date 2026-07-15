@@ -166,20 +166,24 @@ export const projectDetails: Record<string, ProjectDetail> = {
         paragraphs: [
           "À La Lyonnaise est une franchise de restauration rapide en pleine expansion. La marque avait besoin d'un site à la hauteur de son image : moderne, rapide et capable de transformer les visiteurs en clients. Nous avons repensé toute leur présence web, de la page d'accueil jusqu'au parcours de commande.",
           "L'objectif était double : affirmer une identité visuelle forte et cohérente sur tous les écrans, et générer des commandes ainsi que des visites en restaurant grâce à un référencement local soigné.",
+          "Le site est aussi un véritable levier de développement du réseau : une section dédiée au recrutement de franchisés met en avant le concept, les chiffres clés et les avantages de l'enseigne, avec un formulaire de candidature intégré pour transformer les visiteurs intéressés en futurs partenaires.",
         ],
       },
       {
         heading: "Conception & développement",
         paragraphs: [
           "Nous avons démarré par des maquettes centrées sur le mobile — l'essentiel du trafic d'une enseigne food vient du téléphone. Chaque écran a été pensé pour aller droit au but : découvrir le menu, trouver le restaurant le plus proche et commander en quelques secondes.",
-          "Le site a ensuite été développé sur-mesure, léger et rapide, puis optimisé pour le SEO local afin de remonter sur les recherches autour de chaque point de vente.",
+          "Côté technique, le site est développé sur-mesure en Next.js (React) avec un rendu côté serveur pour un référencement optimal, un score de performance Lighthouse supérieur à 95/100 et un chargement quasi instantané. L'architecture est pensée pour évoluer : ajouter un nouveau restaurant se fait en quelques clics, sans refonte.",
         ],
         checklist: [
-          "Site vitrine responsive, pensé mobile-first",
+          "Site responsive, pensé mobile-first",
           "Parcours de commande simple et rapide",
+          "Section « Devenir franchisé » avec formulaire de candidature",
           "Page dédiée par restaurant (adresse, horaires, contact)",
+          "Développé en Next.js / React, rendu serveur (SSR) pour le SEO",
+          "Score Lighthouse 95+/100 et chargement quasi instantané",
+          "Architecture évolutive : ajout de restaurants en quelques clics",
           "Optimisation SEO locale et fiches d'établissement",
-          "Performances et temps de chargement optimisés",
         ],
       },
       {
