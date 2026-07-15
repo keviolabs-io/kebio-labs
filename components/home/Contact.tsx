@@ -1,18 +1,43 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { contact } from "@/lib/content";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-const DIM = "#808080";
-const BRIGHT = "#ededed";
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+// La carte titre est la racine des variants : quand elle entre à l'écran
+// (elle n'est pas clippée, donc l'observer se déclenche), elle propage
+// l'animation aux lignes de titre masquées.
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
+
+/** Ligne de titre révélée par un masque qui monte (même effet que le hero). */
+function MaskLine({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <span className="block overflow-hidden pb-[0.12em]">
+      <motion.span
+        className={`block ${className}`}
+        variants={{
+          hidden: { y: 90 },
+          show: { y: 0, transition: { duration: 1, ease: EASE, delay } },
+        }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
 
 /** Champ souligné (label + input transparent à bordure basse). */
 function Field({
@@ -59,40 +84,11 @@ function Field({
 }
 
 export default function Contact() {
-  const headingRef = useRef<HTMLHeadingElement>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const mail =
-    contact.details.find((d) => d.label === "Email")?.value ?? "";
-
-  // Révélation gris → blanc de la ligne serif italic, au scroll.
-  useEffect(() => {
-    const el = headingRef.current;
-    if (!el) return;
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    const words = el.querySelectorAll<HTMLElement>("[data-word]");
-    if (prefersReduced) {
-      gsap.set(words, { color: BRIGHT });
-      return;
-    }
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        words,
-        { color: DIM },
-        {
-          color: BRIGHT,
-          ease: "none",
-          stagger: 1,
-          scrollTrigger: { trigger: el, start: "top 85%", end: "center 55%", scrub: true },
-        }
-      );
-    }, el);
-    return () => ctx.revert();
-  }, []);
+  const mail = contact.details.find((d) => d.label === "Email")?.value ?? "";
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -101,36 +97,36 @@ export default function Contact() {
     window.location.href = `mailto:${mail}?subject=${subject}&body=${body}`;
   }
 
-  const italicWords = contact.headingItalic.split(" ");
-
   return (
     <section id="contact" className="px-6 py-28">
       <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-2">
         {/* Carte titre */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: EASE }}
+          variants={cardVariants}
           className="relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.02] p-10 sm:min-h-[560px] sm:p-14"
         >
-          <div className="pointer-events-none absolute inset-0 bg-dots opacity-90 [mask-image:linear-gradient(to_bottom,black_0%,black_28%,transparent_72%)]" />
-          <h2
-            ref={headingRef}
-            className="relative text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl"
-          >
-            <span className="text-foreground">{contact.headingSans}</span>
-            <br />
-            <span className="font-serif-italic font-normal">
-              {italicWords.map((w, i) => (
-                <Fragment key={i}>
-                  <span data-word className="inline-block" style={{ color: DIM }}>
-                    {w}
-                  </span>
-                  {i < italicWords.length - 1 ? " " : ""}
-                </Fragment>
-              ))}
-            </span>
+          {/* Pointillés bien visibles, qui s'estompent vers le bas */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(rgba(255,255,255,0.32) 1.2px, transparent 1.3px)",
+              backgroundSize: "20px 20px",
+              maskImage:
+                "linear-gradient(to bottom, black 0%, black 32%, transparent 78%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 0%, black 32%, transparent 78%)",
+            }}
+          />
+
+          <h2 className="relative text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl">
+            <MaskLine className="text-foreground">{contact.headingSans}</MaskLine>
+            <MaskLine delay={0.12} className="font-serif-italic font-normal text-muted">
+              {contact.headingItalic}
+            </MaskLine>
           </h2>
         </motion.div>
 
