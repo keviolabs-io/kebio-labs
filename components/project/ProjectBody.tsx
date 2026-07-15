@@ -1,6 +1,6 @@
 "use client";
 
-import Media from "@/components/Media";
+import GlassImage from "@/components/project/GlassImage";
 import Reveal from "@/components/anim/Reveal";
 import type { ProjectDetail } from "@/lib/content";
 
@@ -78,8 +78,8 @@ export default function ProjectBody({
 
       {/* Grande image intercalée, plus large que le texte */}
       {hasImage && (
-        <Reveal className="mx-auto mt-14 max-w-[1600px] overflow-hidden rounded-[48px] shadow-[0_0_70px_-10px_rgba(255,255,255,0.10)] ring-1 ring-white/[0.07]">
-          <Media src={detail.image} alt="" className="aspect-[16/9] w-full" />
+        <Reveal className="mx-auto mt-14 max-w-[1600px]">
+          <GlassImage src={detail.image} />
         </Reveal>
       )}
 

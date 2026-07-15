@@ -1,4 +1,4 @@
-import Media from "@/components/Media";
+import GlassImage from "@/components/project/GlassImage";
 
 /** En-tête de fiche projet : grand titre (reveal masqué) + grande image. */
 export default function ProjectHero({
@@ -18,10 +18,8 @@ export default function ProjectHero({
           </h1>
         </div>
 
-        {/* Grande image : coins arrondis, fine lueur claire + halo flou */}
-        <div className="reveal-fade-up mt-10 overflow-hidden rounded-[48px] shadow-[0_0_70px_-10px_rgba(255,255,255,0.10)] ring-1 ring-white/[0.07] md:mt-14">
-          <Media src={image} alt={title} className="aspect-[16/9] w-full" />
-        </div>
+        {/* Grande image avec bordure glass (comme l'original) */}
+        <GlassImage src={image} alt={title} className="reveal-fade-up mt-10 md:mt-14" />
       </div>
     </section>
   );
