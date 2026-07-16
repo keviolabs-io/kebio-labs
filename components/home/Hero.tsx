@@ -11,6 +11,9 @@ import type { IconType } from "react-icons";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
+// Fond vidéo du hero (test). Mets `null` pour revenir à l'objet 3D actuel.
+const HERO_VIDEO: string | null = "/hero/hero-bg.mp4";
+
 // Logos de marque pour les réseaux du hero
 const SOCIAL_ICONS: Record<string, IconType> = {
   facebook: FaFacebookF,
@@ -71,17 +74,37 @@ function SocialIcon({
 export default function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col overflow-hidden px-6 pb-6 pt-24 md:min-h-screen md:pb-8 md:pt-28">
-      {/* Points luminescents qui gravitent en arrière-plan */}
-      <Particles />
+      {HERO_VIDEO ? (
+        <>
+          {/* Vidéo de fond (test) */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={HERO_VIDEO} type="video/mp4" />
+          </video>
+          {/* Voile pour la lisibilité du texte */}
+          <div className="pointer-events-none absolute inset-0 bg-black/35" />
+        </>
+      ) : (
+        <>
+          {/* Points luminescents qui gravitent en arrière-plan */}
+          <Particles />
 
-      {/* Objet 3D — fond desktop (grand, centré/bas) */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
-        <HeroObject className="w-[min(84vw,780px)]" />
-      </div>
-      {/* Objet 3D — mobile (grand, partie haute) */}
-      <div className="pointer-events-none absolute inset-x-0 top-[9%] flex justify-center md:hidden">
-        <HeroObject className="w-[70vw] max-w-[320px]" />
-      </div>
+          {/* Objet 3D — fond desktop (grand, centré/bas) */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
+            <HeroObject className="w-[min(84vw,780px)]" />
+          </div>
+          {/* Objet 3D — mobile (grand, partie haute) */}
+          <div className="pointer-events-none absolute inset-x-0 top-[9%] flex justify-center md:hidden">
+            <HeroObject className="w-[70vw] max-w-[320px]" />
+          </div>
+        </>
+      )}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between">
