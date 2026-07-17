@@ -28,11 +28,20 @@ export default function Nav() {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-0 z-50"
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 pb-5 pt-9">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-1 text-2xl font-medium tracking-tight">
-          <span className="font-serif-italic">{site.name.toLowerCase()}</span>
-          <sup className="text-[0.6rem] text-muted">®</sup>
+        <Link href="/" className="group flex items-center gap-1 text-[2rem] font-medium tracking-tight md:text-[2.6rem]">
+          <span
+            className="font-serif-italic text-white"
+            style={{
+              WebkitFontSmoothing: "antialiased",
+              MozOsxFontSmoothing: "grayscale",
+              textRendering: "geometricPrecision",
+            }}
+          >
+            {site.name.toLowerCase()}
+          </span>
+          <sup className="text-[0.55em] text-muted">®</sup>
         </Link>
 
         {/* Center pill — desktop */}

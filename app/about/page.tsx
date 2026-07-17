@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/PageHeader";
-import About from "@/components/home/About";
+import AboutHero from "@/components/about/AboutHero";
+import AboutIntro from "@/components/about/AboutIntro";
+import AboutGrowth from "@/components/about/AboutGrowth";
+import AboutExpertise from "@/components/about/AboutExpertise";
+import Faq from "@/components/home/Faq";
+import Contact from "@/components/home/Contact";
 
 export const metadata: Metadata = { title: "À propos" };
 
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        label="À propos"
-        title="Un studio"
-        titleAccent="mû par le sens"
-        intro="Nous sommes une équipe de créatifs et de développeurs qui aime les projets ambitieux et le travail bien fait."
-      />
-      <About />
+      <AboutHero />
+      <AboutIntro />
+      <AboutGrowth />
+      <AboutExpertise />
+      <Faq />
+      <Contact />
     </>
   );
 }

@@ -16,7 +16,7 @@ const ICONS: Record<string, IconType> = {
 
 export default function Process() {
   return (
-    <section id="process" className="px-6 py-28">
+    <section id="process" className="px-6 py-14 md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel icon="≈">{process.label}</SectionLabel>
 

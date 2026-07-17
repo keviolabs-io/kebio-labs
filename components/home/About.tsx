@@ -81,7 +81,7 @@ export default function About() {
   const words = about.paragraph.split(" ");
 
   return (
-    <section ref={sectionRef} id="about" className="relative overflow-hidden px-6 py-20 md:py-28">
+    <section ref={sectionRef} id="about" className="relative overflow-hidden px-6 py-12 md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <div className="flex justify-center">
           <SectionLabel icon="★" center>
@@ -94,7 +94,7 @@ export default function About() {
           <motion.span
             aria-hidden
             style={{ scale: wmScale }}
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[28vw] leading-none text-white/[0.32] blur-[4px] md:text-[18vw] md:text-white/[0.16] md:blur-[6px]"
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap font-serif-italic text-[28vw] leading-none text-white/[0.5] blur-[3px] md:text-[18vw] md:text-white/[0.28] md:blur-[4px]"
           >
             {site.name.toLowerCase()}
           </motion.span>

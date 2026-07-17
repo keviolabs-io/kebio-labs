@@ -97,7 +97,7 @@ export default function Faq() {
   const heading = "FAQ";
 
   return (
-    <section id="faq" className="relative overflow-hidden px-6 py-28">
+    <section id="faq" className="relative overflow-hidden px-6 py-14 md:py-28">
       <div className="mx-auto max-w-[900px]">
         <div className="flex justify-center">
           <SectionLabel icon="?" center>

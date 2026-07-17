@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { hero } from "@/lib/content";
-import HeroObject from "@/components/HeroObject";
-import Particles from "@/components/Particles";
+import HeroVideo from "@/components/home/HeroVideo";
 import Media from "@/components/Media";
 import { FaFacebookF, FaInstagram, FaDribbble, FaBehance } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-// Fond vidéo du hero (test). Mets `null` pour revenir à l'objet 3D actuel.
-const HERO_VIDEO: string | null = "/hero/hero-bg.mp4";
+// Fond vidéo du hero.
+const HERO_VIDEO = "/hero/hero-bg.mp4";
 
 // Logos de marque pour les réseaux du hero
 const SOCIAL_ICONS: Record<string, IconType> = {
@@ -74,43 +73,18 @@ function SocialIcon({
 export default function Hero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col overflow-hidden px-6 pb-6 pt-24 md:min-h-screen md:pb-8 md:pt-28">
-      {HERO_VIDEO ? (
-        <>
-          {/* Vidéo de fond (test) */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-          >
-            <source src={HERO_VIDEO} type="video/mp4" />
-          </video>
-          {/* Voile pour la lisibilité du texte */}
-          <div className="pointer-events-none absolute inset-0 bg-black/35" />
-        </>
-      ) : (
-        <>
-          {/* Points luminescents qui gravitent en arrière-plan */}
-          <Particles />
+      {/* Vidéo de fond plein cadre, sans aucun voile (pleine luminosité) */}
+      <HeroVideo src={HERO_VIDEO} dim={false} />
 
-          {/* Objet 3D — fond desktop (grand, centré/bas) */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-[-3%] hidden justify-center md:flex">
-            <HeroObject className="w-[min(84vw,780px)]" />
-          </div>
-          {/* Objet 3D — mobile (grand, partie haute) */}
-          <div className="pointer-events-none absolute inset-x-0 top-[9%] flex justify-center md:hidden">
-            <HeroObject className="w-[70vw] max-w-[320px]" />
-          </div>
-        </>
-      )}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-background to-transparent" />
+      {/* Mobile uniquement : légers scrims pour la lisibilité du texte.
+          Le desktop reste sans voile, le centre de la vidéo reste visible. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[24%] bg-gradient-to-b from-background/75 to-transparent md:hidden" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] bg-gradient-to-t from-background via-background/70 to-transparent md:hidden" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between">
-        {/* Rangée haute : titre (gauche) · contact + réseaux (droite, desktop) */}
-        <div className="flex items-start justify-between gap-6">
-          <h1 className="mt-2 text-[13vw] font-medium leading-[0.9] tracking-[-0.03em] sm:text-[12vw] md:mt-6 lg:text-[10rem]">
+        {/* Titre : centré (mobile, dans l'espace libre) · à gauche (desktop) */}
+        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center md:flex-none md:flex-row md:items-start md:justify-between md:text-left">
+          <h1 className="text-[15vw] font-medium leading-[0.88] tracking-[-0.035em] [text-shadow:0_2px_28px_rgba(0,0,0,0.45)] sm:text-[12vw] md:mt-6 lg:text-[10rem]">
             <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
             <MaskLine delay={0.3} className="font-serif-italic text-muted">
               {hero.titleLine2}
@@ -125,7 +99,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: easeOut, delay: 0.5 }}
             className="mt-8 hidden w-full max-w-sm shrink-0 flex-col items-end gap-6 lg:flex"
           >
-            <p className="text-right text-sm leading-relaxed text-muted">
+            <p className="text-right text-sm leading-relaxed text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]">
               {hero.contactParagraph}
             </p>
             <div className="w-full border-t border-border" />
@@ -137,17 +111,6 @@ export default function Hero() {
                 ))}
               </div>
             </div>
-          </motion.div>
-        </div>
-
-        {/* Indicateur de scroll — centré (mobile) */}
-        <div className="flex justify-center md:hidden">
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong text-muted"
-          >
-            ↓
           </motion.div>
         </div>
 
@@ -163,11 +126,11 @@ export default function Hero() {
             <p className="mb-4 border-b border-border pb-3 text-sm text-foreground/90">
               {hero.weDoLabel}
             </p>
-            <div className="grid max-w-md grid-cols-[auto_1fr] gap-x-5 gap-y-2 text-sm text-muted">
+            <div className="grid max-w-md grid-cols-[auto_1fr] gap-x-5 gap-y-2 text-sm text-foreground [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]">
               {hero.weDoItems.map((pair, i) => (
                 <div key={i} className="contents">
                   <span className="whitespace-nowrap">{pair.left}</span>
-                  <span className="whitespace-nowrap text-muted-dark">
+                  <span className="whitespace-nowrap text-foreground/70">
                     / {pair.right}
                   </span>
                 </div>
@@ -231,14 +194,14 @@ export default function Hero() {
         >
           {/* Nous le faisons */}
           <div>
-            <p className="mb-2 border-b border-border pb-2 text-sm text-foreground/90">
+            <p className="mb-2 border-b border-border pb-2 text-sm text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]">
               {hero.weDoLabel}
             </p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-muted">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-foreground [text-shadow:0_1px_12px_rgba(0,0,0,0.55)]">
               {hero.weDoItems.map((pair, i) => (
                 <div key={i} className="contents">
                   <span>{pair.left}</span>
-                  <span className="text-muted-dark">/ {pair.right}</span>
+                  <span className="text-foreground/70">/ {pair.right}</span>
                 </div>
               ))}
             </div>

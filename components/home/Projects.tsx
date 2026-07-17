@@ -89,7 +89,7 @@ function ProjectCard({
   return (
     <div
       ref={ref}
-      className="sticky top-0 flex min-h-screen items-center justify-center"
+      className="sticky top-[21vh] flex min-h-[58vh] items-center justify-center md:top-0 md:min-h-screen"
       style={{ zIndex: index }}
     >
       <motion.article
@@ -170,7 +170,7 @@ export default function Projects() {
   }, [mx, my]);
 
   return (
-    <section id="projets" className="px-6 py-28">
+    <section id="projets" className="px-6 py-14 md:py-28">
       <div className="mx-auto mb-6 max-w-[1400px]">
         <SectionLabel icon="◆">{projects.label}</SectionLabel>
       </div>

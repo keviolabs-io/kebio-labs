@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/PageHeader";
-import Services from "@/components/home/Services";
+import ServicesHero from "@/components/services/ServicesHero";
+import ServicesDetail from "@/components/services/ServicesDetail";
 import Process from "@/components/home/Process";
 import Testimonials from "@/components/home/Testimonials";
+import Faq from "@/components/home/Faq";
+import Contact from "@/components/home/Contact";
 
 export const metadata: Metadata = { title: "Services" };
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHeader
-        label="Nos services"
-        title="Ce que nous"
-        titleAccent="savons faire"
-        intro="De la marque au produit fini : une équipe, un fil conducteur, des résultats mesurables."
-      />
-      <Services />
+      <ServicesHero />
+      <ServicesDetail />
       <Process />
       <Testimonials />
+      <Faq />
+      <Contact />
     </>
   );
 }

@@ -37,11 +37,11 @@ export const hero = {
   ],
   // Bloc bas-droite : projet en vedette
   featuredLabel: "En vedette",
-  featuredIndex: "(02)",
+  featuredIndex: "(01)",
   featured: {
-    title: "Les actualités",
-    image: "/projects/project-1.jpg",
-    href: "/projets",
+    title: "À La Lyonnaise®",
+    image: "/projects/project-1.webp",
+    href: "/projets/a-la-lyonnaise",
   },
   // Bloc contact + réseaux (haut-droite) — repris du thème
   contactParagraph:
@@ -83,24 +83,68 @@ export const services = {
       icon: "web",
       title: "Développement web",
       text: "Sites vitrines, e-commerce et applications web & mobiles (iOS, Android, PWA) — en CMS ou codés sur-mesure, pensés pour convertir.",
+      tagline: "Sites & applications sur-mesure",
+      description:
+        "Nous concevons et codons des sites et applications taillés pour votre activité. Vitrine, e-commerce, plateforme métier ou application web : un code propre, rapide et évolutif, pensé pour convertir et grandir avec vous — jamais un template générique.",
+      features: [
+        "Sites vitrines & e-commerce",
+        "Applications web & mobiles (iOS, Android, PWA)",
+        "CMS ou développement 100 % sur-mesure",
+        "Interfaces sur-mesure (UI/UX)",
+        "Performance & référencement technique",
+        "Maintenance & évolutions dans le temps",
+      ],
     },
     {
       n: "/02",
       icon: "automation",
-      title: "Automatisation",
+      title: "Automatisation & IA",
       text: "Agents IA et workflows n8n qui travaillent pour vous 24h/24 et automatisent vos tâches.",
+      tagline: "Des agents qui travaillent 24h/24",
+      description:
+        "Nous mettons l'IA et l'automatisation au service de votre croissance. Des agents IA qui répondent à vos clients comme un humain, des workflows qui éliminent les tâches répétitives et connectent vos outils : vous gagnez du temps et ne ratez plus aucune opportunité.",
+      features: [
+        "Agents IA de support client (SAV)",
+        "Réponses personnalisées, au ton humain",
+        "Relances & prises de rendez-vous automatiques",
+        "Workflows n8n, Make ou Zapier",
+        "Connexion de vos outils (CRM, mail, agenda…)",
+        "Escalade vers l'humain quand c'est nécessaire",
+      ],
     },
     {
       n: "/03",
       icon: "ads",
       title: "Publicité",
       text: "Campagnes Google, Meta et TikTok Ads pilotées par la donnée pour maximiser votre ROI.",
+      tagline: "Des campagnes rentables, pilotées par la donnée",
+      description:
+        "Nous lançons et optimisons vos campagnes Google, Meta et TikTok Ads. Ciblage précis, créatives qui accrochent, suivi des conversions : chaque euro investi est mesuré et optimisé pour maximiser votre retour sur investissement.",
+      features: [
+        "Google Ads (Search, Display, Shopping)",
+        "Meta Ads (Instagram & Facebook)",
+        "TikTok Ads",
+        "Ciblage & audiences sur-mesure",
+        "Création des visuels & des messages",
+        "Suivi des conversions & reporting clair",
+      ],
     },
     {
       n: "/04",
       icon: "seo",
       title: "SEO",
       text: "Référencement technique, contenu et autorité pour vous installer durablement en haut de Google.",
+      tagline: "Une visibilité durable en haut de Google",
+      description:
+        "Nous installons votre site durablement dans les premiers résultats. Optimisation technique, contenu qui répond aux recherches de vos clients et autorité : un trafic qualifié qui arrive tout seul, mois après mois.",
+      features: [
+        "Audit & optimisation technique",
+        "Recherche de mots-clés",
+        "Contenu optimisé & rédaction",
+        "SEO local (fiche Google Business)",
+        "Netlinking & autorité de domaine",
+        "Suivi des positions & du trafic",
+      ],
     },
   ],
 };
@@ -117,6 +161,103 @@ export const about = {
     { value: 10, suffix: "+", label: "Années d'expérience" },
     { value: 25, suffix: "+", label: "Clients satisfaits" },
   ],
+};
+
+/* ============================================================
+   Page « À propos » — reproduction du modèle Framer
+   ============================================================ */
+export const aboutPage = {
+  hero: {
+    titleSans: "Qui sommes-nous",
+    titleItalic: "Kevio Labs",
+  },
+  intro: {
+    label: "À propos de nous",
+    paragraphs: [
+      "Chez Kevio Labs, nous transformons des idées ambitieuses en produits digitaux qui performent. Sites, applications, automatisations, publicité, SEO : tout est conçu sur-mesure, jamais à partir de templates.",
+      "Notre force, c'est l'exigence. Une équipe qui allie design, code et stratégie pour livrer vite, bien, et créer un impact réel sur votre croissance.",
+    ],
+  },
+  // Section services dépliable (accordéon)
+  growth: {
+    label: "Construit avec passion",
+    headingItalic: "Votre croissance,",
+    headingSans: "notre mission",
+    cta: "Discutons de votre projet",
+    ctaHref: "/contact",
+    items: [
+      {
+        n: "/01",
+        icon: "web",
+        title: "Développement web",
+        text: "Sites vitrines, e-commerce et applications web & mobiles — en CMS ou codés sur-mesure, pensés pour convertir et grandir avec vous.",
+        price: "Sur devis",
+      },
+      {
+        n: "/02",
+        icon: "automation",
+        title: "Automatisation & IA",
+        text: "Agents IA et workflows qui travaillent pour vous 24h/24 et automatisent vos tâches à forte valeur ajoutée.",
+        price: "Sur devis",
+      },
+      {
+        n: "/03",
+        icon: "ads",
+        title: "Publicité",
+        text: "Campagnes Google, Meta et TikTok Ads pilotées par la donnée pour maximiser votre retour sur investissement.",
+        price: "Sur devis",
+      },
+      {
+        n: "/04",
+        icon: "seo",
+        title: "SEO",
+        text: "Référencement technique, contenu et autorité pour vous installer durablement en haut de Google.",
+        price: "Sur devis",
+      },
+    ],
+  },
+  // Section expertise / savoir-faire
+  expertise: {
+    label: "Notre expertise",
+    headingItalic: "Notre savoir-faire",
+    headingSans: "qui évolue sans cesse",
+    intro:
+      "Quatre domaines, une même exigence. Voici les expertises que nous cultivons pour donner à chaque projet une longueur d'avance.",
+    items: [
+      {
+        n: "/01",
+        icon: "web",
+        title: "Développement web",
+        tag: "Web & App",
+        role: "Sites & applications sur-mesure",
+        text: "Sites vitrines, e-commerce et applications codés à la main : un code propre, rapide et évolutif, taillé pour convertir et grandir.",
+      },
+      {
+        n: "/02",
+        icon: "ads",
+        title: "Publicité",
+        tag: "Ads",
+        role: "Google · Meta · TikTok",
+        text: "Des campagnes payantes pilotées par la donnée pour toucher les bonnes personnes au bon moment et maximiser votre retour sur investissement.",
+      },
+      {
+        n: "/03",
+        icon: "automation",
+        title: "Automatisation",
+        tag: "Agents IA",
+        role: "Workflows intelligents",
+        text: "Des agents IA et automatisations qui travaillent 24h/24 : support client, relances, tâches répétitives — nous libérons votre temps.",
+      },
+      {
+        n: "/04",
+        icon: "seo",
+        title: "SEO",
+        tag: "Référencement",
+        role: "Technique & contenu",
+        text: "Référencement technique, contenu et autorité pour vous installer durablement en haut de Google et capter un trafic qualifié.",
+      },
+    ],
+  },
 };
 
 /* Projets --------------------------------------------------- */
@@ -382,21 +523,21 @@ export const testimonials = {
   items: [
     {
       quote:
-        "Kevio Labs a transformé notre présence en ligne. Notre nouveau site convertit trois fois plus qu'avant.",
-      name: "Camille Roche",
-      company: "Fondatrice, Nova",
+        "Le site est encore plus beau et abouti que ce que j'attendais. Il attire aussi bien les clients que les candidats franchisés. Merci pour votre professionnalisme du début à la fin.",
+      name: "Abubakr Bouziane",
+      company: "Fondateur, À La Lyonnaise®",
     },
     {
       quote:
-        "Réactifs, précis et vraiment à l'écoute. Le projet a été livré dans les temps et au-delà de nos attentes.",
-      name: "Yanis Belkacem",
-      company: "CEO, Flux",
+        "Leur agent IA répond à nos clients comme un vrai membre de l'équipe, 24h/24. Personnalisé, humain, et il sait quand nous alerter. Bluffant. Merci pour votre disponibilité et votre suivi sans faille.",
+      name: "Yanis Moreau",
+      company: "Responsable SAV, OFFGRID®",
     },
     {
       quote:
-        "Leur agent IA gère désormais 70 % de notre support client. Un gain de temps énorme au quotidien.",
-      name: "Marie Lefèvre",
-      company: "CMO, Atlas",
+        "Ils nous ont codé sur-mesure l'application qui fait tourner toute l'entreprise : facturation, suivi, clients. On ne pourrait plus s'en passer. Merci pour votre fiabilité, on vous fait confiance les yeux fermés.",
+      name: "Marc Delaunay",
+      company: "Gérant, ARCTIC FLOW®",
     },
     {
       quote:

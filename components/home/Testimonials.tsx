@@ -200,7 +200,7 @@ export default function Testimonials() {
   const sansWords = testimonials.titleSans.split(" ");
 
   return (
-    <section id="testimonials" className="relative overflow-hidden px-6 py-24">
+    <section id="testimonials" className="relative overflow-hidden px-6 py-14 md:py-24">
       <SpiralDots className="pointer-events-none absolute inset-0" />
       {/* Dégradé de fin de section : le fond se fond dans le noir → transition
           douce vers la section suivante (au-dessus de la spirale, sous les cartes). */}

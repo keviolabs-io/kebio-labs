@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Intro from "@/components/Intro";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/content";
@@ -36,11 +37,15 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${sans.variable} ${serif.variable}`}>
       <body className="min-h-screen bg-background text-foreground">
-        <SmoothScroll>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <Intro />
+        {/* Conteneur zoomé par le rideau d'ouverture (effet caméra) */}
+        <div id="site-zoom">
+          <SmoothScroll>
+            <Nav />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </div>
       </body>
     </html>
   );

@@ -98,7 +98,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="px-6 py-28">
+    <section id="contact" className="px-6 py-14 md:py-28">
       <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-2">
         {/* Carte titre */}
         <motion.div
