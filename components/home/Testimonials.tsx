@@ -130,22 +130,38 @@ function ScrollCard({
       return;
     }
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: "none" },
+      // Apparition : la carte se révèle en montant depuis le bas et devient
+      // pleinement nette juste au moment où elle atteint le milieu de l'écran.
+      gsap.fromTo(
+        el,
+        { opacity: 0, yPercent: 16, scale: 0.9 },
+        {
+          opacity: 1,
+          yPercent: 0,
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+            end: "center 52%",
+            scrub: 0.5,
+          },
+        }
+      );
+      // Disparition : la carte s'estompe seulement en sortant vers le haut.
+      gsap.to(el, {
+        opacity: 0,
+        yPercent: -14,
+        scale: 0.95,
+        ease: "none",
+        immediateRender: false,
         scrollTrigger: {
           trigger: el,
-          start: "top bottom",
-          end: "bottom top",
+          start: "center 30%",
+          end: "top top",
           scrub: 0.5,
         },
       });
-      tl.fromTo(
-        el,
-        { opacity: 0, yPercent: 14, scale: 0.9 },
-        { opacity: 1, yPercent: 0, scale: 1, duration: 0.28 }
-      )
-        .to(el, { opacity: 1, duration: 0.44 })
-        .to(el, { opacity: 0, yPercent: -14, scale: 0.95, duration: 0.28 });
     }, el);
     return () => ctx.revert();
   }, []);

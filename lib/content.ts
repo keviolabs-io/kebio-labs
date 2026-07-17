@@ -541,21 +541,21 @@ export const testimonials = {
     },
     {
       quote:
-        "Des campagnes enfin rentables. On sait exactement où va chaque euro et ce qu'il nous rapporte.",
-      name: "Thomas Girard",
-      company: "Fondateur, Loop",
+        "Honnêtement, je n'y croyais plus trop à la pub en ligne… et là nos campagnes tournent vraiment. Je sais exactement où part chaque euro et ce qu'il nous ramène. Ça change tout au quotidien !",
+      name: "Camille Perrin",
+      company: "Responsable marketing digital, Studio Néroli",
     },
     {
       quote:
-        "Un design qui nous démarque vraiment de la concurrence. Nos clients le remarquent tout de suite.",
-      name: "Sarah Nguyen",
-      company: "Directrice, Bloom",
+        "They totally got the vibe of our brand from the very first call. Clients keep telling me the site looks stunning — honestly, exactly what I was hoping for.",
+      name: "Emma Whitmore",
+      company: "Co-founder, Whitmore Studio",
     },
     {
       quote:
-        "Du sur-mesure de bout en bout. On a enfin un partenaire qui comprend nos enjeux business.",
-      name: "Karim Haddad",
-      company: "CEO, Vireo",
+        "What really impressed me is that they took the time to understand our business before pitching a single idea. You can tell you're working with people who genuinely care, not just another vendor.",
+      name: "James Callahan",
+      company: "Head of Operations, Northbridge Group",
     },
   ],
 };
@@ -567,28 +567,32 @@ export const faq = {
   titleSans: "fréquentes",
   items: [
     {
-      q: "Combien de temps prend la création d'un site ?",
-      a: "En moyenne 1 à 4 semaines pour un site vitrine, 2 à 6 semaines pour un e-commerce, selon la complexité du projet.",
+      q: "Combien de temps prend la création d'un site web ?",
+      a: "En moyenne, un site vitrine est livré en 1 à 4 semaines selon sa complexité, un site e-commerce est livré entre 2 à 6 semaines selon sa complexité.",
     },
     {
       q: "Quels sont vos tarifs ?",
-      a: "Ils dépendent de votre projet. On propose un premier échange gratuit pour cerner vos besoins et vous envoyer un devis clair et transparent.",
+      a: "Nos tarifs dépendent de la complexité du projet. Nous proposons un appel découverte gratuit pour comprendre vos besoins et vous fournir un devis sur-mesure transparent.",
     },
     {
-      q: "Gérez-vous aussi la publicité digitale ?",
-      a: "Oui — Google, Meta et TikTok Ads, de la stratégie à l'optimisation, pour maximiser votre retour sur investissement.",
+      q: "Est-ce que vous gérez aussi la publicité digitale ?",
+      a: "Oui, nous gérons vos campagnes Google Ads, Meta Ads et TikTok Ads. De la stratégie à l'optimisation, nous maximisons votre ROI publicitaire.",
     },
     {
-      q: "Qu'est-ce qu'un agent IA peut m'apporter ?",
-      a: "Il travaille pour vous 24h/24 : réponses clients, qualification de leads, automatisation de tâches. Vous gagnez du temps et des conversions.",
-    },
-    {
-      q: "Serai-je propriétaire de mon site ?",
-      a: "Oui, à 100 %. Code source, nom de domaine, contenus et accès vous appartiennent — sans abonnement ni dépendance technique.",
+      q: "Qu'est-ce qu'un agent IA et comment ça peut m'aider ?",
+      a: "Un agent IA travaille pour vous 24h/24 : réponse aux clients, qualification de leads, automatisation de tâches. Il vous fait gagner du temps et augmente vos conversions.",
     },
     {
       q: "Proposez-vous un suivi après la livraison ?",
-      a: "Bien sûr : rapports de performance, optimisations régulières et support réactif pour faire durer les résultats.",
+      a: "Absolument. Suivi continu avec rapports de performance, optimisations régulières et support réactif. Votre croissance est notre priorité sur le long terme.",
+    },
+    {
+      q: "Est-ce que je serai propriétaire de mon site / application ?",
+      a: "Oui, 100%. Le code source, le nom de domaine, les contenus et les accès vous appartiennent entièrement. Vous n'êtes lié à aucun abonnement ni dépendance technique. Si vous souhaitez changer de prestataire un jour, vous repartez avec tout.",
+    },
+    {
+      q: "Quel genre d'applications développez-vous ?",
+      a: "Nous développons tout type d'applications : applications mobiles iOS et Android, applications web (PWA), plateformes web sur mesure, portails clients, espaces de gestion, outils métier internes et dashboards. Quel que soit votre besoin, nous concevons une solution taillée pour votre activité.",
     },
   ],
 };
@@ -652,6 +656,61 @@ export const contact = {
     },
   },
   submit: "Envoyer le message",
+  // Formulaire de contact détaillé (2 sections)
+  form: {
+    title: "Nous contacter",
+    section1: "Informations personnelles",
+    section2: "Votre projet",
+    fields: {
+      name: {
+        label: "Prénom & Nom",
+        placeholder: "Jean Dupont",
+        required: true,
+      },
+      email: { label: "Email", placeholder: "jean@exemple.com", required: true },
+      phone: {
+        label: "Téléphone",
+        placeholder: "+33 6 00 00 00 00",
+        required: false,
+      },
+      company: {
+        label: "Entreprise",
+        placeholder: "Nom de votre entreprise",
+        required: false,
+      },
+      projectType: {
+        label: "Type de projet",
+        required: true,
+        placeholder: "Sélectionnez...",
+        options: [
+          "Site Web",
+          "Publicité Digitale",
+          "Automatisation IA",
+          "SEO & Référencement",
+          "Tout à la fois",
+        ],
+      },
+      budget: {
+        label: "Budget estimé",
+        required: false,
+        placeholder: "Sélectionnez...",
+        options: [
+          "< 2 000 €",
+          "2 000 — 5 000 €",
+          "5 000 — 10 000 €",
+          "> 10 000 €",
+        ],
+      },
+      message: {
+        label: "Message / Présentation",
+        placeholder: "Décrivez votre projet, vos objectifs et vos attentes...",
+        required: false,
+      },
+    },
+    submit: "Envoyer ma demande",
+    rgpd: "En soumettant ce formulaire, vous acceptez que vos données soient traitées conformément à notre politique de confidentialité.",
+    success: "Message envoyé avec succès ! Nous vous répondons sous 24h.",
+  },
 };
 
 /* Footer ---------------------------------------------------- */
