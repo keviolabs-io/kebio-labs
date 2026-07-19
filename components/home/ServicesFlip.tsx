@@ -39,7 +39,7 @@ function FlipCard({
       <motion.article
         initial={{ rotateX: flipAngle, y: flipY, opacity: 0, scale: 0.9 }}
         whileInView={{ rotateX: 0, y: 0, opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-12% 0px -18% 0px" }}
+        viewport={{ once: false, margin: "-12% 0px -18% 0px" }}
         transition={{ duration: 0.95, ease: EASE }}
         style={{ transformOrigin: "center bottom", transformStyle: "preserve-3d" }}
         className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/12 bg-[#0b0b0c] px-6 pb-8 pt-6 shadow-[0_18px_50px_-12px_rgba(0,0,0,0.7)]"
@@ -103,7 +103,7 @@ function FlipCard({
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-12% 0px -18% 0px" }}
+          viewport={{ once: false, margin: "-12% 0px -18% 0px" }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.35 }}
           className="relative flex flex-1 items-center justify-center py-2"
         >
@@ -114,7 +114,7 @@ function FlipCard({
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-12% 0px -18% 0px" }}
+          viewport={{ once: false, margin: "-12% 0px -18% 0px" }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.5 }}
           className="relative"
         >
