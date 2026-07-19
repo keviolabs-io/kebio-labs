@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { whenIntroDone } from "@/lib/intro-gate";
 
 /** Vidéo de fond du hero : lecture forcée + voile de lisibilité.
- *  Le chargement est différé jusqu'à la fin du rideau d'intro, pour laisser
- *  toute la bande passante à la vidéo de l'intro (démarrage net). */
+ *  Sert le WebM (AV1, ~2× plus léger) si le navigateur le supporte, sinon le
+ *  MP4. Le chargement est différé jusqu'à la fin du rideau d'intro. */
 export default function HeroVideo({
   src,
   dim = true,
@@ -18,15 +18,24 @@ export default function HeroVideo({
   const [failed, setFailed] = useState(false);
   const [activeSrc, setActiveSrc] = useState<string | null>(null);
 
-  // On n'attache la source qu'une fois l'intro terminée (ou tout de suite s'il
-  // n'y a pas d'intro sur ce chargement).
+  // On choisit la source (webm si supporté, sinon mp4) une fois l'intro finie.
   useEffect(() => {
-    whenIntroDone(() => setActiveSrc(src));
+    const webm = src.replace(/\.mp4$/, ".webm");
+    whenIntroDone(() => {
+      const v = ref.current;
+      const canAV1 =
+        !!v &&
+        v.canPlayType('video/webm; codecs="av01.0.05M.08"') !== "";
+      setActiveSrc(canAV1 ? webm : src);
+    });
   }, [src]);
 
   useEffect(() => {
     if (!activeSrc) return;
-    ref.current?.play().catch(() => {});
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
   }, [activeSrc]);
 
   if (failed) return null;
@@ -41,7 +50,12 @@ export default function HeroVideo({
         loop
         playsInline
         preload="auto"
-        onError={() => setFailed(true)}
+        onError={() => {
+          // Si le webm échoue, on retombe sur le mp4 ; sinon on masque.
+          const webm = src.replace(/\.mp4$/, ".webm");
+          if (activeSrc === webm) setActiveSrc(src);
+          else setFailed(true);
+        }}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
       {/* Voile pour la lisibilité du texte */}

@@ -12,11 +12,14 @@ function ColLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Grand lien du footer (nav / réseaux) — style du thème Agenciy. */
+/** Grand lien du footer (nav / réseaux) — style du thème Agenciy.
+ *  Les liens externes (réseaux) s'ouvrent dans un nouvel onglet. */
 function BigLink({ href, label }: { href: string; label: string }) {
+  const external = href.startsWith("http");
   return (
     <Link
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group flex w-fit items-center text-3xl font-medium tracking-tight text-foreground/90 transition-colors duration-300 hover:text-foreground sm:text-4xl"
     >
       <span className="transition-transform duration-500 group-hover:translate-x-2">{label}</span>
@@ -46,18 +49,16 @@ export default function Footer() {
             </address>
 
             <p className="mb-4 mt-10 text-sm text-muted-dark">{footer.contactLabel}</p>
-            <a
-              href={`mailto:${footer.email}`}
-              className="block text-foreground/90 transition-colors hover:text-foreground"
+            <Link
+              href={footer.contactCta.href}
+              className="group inline-flex w-fit items-center gap-1.5 text-foreground/90 transition-colors hover:text-foreground"
             >
-              {footer.email}
-            </a>
-            <a
-              href={`tel:${footer.phone.replace(/\s/g, "")}`}
-              className="mt-1 block text-foreground/90 transition-colors hover:text-foreground"
-            >
-              {footer.phone}
-            </a>
+              {footer.contactCta.label}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+            <p className="mt-1 text-sm text-muted">{footer.contactNote}</p>
           </div>
 
           {/* Liens */}
@@ -81,8 +82,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Logo géant en dégradé */}
-        <div className="relative mt-24 select-none">
+        {/* Logo géant en dégradé (décoratif : ne capte pas les clics) */}
+        <div className="pointer-events-none relative mt-24 select-none">
           {/* petit bloc décoratif (comme le thème) */}
           <span className="absolute right-[6%] top-0 h-10 w-10 rounded-md bg-white/15 sm:h-14 sm:w-14" />
           <motion.span
@@ -98,13 +99,27 @@ export default function Footer() {
         </div>
 
         {/* Barre du bas */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-sm text-muted sm:flex-row">
-          <span>
+        <div className="mt-8 flex flex-col items-center justify-between gap-5 border-t border-border pt-8 text-sm text-muted sm:flex-row">
+          <span className="order-2 text-center sm:order-1 sm:text-left">
             © {new Date().getFullYear()} {site.name}. {footer.copyright}
           </span>
+
+          {/* Liens légaux */}
+          <nav className="order-1 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:order-2">
+            {footer.legal.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="transition-colors hover:text-foreground"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
           <button
             onClick={scrollTop}
-            className="group inline-flex items-center gap-2 transition-colors hover:text-foreground"
+            className="group order-3 inline-flex items-center gap-2 transition-colors hover:text-foreground"
           >
             {footer.backToTop}
             <span className="transition-transform duration-300 group-hover:-translate-y-1">↑</span>

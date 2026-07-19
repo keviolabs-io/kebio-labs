@@ -48,10 +48,9 @@ export const hero = {
     "© Nous créons des automatisations, des apps, des sites web et des expériences numériques — avec intensité, clarté et soin.",
   contactLabel: "Contactez-nous",
   socials: [
-    { key: "facebook", label: "Facebook", href: "#" },
-    { key: "instagram", label: "Instagram", href: "#" },
-    { key: "dribbble", label: "Dribbble", href: "#" },
-    { key: "behance", label: "Behance", href: "#" },
+    { key: "instagram", label: "Instagram", href: "https://www.instagram.com/keviolabs" },
+    { key: "x", label: "X (Twitter)", href: "https://x.com/keviolabs" },
+    { key: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@kevio.labs" },
   ],
 };
 
@@ -296,6 +295,12 @@ export type ProjectDetail = {
   heroImage?: string; // remplace l'image du hero (sinon = image de la carte)
   image?: string; // grande image intercalée dans le corps
   sections: { heading: string; paragraphs: string[]; checklist?: string[] }[];
+  // Résultats chiffrés (grands nombres)
+  stats?: { value: string; label: string }[];
+  // Scores PageSpeed Insights, par appareil
+  scores?: { device: string; items: { label: string; value: number }[] }[];
+  // Stack technique (tags)
+  stack?: string[];
 };
 
 export const projectDetails: Record<string, ProjectDetail> = {
@@ -308,6 +313,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
         paragraphs: [
           "À La Lyonnaise est une franchise de restauration rapide en pleine expansion. La marque avait besoin d'un site à la hauteur de son image : moderne, rapide et capable de transformer les visiteurs en clients. Nous avons repensé toute leur présence web, de la page d'accueil jusqu'au parcours de commande.",
           "L'objectif était double : affirmer une identité visuelle forte et cohérente sur tous les écrans, et générer des commandes ainsi que des visites en restaurant grâce à un référencement local soigné.",
+          "Le client était intransigeant sur un point : sa charte graphique devait être parfaitement respectée et présente à chaque écran — couleurs, typographies, logo, ton de la marque — répartie avec justesse et cohérence, sans le moindre écart. Nous l'avons appliquée au détail près, exactement comme il l'attendait.",
           "Le site est aussi un véritable levier de développement du réseau : une section dédiée au recrutement de franchisés met en avant le concept, les chiffres clés et les avantages de l'enseigne, avec un formulaire de candidature intégré pour transformer les visiteurs intéressés en futurs partenaires.",
         ],
       },
@@ -323,7 +329,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
           "Section « Devenir franchisé » avec formulaire de candidature",
           "Page dédiée par restaurant (adresse, horaires, contact)",
           "Site 100 % sur-mesure et codé de A à Z, rendu serveur (SSR) pour le SEO",
-          "Score Lighthouse 95+/100 et chargement quasi instantané",
+          "Scores PageSpeed de 90 à 100 (mobile & ordinateur), chargement quasi instantané",
           "Architecture évolutive : ajout de restaurants en quelques clics",
           "Optimisation SEO locale et fiches d'établissement",
         ],
@@ -331,7 +337,33 @@ export const projectDetails: Record<string, ProjectDetail> = {
       {
         heading: "Résultat",
         paragraphs: [
-          "Une image de marque nette et différenciante, un site rapide qui convertit, et une visibilité renforcée sur les recherches locales — de quoi accompagner sereinement l'ouverture de nouveaux points de vente.",
+          "Dès le premier mois, le site a généré plus de 1 500 clics et s'est hissé en tête des recherches sur le nom de la marque. Grâce à un paramétrage SEO irréprochable, la franchise a multiplié par 3 sa visibilité sur les recherches locales.",
+          "Un site ultra-rapide qui convertit, une image de marque nette et différenciante, et une présence en ligne solide — de quoi accompagner sereinement l'ouverture de nouveaux points de vente.",
+        ],
+      },
+    ],
+    stats: [
+      { value: "1 500+", label: "clics le 1er mois" },
+      { value: "×3", label: "visibilité sur Google local" },
+      { value: "1er", label: "sur son nom dans les recherches" },
+    ],
+    scores: [
+      {
+        device: "Mobile",
+        items: [
+          { label: "Performances", value: 92 },
+          { label: "Accessibilité", value: 90 },
+          { label: "Bonnes pratiques", value: 100 },
+          { label: "SEO", value: 100 },
+        ],
+      },
+      {
+        device: "Ordinateur",
+        items: [
+          { label: "Performances", value: 97 },
+          { label: "Accessibilité", value: 90 },
+          { label: "Bonnes pratiques", value: 100 },
+          { label: "SEO", value: 100 },
         ],
       },
     ],
@@ -372,6 +404,18 @@ export const projectDetails: Record<string, ProjectDetail> = {
         ],
       },
     ],
+    stats: [
+      { value: "24/7", label: "disponible, sans temps d'attente" },
+      { value: "< 30s", label: "temps de réponse moyen" },
+      { value: "~70%", label: "des demandes traitées sans humain" },
+    ],
+    stack: [
+      "LLM (GPT-4 class)",
+      "RAG · base de connaissances vectorielle",
+      "Moteur de règles d'escalade",
+      "API multi-canaux (site, e-mail, messagerie)",
+      "Webhooks temps réel",
+    ],
   },
 
   "arctic-flow": {
@@ -409,6 +453,19 @@ export const projectDetails: Record<string, ProjectDetail> = {
           "Une entreprise pilotée depuis un seul endroit, des clients autonomes et informés, et un gain de temps considérable sur toute la gestion quotidienne — de la facture à la maintenance. ARCTIC FLOW remplace une pile d'outils par une plateforme unique, claire et évolutive.",
         ],
       },
+    ],
+    stats: [
+      { value: "2", label: "interfaces sécurisées (admin & client)" },
+      { value: "6", label: "modules métier réunis en un seul outil" },
+      { value: "24/7", label: "données synchronisées en temps réel" },
+    ],
+    stack: [
+      "Next.js · React",
+      "TypeScript",
+      "Base de données PostgreSQL",
+      "Authentification, rôles & permissions",
+      "Synchronisation temps réel",
+      "Rendu serveur (SSR)",
     ],
   },
 };
@@ -716,11 +773,11 @@ export const contact = {
 /* Footer ---------------------------------------------------- */
 export const footer = {
   // Colonne 1
-  locationLabel: "Emplacement",
-  address: ["12 rue de la Création, Suite 500", "75002 Paris", "France"],
+  locationLabel: "Localisation",
+  address: ["Basés à Lyon", "Nous opérons partout, à l'international"],
   contactLabel: "Contact",
-  email: "hello@kevio.studio",
-  phone: "+33 1 84 80 00 00",
+  contactCta: { label: "Écrivez-nous", href: "/contact" },
+  contactNote: "Réponse sous 24h",
   // Colonne 2 (grands liens)
   linksLabel: "Liens",
   links: [
@@ -732,10 +789,15 @@ export const footer = {
   // Colonne 3 (réseaux)
   socialsLabel: "Réseaux sociaux",
   socials: [
-    { label: "Instagram", href: "#" },
-    { label: "X (Twitter)", href: "#" },
-    { label: "Behance", href: "#" },
-    { label: "Dribbble", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/keviolabs" },
+    { label: "X (Twitter)", href: "https://x.com/keviolabs" },
+    { label: "TikTok", href: "https://www.tiktok.com/@kevio.labs" },
+  ],
+  // Liens légaux (barre du bas)
+  legal: [
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "Confidentialité", href: "/confidentialite" },
+    { label: "CGV", href: "/cgv" },
   ],
   // Bas de page
   copyright: "Tous droits réservés.",

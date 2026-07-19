@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/PageHeader";
-import ContactSection from "@/components/ContactSection";
+import Contact from "@/components/home/Contact";
 
 export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
   return (
-    <>
-      <PageHeader label="Contact" title="Parlons de" titleAccent="votre projet" />
-      <ContactSection />
-    </>
+    <div className="pt-20 md:pt-24">
+      <Contact />
+    </div>
   );
 }

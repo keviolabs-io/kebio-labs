@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { hero } from "@/lib/content";
 import HeroVideo from "@/components/home/HeroVideo";
 import Media from "@/components/Media";
-import { FaFacebookF, FaInstagram, FaDribbble, FaBehance } from "react-icons/fa";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -15,10 +16,9 @@ const HERO_VIDEO = "/hero/hero-bg.mp4";
 
 // Logos de marque pour les réseaux du hero
 const SOCIAL_ICONS: Record<string, IconType> = {
-  facebook: FaFacebookF,
   instagram: FaInstagram,
-  dribbble: FaDribbble,
-  behance: FaBehance,
+  x: FaXTwitter,
+  tiktok: FaTiktok,
 };
 
 /** Ligne de titre avec révélation par masque (slide up). */

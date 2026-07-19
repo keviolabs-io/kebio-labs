@@ -7,7 +7,7 @@ import { staggerContainer, staggerItem } from "@/components/anim/Reveal";
 
 export default function BlogList() {
   return (
-    <section className="px-6 pb-28">
+    <section className="px-6 pb-16 md:pb-28">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
