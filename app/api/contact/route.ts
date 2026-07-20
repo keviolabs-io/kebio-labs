@@ -1,10 +1,9 @@
 import { Resend } from "resend";
 
 /** Adresse de réception des demandes (configurable via variable d'env). */
-const TO = process.env.CONTACT_EMAIL || "hello@kevio.studio";
-/** Expéditeur. Tant qu'aucun domaine n'est vérifié chez Resend, on garde
- *  l'adresse d'onboarding de Resend (fonctionne sans configuration). */
-const FROM = process.env.CONTACT_FROM || "Kevio Labs <onboarding@resend.dev>";
+const TO = process.env.CONTACT_EMAIL || "hello@keviolabs.com";
+/** Expéditeur : domaine keviolabs.com vérifié chez Resend. */
+const FROM = process.env.CONTACT_FROM || "Kevio Labs <hello@keviolabs.com>";
 
 function escapeHtml(s: string) {
   return s
