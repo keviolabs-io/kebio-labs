@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { site, projects } from "@/lib/content";
+import { site, projects, blog } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -22,6 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Articles de blog
+  const blogPages: MetadataRoute.Sitemap = blog.posts.map((p) => ({
+    url: `${base}/blog/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   // ⚠️ Pages légales volontairement exclues (noindex).
-  return [...staticPages, ...projectPages];
+  return [...staticPages, ...projectPages, ...blogPages];
 }

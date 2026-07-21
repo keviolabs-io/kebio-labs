@@ -95,6 +95,30 @@ export const blogSchema = {
   publisher: { "@id": `${site.url}/#organization` },
 };
 
+/** Article de blog (BlogPosting). */
+export function blogPostSchema(p: {
+  slug: string;
+  title: string;
+  excerpt: string;
+  isoDate: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: p.title,
+    description: p.excerpt,
+    url: `${site.url}/blog/${p.slug}`,
+    image: p.image ? `${site.url}${p.image}` : `${site.url}/opengraph-image.png`,
+    datePublished: p.isoDate,
+    dateModified: p.isoDate,
+    inLanguage: "fr-FR",
+    author: { "@id": `${site.url}/#organization` },
+    publisher: { "@id": `${site.url}/#organization` },
+    mainEntityOfPage: `${site.url}/blog/${p.slug}`,
+  };
+}
+
 /** Fiche projet (étude de cas). */
 export function projectSchema(p: { title: string; subtitle: string; slug: string }) {
   return {
