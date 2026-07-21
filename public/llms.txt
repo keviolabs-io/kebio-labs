@@ -1,0 +1,19 @@
+# Kevio Labs
+
+> Agence web à Lyon spécialisée dans la création de sites internet et d'applications sur-mesure, l'automatisation et les agents IA, la publicité en ligne (Google, Meta, TikTok Ads) et le référencement SEO. Devis gratuit et réponse sous 24h.
+
+## Pages principales
+- [Accueil](https://keviolabs.com/) : agence web, applications et IA à Lyon.
+- [Services](https://keviolabs.com/services) : développement web & applications, automatisation & IA, publicité, SEO.
+- [Projets](https://keviolabs.com/projets) : réalisations (sites, applications, agents IA).
+- [À propos](https://keviolabs.com/about) : l'agence, son approche et son expertise.
+- [Blog](https://keviolabs.com/blog) : conseils web, applications, IA et SEO.
+- [Contact](https://keviolabs.com/contact) : devis gratuit, réponse sous 24h.
+
+## Contact
+- Site : https://keviolabs.com
+- Email : hello@keviolabs.com
+- Localisation : Lyon, France (interventions à l'international)
+- Instagram : https://www.instagram.com/keviolabs
+- X (Twitter) : https://x.com/keviolabs
+- TikTok : https://www.tiktok.com/@kevio.labs

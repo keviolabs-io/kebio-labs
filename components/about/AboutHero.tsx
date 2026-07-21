@@ -15,10 +15,15 @@ export default function AboutHero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
       <h1 className="reveal-fade-up relative z-10 text-[clamp(2.5rem,11vw,140px)] font-medium leading-[0.9] tracking-tight">
-        <span className="text-foreground">{aboutPage.hero.titleSans}</span>
-        <br />
-        <span className="font-serif-italic font-normal text-muted">
-          {aboutPage.hero.titleItalic}
+        <span className="sr-only">
+          Kevio Labs, agence digitale à Lyon
+        </span>
+        <span aria-hidden="true">
+          <span className="text-foreground">{aboutPage.hero.titleSans}</span>
+          <br />
+          <span className="font-serif-italic font-normal text-muted">
+            {aboutPage.hero.titleItalic}
+          </span>
         </span>
       </h1>
 

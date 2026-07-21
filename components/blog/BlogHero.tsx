@@ -14,10 +14,15 @@ export default function BlogHero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[30vh] bg-gradient-to-t from-background to-transparent" />
 
       <h1 className="reveal-fade-up relative z-10 text-[clamp(2.75rem,12vw,140px)] font-medium leading-[0.9] tracking-tight">
-        <span className="text-foreground">Idées &amp;</span>
-        <br />
-        <span className="font-serif-italic font-normal text-muted">
-          coulisses
+        <span className="sr-only">
+          Blog : conseils web, applications, IA et SEO
+        </span>
+        <span aria-hidden="true">
+          <span className="text-foreground">Idées &amp;</span>
+          <br />
+          <span className="font-serif-italic font-normal text-muted">
+            coulisses
+          </span>
         </span>
       </h1>
 

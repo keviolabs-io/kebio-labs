@@ -85,10 +85,18 @@ export default function Hero() {
         {/* Titre : centré (mobile, dans l'espace libre) · à gauche (desktop) */}
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center md:flex-none md:flex-row md:items-start md:justify-between md:text-left">
           <h1 className="text-[15vw] font-medium leading-[0.88] tracking-[-0.035em] [text-shadow:0_2px_28px_rgba(0,0,0,0.45)] sm:text-[12vw] md:mt-6 lg:text-[10rem]">
-            <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
-            <MaskLine delay={0.3} className="font-serif-italic text-muted">
-              {hero.titleLine2}
-            </MaskLine>
+            {/* H1 SEO (lu par Google, invisible à l'écran) */}
+            <span className="sr-only">
+              Agence web à Lyon — création de sites internet, applications, IA et
+              SEO
+            </span>
+            {/* Titre visuel (décoratif) */}
+            <span aria-hidden="true" className="block">
+              <MaskLine delay={0.15}>{hero.titleLine1}</MaskLine>
+              <MaskLine delay={0.3} className="font-serif-italic text-muted">
+                {hero.titleLine2}
+              </MaskLine>
+            </span>
           </h1>
 
           {/* Contact + réseaux (desktop) — repris du thème */}

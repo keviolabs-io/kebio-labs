@@ -6,10 +6,25 @@
 
 export const site = {
   name: "Kevio Labs",
-  tagline: "Agence créative moderne",
+  tagline: "Agence web à Lyon",
+  url: "https://keviolabs.com",
+  // Description SEO (utilisée dans les métadonnées) : mots-clés + services + IA.
   description:
-    "Nous concevons des marques, des interfaces et des produits numériques ambitieux qui laissent une impression durable.",
-  email: "hello@kevio.studio",
+    "Kevio Labs, agence web à Lyon : création de sites internet et d'applications sur-mesure, automatisation et agents IA, publicité (Google, Meta, TikTok) et SEO. Devis gratuit sous 24h.",
+  keywords: [
+    "agence web Lyon",
+    "agence digitale Lyon",
+    "création site internet Lyon",
+    "création application Lyon",
+    "agence IA Lyon",
+    "automatisation IA",
+    "agent IA",
+    "publicité en ligne Lyon",
+    "Google Ads Lyon",
+    "agence SEO Lyon",
+    "développement web sur-mesure",
+  ],
+  email: "hello@keviolabs.com",
   cta: { label: "Discutons !", href: "/contact" },
 };
 
