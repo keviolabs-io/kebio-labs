@@ -18,11 +18,11 @@ export default function AppleIcon() {
           color: "#f4f4f2",
           fontFamily: "serif",
           fontStyle: "italic",
-          fontSize: 120,
+          fontSize: 110,
           fontWeight: 500,
         }}
       >
-        k
+        K
       </div>
     ),
     { ...size }

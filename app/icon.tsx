@@ -19,11 +19,11 @@ export default function Icon() {
           borderRadius: 14,
           fontFamily: "serif",
           fontStyle: "italic",
-          fontSize: 44,
+          fontSize: 42,
           fontWeight: 500,
         }}
       >
-        k
+        K
       </div>
     ),
     { ...size }
