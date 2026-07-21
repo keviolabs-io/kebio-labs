@@ -16,7 +16,7 @@ export const organizationSchema = {
   name: site.name,
   url: site.url,
   logo: `${site.url}/icon`,
-  image: `${site.url}/opengraph-image`,
+  image: `${site.url}/opengraph-image.png`,
   description: site.description,
   email: site.email,
   areaServed: [

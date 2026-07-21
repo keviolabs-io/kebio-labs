@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const DIM = "#808080";
+const DIM = "#666666";
 const BRIGHT = "#ededed";
 
 /** Compteur qui monte (0 → value) à l'apparition. */
@@ -44,37 +44,33 @@ export default function About() {
   });
   const wmScale = useTransform(scrollYProgress, [0, 1], [0.7, 1.45]);
 
+  // Révélation mot par mot (gris → blanc) : les mots s'allument un à un
+  // au fil du scroll. Réglage identique à la page À propos (AboutIntro).
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
     const el = textRef.current;
     if (!el) return;
-
-    const wordsEls = el.querySelectorAll<HTMLElement>("[data-word]");
+    const words = el.querySelectorAll<HTMLElement>("[data-word]");
     if (prefersReduced) {
-      gsap.set(wordsEls, { color: BRIGHT });
+      gsap.set(words, { color: BRIGHT });
       return;
     }
-
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        wordsEls,
-        { color: DIM },
-        {
-          color: BRIGHT,
-          ease: "none",
-          stagger: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 70%",
-            end: "center 35%",
-            scrub: true,
-          },
-        }
-      );
+      gsap.set(words, { color: DIM });
+      gsap.to(words, {
+        color: BRIGHT,
+        ease: "power2.out",
+        duration: 0.5,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 62%",
+          toggleActions: "play none none reverse",
+        },
+      });
     }, el);
-
     return () => ctx.revert();
   }, []);
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { services } from "@/lib/content";
 import ServiceIcon from "@/components/ServiceIcon";
@@ -35,14 +36,19 @@ function FlipCard({
   flipY?: number;
 }) {
   return (
-    <div style={{ perspective }}>
+    <div style={{ perspective }} className="h-full">
+      <Link
+        href={`/services#${s.icon}`}
+        className="group block h-full"
+        aria-label={`${s.title} — voir le détail`}
+      >
       <motion.article
         initial={{ rotateX: flipAngle, y: flipY, opacity: 0, scale: 0.9 }}
         whileInView={{ rotateX: 0, y: 0, opacity: 1, scale: 1 }}
         viewport={{ once: false, margin: "-12% 0px -18% 0px" }}
         transition={{ duration: 0.95, ease: EASE }}
         style={{ transformOrigin: "center bottom", transformStyle: "preserve-3d" }}
-        className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/12 bg-[#0b0b0c] px-6 pb-8 pt-6 shadow-[0_18px_50px_-12px_rgba(0,0,0,0.7)]"
+        className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/12 bg-[#0b0b0c] px-6 pb-8 pt-6 shadow-[0_18px_50px_-12px_rgba(0,0,0,0.7)] transition-colors duration-300 group-hover:border-white/30"
       >
         {/* --- Fond : halos de lumière (blanc) qui dérivent dans la carte --- */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -124,6 +130,7 @@ function FlipCard({
           <p className="mt-3 text-[15px] leading-6 text-muted">{s.text}</p>
         </motion.div>
       </motion.article>
+      </Link>
     </div>
   );
 }

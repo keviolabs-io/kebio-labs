@@ -93,7 +93,10 @@ function ServiceBlock({ item, index }: { item: Item; index: number }) {
   const reversed = index % 2 === 1;
 
   return (
-    <div className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
+    <div
+      id={item.icon}
+      className="grid scroll-mt-28 items-center gap-8 md:grid-cols-2 md:gap-16 md:scroll-mt-32"
+    >
       {/* Colonne texte */}
       <div className={reversed ? "md:order-2" : ""}>
         <Reveal>

@@ -133,7 +133,6 @@ export default function Contact() {
   const [phone, setPhone] = useState("");
   const [company, setCompany] = useState("");
   const [projectType, setProjectType] = useState("");
-  const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -153,7 +152,6 @@ export default function Contact() {
           phone,
           company,
           projectType,
-          budget,
           message,
         }),
       });
@@ -292,23 +290,14 @@ export default function Contact() {
                   <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-dark">
                     {F.section2}
                   </p>
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <Select
-                      label={F.fields.projectType.label}
-                      placeholder={F.fields.projectType.placeholder}
-                      options={F.fields.projectType.options}
-                      value={projectType}
-                      onChange={setProjectType}
-                      required
-                    />
-                    <Select
-                      label={F.fields.budget.label}
-                      placeholder={F.fields.budget.placeholder}
-                      options={F.fields.budget.options}
-                      value={budget}
-                      onChange={setBudget}
-                    />
-                  </div>
+                  <Select
+                    label={F.fields.projectType.label}
+                    placeholder={F.fields.projectType.placeholder}
+                    options={F.fields.projectType.options}
+                    value={projectType}
+                    onChange={setProjectType}
+                    required
+                  />
                   <div>
                     <Label text={F.fields.message.label} />
                     <textarea

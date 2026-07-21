@@ -32,7 +32,6 @@ export async function POST(request: Request) {
   const phone = (data.phone || "").trim();
   const company = (data.company || "").trim();
   const projectType = (data.projectType || "").trim();
-  const budget = (data.budget || "").trim();
   const message = (data.message || "").trim();
 
   // Champs obligatoires
@@ -52,7 +51,6 @@ export async function POST(request: Request) {
     ["Téléphone", phone || "—"],
     ["Entreprise", company || "—"],
     ["Type de projet", projectType],
-    ["Budget estimé", budget || "—"],
   ];
 
   const html = `

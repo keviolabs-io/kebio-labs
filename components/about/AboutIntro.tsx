@@ -17,7 +17,8 @@ export default function AboutIntro() {
   const textRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  // Révélation mot par mot des paragraphes (gris → blanc, synchro scroll)
+  // Révélation mot par mot (gris → blanc) : les mots s'allument un à un
+  // au fil du scroll, du haut vers le bas.
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -30,21 +31,18 @@ export default function AboutIntro() {
       return;
     }
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        words,
-        { color: DIM },
-        {
-          color: BRIGHT,
-          ease: "none",
-          stagger: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            end: "center 42%",
-            scrub: true,
-          },
-        }
-      );
+      gsap.set(words, { color: DIM });
+      gsap.to(words, {
+        color: BRIGHT,
+        ease: "power2.out",
+        duration: 0.5,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 62%",
+          toggleActions: "play none none reverse",
+        },
+      });
     }, el);
     return () => ctx.revert();
   }, []);
@@ -71,8 +69,8 @@ export default function AboutIntro() {
           stagger: 1,
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",
-            end: "center 55%",
+            start: "top 96%",
+            end: "center 68%",
             scrub: true,
           },
         }

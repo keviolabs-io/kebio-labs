@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { nav, site } from "@/lib/content";
+import MobileMenu from "@/components/MobileMenu";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function Nav() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 pb-5 pt-9">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-1 text-[2rem] font-medium tracking-tight md:text-[2.6rem]">
+        <Link href="/" className="group relative z-50 flex items-center gap-1 text-[2rem] font-medium tracking-tight md:text-[2.6rem]">
           <span
             className="font-serif-italic text-white"
             style={{
@@ -69,44 +70,23 @@ export default function Nav() {
           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </Link>
 
-        {/* Burger — mobile */}
+        {/* Burger — mobile (au-dessus du rideau, se change en X) */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-border md:hidden"
-          aria-label="Menu"
+          className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-border md:hidden"
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
         >
           <div className="flex flex-col gap-1.5">
-            <span className={`h-px w-5 bg-foreground transition ${open ? "translate-y-[3px] rotate-45" : ""}`} />
-            <span className={`h-px w-5 bg-foreground transition ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+            <span className={`h-px w-5 bg-foreground transition duration-300 ${open ? "translate-y-[3px] rotate-45" : ""}`} />
+            <span className={`h-px w-5 bg-foreground transition duration-300 ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
           </div>
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Menu mobile — rideau plein écran */}
       <AnimatePresence>
-        {open && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mx-6 overflow-hidden rounded-3xl border border-border bg-card md:hidden"
-          >
-            <ul className="flex flex-col p-4">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block px-4 py-3 text-lg text-muted transition-colors hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.nav>
-        )}
+        {open && <MobileMenu key="mobile-menu" onClose={() => setOpen(false)} />}
       </AnimatePresence>
     </motion.header>
   );

@@ -509,8 +509,8 @@ export const process = {
     {
       n: "/03",
       icon: "design",
-      title: "Design",
-      text: "On conçoit des expériences soignées, testées et itérées.",
+      title: "Création",
+      text: "On déploie, on optimise, on sécurise. Mise en ligne maîtrisée avec tests complets pour un lancement sans accroc.",
     },
     {
       n: "/04",
@@ -755,22 +755,11 @@ export const contact = {
         required: true,
         placeholder: "Sélectionnez...",
         options: [
-          "Site Web",
+          "Développement web",
           "Publicité Digitale",
           "Automatisation IA",
           "SEO & Référencement",
           "Tout à la fois",
-        ],
-      },
-      budget: {
-        label: "Budget estimé",
-        required: false,
-        placeholder: "Sélectionnez...",
-        options: [
-          "< 2 000 €",
-          "2 000 — 5 000 €",
-          "5 000 — 10 000 €",
-          "> 10 000 €",
         ],
       },
       message: {

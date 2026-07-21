@@ -6,6 +6,7 @@ import Testimonials from "@/components/home/Testimonials";
 import Faq from "@/components/home/Faq";
 import Contact from "@/components/home/Contact";
 import JsonLd from "@/components/JsonLd";
+import ScrollToHash from "@/components/ScrollToHash";
 import { servicesSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function ServicesPage() {
   return (
     <>
       <JsonLd data={servicesSchema} />
+      <ScrollToHash />
       <ServicesHero />
       <ServicesDetail />
       <Process />
