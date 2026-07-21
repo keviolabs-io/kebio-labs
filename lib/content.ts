@@ -670,35 +670,273 @@ export const faq = {
 };
 
 /* Blog ------------------------------------------------------ */
-export const blog = {
+export type BlogBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "ul"; items: string[] }
+  | { type: "quote"; text: string };
+
+export type BlogPost = {
+  slug: string;
+  category: string;
+  date: string;
+  // Date ISO (SEO : datePublished / article:published_time).
+  isoDate: string;
+  readingTime: string;
+  title: string;
+  // Titre court affiché sur la carte (style original : 2 tons).
+  cardTitle: string;
+  cardAccent: string;
+  excerpt: string;
+  image?: string;
+  intro: string;
+  content: BlogBlock[];
+};
+
+export const blog: { label: string; posts: BlogPost[] } = {
   label: "Le journal",
   posts: [
     {
-      slug: "design-systeme-2025",
-      category: "Design",
-      date: "12 juin 2025",
-      title: "Construire un design system qui tient dans le temps",
+      slug: "integrer-ia-entreprise-2026",
+      category: "IA & Automatisation",
+      date: "15 juillet 2026",
+      isoDate: "2026-07-15",
+      readingTime: "7 min",
+      title:
+        "L'IA en entreprise en 2026 : pourquoi l'intégrer maintenant (et comment bien démarrer)",
+      cardTitle: "L'IA en entreprise",
+      cardAccent: "en 2026",
+      image: "/blog/ia-2026.webp",
       excerpt:
-        "Comment poser des fondations visuelles cohérentes, réutilisables et faciles à faire évoluer.",
-      image: "/blog/post-1.jpg",
+        "En 2026, l'intelligence artificielle est devenue un avantage concurrentiel accessible à toutes les entreprises. Voici pourquoi c'est le bon moment, et comment s'y prendre sans se disperser.",
+      intro:
+        "L'intelligence artificielle n'est plus un gadget réservé aux géants de la tech. Elle est devenue un levier de productivité concret, abordable et accessible à toutes les entreprises — à condition de l'intégrer intelligemment. Voici pourquoi c'est le moment, et comment s'y prendre.",
+      content: [
+        { type: "h2", text: "Pourquoi 2026 est un tournant" },
+        {
+          type: "p",
+          text: "Les outils d'IA ont franchi un cap : ils sont désormais fiables, économiques et faciles à connecter à vos logiciels existants. Ce qui demandait autrefois des mois de développement se met en place en quelques jours. Conséquence directe : les entreprises qui adoptent ces outils prennent une longueur d'avance sur celles qui hésitent encore.",
+        },
+        {
+          type: "p",
+          text: "L'écart ne se creuse pas sur la technologie elle-même — elle est à la portée de tous — mais sur la vitesse et la qualité de l'adoption. Une PME qui automatise ses tâches répétitives libère du temps pour ce qui compte vraiment : ses clients et son développement.",
+        },
+        { type: "h2", text: "Ce que l'IA change concrètement pour une PME" },
+        {
+          type: "p",
+          text: "Au-delà des discours, l'IA apporte des gains mesurables dès les premières semaines. Les cas d'usage les plus rentables sont souvent les plus simples :",
+        },
+        {
+          type: "ul",
+          items: [
+            "Service client : réponses instantanées 24/7, tri automatique des demandes, réduction du temps de traitement.",
+            "Tâches répétitives : génération de devis, relances, facturation, saisie et transfert de données entre outils.",
+            "Marketing : création et personnalisation de contenus, segmentation, analyse des performances.",
+            "Aide à la décision : synthèse de données, reporting automatique, détection des tendances.",
+          ],
+        },
+        { type: "h2", text: "Les agents IA et l'automatisation : le vrai levier" },
+        {
+          type: "p",
+          text: "La vraie puissance ne vient pas d'un chatbot isolé, mais de l'automatisation de processus entiers. Grâce à des [agents IA connectés à vos outils](/services#automation) (via des plateformes comme n8n), on orchestre des flux complets sans intervention humaine.",
+        },
+        {
+          type: "p",
+          text: "Exemple concret : un prospect remplit un formulaire sur votre site. L'IA qualifie la demande, enrichit la fiche, la crée dans votre CRM, envoie un e-mail personnalisé et planifie une relance — le tout en quelques secondes, sans qu'un membre de votre équipe n'ait à lever le petit doigt.",
+        },
+        { type: "h2", text: "Par où commencer sans se disperser" },
+        {
+          type: "p",
+          text: "L'erreur classique est de vouloir tout transformer d'un coup. La bonne approche est progressive et mesurée :",
+        },
+        {
+          type: "ul",
+          items: [
+            "Identifiez une ou deux tâches chronophages à faible valeur ajoutée.",
+            "Mesurez le temps et le coût qu'elles représentent aujourd'hui.",
+            "Automatisez un premier flux simple, puis mesurez le gain réel.",
+            "Étendez progressivement à d'autres processus, une brique à la fois.",
+          ],
+        },
+        {
+          type: "quote",
+          text: "Mieux vaut automatiser parfaitement un processus que d'en digitaliser dix à moitié.",
+        },
+        { type: "h2", text: "Les erreurs à éviter" },
+        {
+          type: "ul",
+          items: [
+            "Vouloir tout automatiser en même temps, au risque de tout mal faire.",
+            "Négliger la qualité des données : une IA nourrie de données bancales produit des résultats bancals.",
+            "Retirer tout contrôle humain sur les décisions sensibles.",
+            "Choisir des outils sans penser à leur intégration avec votre système existant.",
+          ],
+        },
+        { type: "h2", text: "Comment Kevio Labs vous accompagne" },
+        {
+          type: "p",
+          text: "Nous commençons par identifier les processus à fort retour sur investissement, puis nous concevons des [automatisations et des agents IA sur-mesure](/services#automation), intégrés à vos outils. Objectif : un gain de temps mesurable et durable, pas une usine à gaz. L'IA doit travailler pour vous, pas l'inverse — [parlons de votre projet](/contact).",
+        },
+      ],
     },
     {
-      slug: "animations-web-performantes",
+      slug: "creer-application-entreprise",
       category: "Développement",
-      date: "28 mai 2025",
-      title: "Des animations web fluides sans sacrifier la performance",
+      date: "1 juillet 2026",
+      isoDate: "2026-07-01",
+      readingTime: "6 min",
+      title:
+        "Créer une application pour son entreprise : web, mobile ou sur-mesure ?",
+      cardTitle: "Créer une",
+      cardAccent: "application",
+      image: "/blog/application.webp",
       excerpt:
-        "Nos techniques pour des transitions soignées qui restent rapides sur Chrome comme sur Safari.",
-      image: "/blog/post-2.jpg",
+        "Entre web app, application mobile et logiciel sur-mesure, comment choisir ? Un guide clair pour les dirigeants qui veulent développer la bonne application, au bon moment.",
+      intro:
+        "Une application peut transformer votre activité : fidéliser vos clients, automatiser vos opérations, ouvrir un nouveau canal de revenus. Mais entre web app, application mobile et logiciel sur-mesure, le choix n'est pas évident. Voici un guide clair pour décider sereinement.",
+      content: [
+        { type: "h2", text: "Avez-vous vraiment besoin d'une application ?" },
+        {
+          type: "p",
+          text: "Avant de se lancer, la vraie question n'est pas « quelle techno ? » mais « quel problème je résous ? ». Une application se justifie généralement quand :",
+        },
+        {
+          type: "ul",
+          items: [
+            "Vos clients reviennent régulièrement : réservation, commande, suivi, fidélité.",
+            "Vos processus internes reposent sur des tableurs qui atteignent leurs limites.",
+            "Vous voulez offrir une expérience plus rapide et personnalisée que le web classique.",
+            "Vous avez besoin de fonctionnalités avancées : notifications, mode hors-ligne, temps réel.",
+          ],
+        },
+        { type: "h2", text: "Web app, PWA ou application mobile native ?" },
+        {
+          type: "p",
+          text: "Trois grandes familles, avec chacune ses forces :",
+        },
+        {
+          type: "ul",
+          items: [
+            "Web app : accessible depuis un navigateur, sans installation. Idéale pour les outils métier et les plateformes en ligne.",
+            "PWA (application web progressive) : une web app installable, avec notifications et fonctionnement hors-ligne. Le meilleur rapport coût / portée dans la plupart des cas.",
+            "Mobile native (iOS / Android) : performances maximales, accès complet au matériel, présence sur les stores. Plus coûteuse, mais parfois indispensable.",
+          ],
+        },
+        {
+          type: "p",
+          text: "Notre recommandation : dans la majorité des projets, on démarre par une web app ou une PWA. On valide l'usage réel, on mesure la traction, et on investit dans le natif seulement quand le besoin est prouvé.",
+        },
+        { type: "h2", text: "Les étapes d'un projet d'application" },
+        {
+          type: "ul",
+          items: [
+            "Cadrage : objectifs, utilisateurs cibles et fonctionnalités prioritaires (le fameux MVP).",
+            "Design UX/UI : parcours utilisateur et maquettes avant la moindre ligne de code.",
+            "Développement par itérations : on livre des versions utilisables régulièrement.",
+            "Tests et déploiement : qualité, sécurité, mise en ligne maîtrisée.",
+            "Évolution continue : on mesure, on ajuste, on ajoute de la valeur.",
+          ],
+        },
+        { type: "h2", text: "Délais et budget : à quoi s'attendre" },
+        {
+          type: "p",
+          text: "Un MVP bien cadré peut voir le jour en quelques semaines ; une application complète s'étale sur plusieurs mois. Le budget dépend directement du nombre de fonctionnalités, des intégrations et du nombre de plateformes visées. Le meilleur conseil reste le même : commencer petit, lancer vite, et faire grandir l'application avec les retours réels de vos utilisateurs.",
+        },
+        { type: "h2", text: "Pourquoi le sur-mesure" },
+        {
+          type: "p",
+          text: "Les solutions no-code et les templates sont parfaits pour tester une idée. Mais dès que votre activité grandit, ils montrent vite leurs limites : dépendance à un outil, coûts qui explosent, impossibilité de personnaliser. Le sur-mesure vous rend propriétaire de votre outil : performances, évolutivité et liberté totale.",
+        },
+        { type: "h2", text: "Les pièges à éviter" },
+        {
+          type: "ul",
+          items: [
+            "Vouloir tout intégrer dès la première version : c'est le meilleur moyen de ne jamais sortir.",
+            "Négliger l'[expérience mobile et la performance](/blog/site-web-performant), alors que c'est là que se joue la majorité des usages.",
+            "Oublier la maintenance et les mises à jour dans le budget.",
+            "Choisir une technologie à la mode plutôt que celle qui sert vraiment le projet.",
+          ],
+        },
+        {
+          type: "p",
+          text: "Chez Kevio Labs, nous concevons des [applications sur-mesure](/services#web) pensées pour durer : cadrage rigoureux, design soigné et développement solide. On construit l'application dont votre entreprise a réellement besoin — ni plus, ni moins. [Discutons de votre projet](/contact).",
+        },
+      ],
     },
     {
-      slug: "identite-de-marque-startup",
-      category: "Branding",
-      date: "9 mai 2025",
-      title: "L'identité de marque, un levier de croissance pour les startups",
+      slug: "site-web-performant",
+      category: "Performance",
+      date: "17 juin 2026",
+      isoDate: "2026-06-17",
+      readingTime: "6 min",
+      title: "Qu'est-ce qu'un site web vraiment performant ? (bien plus que le design)",
+      cardTitle: "Un site web",
+      cardAccent: "performant",
+      image: "/blog/site-performant.webp",
       excerpt:
-        "Pourquoi investir tôt dans une image forte change la trajectoire d'une jeune entreprise.",
-      image: "/blog/post-3.jpg",
+        "Un beau site ne suffit pas. Un site performant charge vite, se fait trouver sur Google et transforme les visiteurs en clients. Décryptage de ce qui fait la différence.",
+      intro:
+        "On confond souvent « joli site » et « bon site ». Pourtant, un site web vraiment performant, c'est un site qui charge vite, qui est trouvé sur Google et qui transforme ses visiteurs en clients. Voici ce qui sépare une vitrine décorative d'un véritable outil commercial.",
+      content: [
+        { type: "h2", text: "Performance n'est pas esthétique" },
+        {
+          type: "p",
+          text: "Un site peut être magnifique et totalement contre-performant : lent à charger, invisible sur Google, ou incapable de guider le visiteur vers l'action. Le design est essentiel, mais il n'est que la partie visible. La performance, elle, se joue sous le capot.",
+        },
+        { type: "h2", text: "La vitesse : les Core Web Vitals" },
+        {
+          type: "p",
+          text: "Google évalue l'expérience réelle des utilisateurs à travers les Core Web Vitals (vitesse d'affichage, réactivité, stabilité visuelle). Un site lent perd des visiteurs — la majorité abandonne au-delà de trois secondes de chargement — et recule dans les résultats de recherche.",
+        },
+        {
+          type: "p",
+          text: "À titre d'exemple, le site que nous avons réalisé pour [À La Lyonnaise](/projets/a-la-lyonnaise) atteint 92/100 en performance mobile et 97/100 en desktop sur PageSpeed Insights, avec des scores de 100/100 en bonnes pratiques et en SEO. Ce niveau d'exigence n'est pas un détail technique : il se traduit directement en visibilité et en clients.",
+        },
+        { type: "h2", text: "Le SEO technique" },
+        {
+          type: "p",
+          text: "Être bien conçu ne suffit pas si personne ne vous trouve. Le [référencement naturel (SEO)](/services#seo) repose sur des fondations techniques solides :",
+        },
+        {
+          type: "ul",
+          items: [
+            "Une structure claire, des balises soignées et des données structurées.",
+            "Une approche mobile-first, car Google indexe d'abord la version mobile.",
+            "Des URLs propres, un sitemap et une vitesse de chargement optimale.",
+            "Un contenu pertinent, aligné sur les mots-clés que cherchent vos clients.",
+          ],
+        },
+        { type: "h2", text: "L'expérience mobile" },
+        {
+          type: "p",
+          text: "Plus de la moitié du trafic web se fait aujourd'hui sur mobile. Un site qui n'est pas impeccable sur smartphone perd donc une part énorme de son audience — et de son chiffre d'affaires. Le responsive n'est pas une option, c'est le point de départ.",
+        },
+        { type: "h2", text: "La conversion" },
+        {
+          type: "p",
+          text: "Un site performant ne se contente pas d'attirer : il guide vers l'action. Hiérarchie claire, appels à l'action visibles, formulaires courts, preuve sociale (avis clients, réalisations) : chaque élément doit réduire les frictions et rassurer le visiteur au bon moment.",
+        },
+        { type: "h2", text: "L'accessibilité" },
+        {
+          type: "p",
+          text: "Un site accessible est utilisable par le plus grand nombre, y compris les personnes en situation de handicap. C'est une question d'inclusion, mais aussi de performance : les bonnes pratiques d'accessibilité sont largement valorisées par Google.",
+        },
+        { type: "h2", text: "La checklist d'un site performant" },
+        {
+          type: "ul",
+          items: [
+            "Chargement rapide et bons scores Core Web Vitals.",
+            "Affichage impeccable sur mobile comme sur desktop.",
+            "SEO technique en place dès la conception.",
+            "Un parcours de conversion clair et sans friction.",
+            "Un site sécurisé (HTTPS) et maintenu dans le temps.",
+          ],
+        },
+        {
+          type: "p",
+          text: "Chez Kevio Labs, la performance n'est pas une option ajoutée à la fin : elle est intégrée dès la première ligne de code. Un site rapide, bien référencé et pensé pour convertir, c'est un site qui travaille pour vous — 24 heures sur 24. [Parlons de votre projet](/contact).",
+        },
+      ],
     },
   ],
 };
