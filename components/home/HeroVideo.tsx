@@ -18,6 +18,10 @@ export default function HeroVideo({
   const [failed, setFailed] = useState(false);
   const [activeSrc, setActiveSrc] = useState<string | null>(null);
 
+  // Image d'aperçu (1re image de la vidéo) affichée immédiatement — évite
+  // l'écran noir pendant que la vidéo se charge.
+  const poster = src.replace(/\.mp4$/, "-poster.jpg");
+
   // On choisit la source (webm si supporté, sinon mp4) une fois l'intro finie.
   useEffect(() => {
     const webm = src.replace(/\.mp4$/, ".webm");
@@ -45,6 +49,7 @@ export default function HeroVideo({
       <video
         ref={ref}
         src={activeSrc ?? undefined}
+        poster={poster}
         autoPlay
         muted
         loop
