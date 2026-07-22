@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Fragment, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -112,7 +113,12 @@ export default function AboutExpertise() {
             const Icon = ICONS[item.icon] ?? FaLaptopCode;
             return (
               <Reveal key={item.n} delay={Math.min(i * 0.1, 0.3)}>
-                <article className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.015] p-8">
+                <Link
+                  href={`/services#${item.icon}`}
+                  className="group block h-full"
+                  aria-label={`${item.title} — voir le service`}
+                >
+                <article className="relative h-full overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.015] p-8 transition-colors duration-300 group-hover:border-white/25">
                   {/* Dôme dégradé + badge icône */}
                   <div className="relative mb-10 h-40">
                     <div
@@ -141,6 +147,7 @@ export default function AboutExpertise() {
                     {item.text}
                   </p>
                 </article>
+                </Link>
               </Reveal>
             );
           })}

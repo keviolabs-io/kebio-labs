@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -130,6 +131,18 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-12 flex justify-center md:justify-start">
+          <Link
+            href="/about"
+            className="group inline-flex items-center gap-2 rounded-full border border-border-strong px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white hover:text-black"
+          >
+            Découvrir l&apos;agence
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
         </div>
       </div>
     </section>

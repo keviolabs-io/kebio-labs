@@ -17,6 +17,26 @@ const ICONS: Record<string, IconType> = {
   seo: FaSearch,
 };
 
+// Maillage interne : pour chaque service, un projet exemple + un article lié.
+type ProofLink = { label: string; href: string };
+const PROOF: Record<string, { project?: ProofLink; article?: ProofLink }> = {
+  web: {
+    project: { label: "ARCTIC FLOW", href: "/projets/arctic-flow" },
+    article: { label: "Créer une application", href: "/blog/creer-application-entreprise" },
+  },
+  automation: {
+    project: { label: "OFFGRID", href: "/projets/offgrid" },
+    article: { label: "L'IA en entreprise en 2026", href: "/blog/integrer-ia-entreprise-2026" },
+  },
+  ads: {
+    article: { label: "Un site web performant", href: "/blog/site-web-performant" },
+  },
+  seo: {
+    project: { label: "À La Lyonnaise", href: "/projets/a-la-lyonnaise" },
+    article: { label: "Un site web performant", href: "/blog/site-web-performant" },
+  },
+};
+
 type Item = (typeof services.items)[number];
 
 /** Petite puce ✓ pour la liste des prestations. */
@@ -140,6 +160,36 @@ function ServiceBlock({ item, index }: { item: Item; index: number }) {
             </span>
           </Link>
         </Reveal>
+
+        {/* Maillage interne : projet exemple + article lié */}
+        {(PROOF[item.icon]?.project || PROOF[item.icon]?.article) && (
+          <Reveal delay={0.12}>
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+              {PROOF[item.icon]?.project && (
+                <Link
+                  href={PROOF[item.icon].project!.href}
+                  className="group inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+                >
+                  <span className="text-muted-dark">Exemple :</span>
+                  <span className="text-foreground/90 underline decoration-white/20 underline-offset-4 group-hover:decoration-white">
+                    {PROOF[item.icon].project!.label}
+                  </span>
+                </Link>
+              )}
+              {PROOF[item.icon]?.article && (
+                <Link
+                  href={PROOF[item.icon].article!.href}
+                  className="group inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+                >
+                  <span className="text-muted-dark">À lire :</span>
+                  <span className="text-foreground/90 underline decoration-white/20 underline-offset-4 group-hover:decoration-white">
+                    {PROOF[item.icon].article!.label}
+                  </span>
+                </Link>
+              )}
+            </div>
+          </Reveal>
+        )}
       </div>
 
       {/* Colonne visuelle */}
