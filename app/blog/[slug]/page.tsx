@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blog } from "@/lib/content";
 import BlogArticle from "@/components/blog/BlogArticle";
+import RelatedPosts from "@/components/blog/RelatedPosts";
 import Contact from "@/components/home/Contact";
 import JsonLd from "@/components/JsonLd";
 import { blogPostSchema } from "@/lib/schema";
@@ -56,6 +57,7 @@ export default async function BlogPostPage({
     <>
       <JsonLd data={blogPostSchema(post)} />
       <BlogArticle post={post} />
+      <RelatedPosts currentSlug={slug} />
       <Contact />
     </>
   );

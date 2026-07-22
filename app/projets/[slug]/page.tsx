@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { projects, projectDetails } from "@/lib/content";
 import ProjectHero from "@/components/project/ProjectHero";
 import ProjectBody from "@/components/project/ProjectBody";
+import RelatedProjects from "@/components/project/RelatedProjects";
 import Faq from "@/components/home/Faq";
 import Contact from "@/components/home/Contact";
 import JsonLd from "@/components/JsonLd";
@@ -48,6 +49,7 @@ export default async function ProjectPage({
       <JsonLd data={projectSchema(project)} />
       <ProjectHero title={project.title} image={detail?.heroImage ?? project.image} />
       {detail && <ProjectBody detail={detail} liveUrl={detail.liveUrl} />}
+      <RelatedProjects currentSlug={slug} />
       <Faq />
       <Contact />
     </>
