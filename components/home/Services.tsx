@@ -8,6 +8,8 @@ export default function Services() {
     <section id="services" className="px-6 py-14 md:py-28">
       <div className="mx-auto max-w-[1400px]">
         <SectionLabel icon="✎">{services.label}</SectionLabel>
+        {/* Titre de section (hiérarchie h2 → h3 des cartes) pour l'accessibilité */}
+        <h2 className="sr-only">{services.label}</h2>
 
         {/* Cartes services : bascule 3D + halos lumineux (mobile empilé,
             desktop en ligne — toutes basculent en même temps). */}

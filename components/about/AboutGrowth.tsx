@@ -20,7 +20,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const DIM = "#666666";
+const DIM = "#7a7a7a";
 const BRIGHT = "#ededed";
 const EASE = [0.22, 1, 0.36, 1] as const;
 

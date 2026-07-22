@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const DIM = "#666666";
+const DIM = "#7a7a7a";
 const BRIGHT = "#ededed";
 
 const ICONS: Record<string, IconType> = {

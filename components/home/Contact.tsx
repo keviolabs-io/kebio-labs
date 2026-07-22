@@ -72,6 +72,7 @@ function Field({
     <div>
       <Label text={label} required={required} />
       <input
+        aria-label={label}
         required={required}
         type={type}
         placeholder={placeholder}
@@ -103,6 +104,7 @@ function Select({
     <div>
       <Label text={label} required={required} />
       <select
+        aria-label={label}
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -301,6 +303,7 @@ export default function Contact() {
                   <div>
                     <Label text={F.fields.message.label} />
                     <textarea
+                      aria-label={F.fields.message.label}
                       rows={4}
                       placeholder={F.fields.message.placeholder}
                       value={message}

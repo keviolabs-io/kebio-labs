@@ -12,7 +12,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const DIM = "#666666";
+const DIM = "#7a7a7a";
 const BRIGHT = "#ededed";
 
 /** Compteur qui monte (0 → value) à l'apparition. */
